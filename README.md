@@ -3,9 +3,9 @@ original mod was made by Abreaker, after he dropped the mod i chose to pick it u
 
 ## Credits!
 
-### Major thanks to MEEP of Faith#7277 for helping me learn java to write the mod!
+#### Major thanks to MEEP of Faith#7277 for helping me learn java to write the mod!
 
-### Thanks to ABreaker#5940, for writing the original mod, and thanks to everyone in his modding crew which pitched ideas for the original mod
+#### Thanks to ABreaker#5940, for writing the original mod, and thanks to everyone in his modding crew which pitched ideas for the original mod!
 
 ## Other contributors:
 
