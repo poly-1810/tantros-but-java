@@ -1,4 +1,4 @@
-package tantros.content;
+package tantros;
 import mindustry.content.Items;
 import mindustry.type.Category;
 import mindustry.world.Block;
