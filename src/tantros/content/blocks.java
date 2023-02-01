@@ -1,7 +1,6 @@
 package tantros.content;
 import mindustry.content.Items;
 import mindustry.type.Category;
-import mindustry.type.ItemStack;
 import mindustry.world.Block;
 import mindustry.world.blocks.storage.CoreBlock;
 import mindustry.world.meta.BuildVisibility;
@@ -15,7 +14,6 @@ public class TantrosBlocks {
 
     //cores
     corePod,
-
     // endregion
 
     public static void load(){
@@ -25,7 +23,7 @@ public class TantrosBlocks {
         corePod = new CoreBlock("core-pod"){{
             requirements(Category.effect, BuildVisibility.editorOnly, with(Items.copper, 1));
 
-        }}
+        }};
 
 
     }
