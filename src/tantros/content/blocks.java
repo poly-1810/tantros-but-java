@@ -7,19 +7,18 @@ import mindustry.world.meta.BuildVisibility;
 
 import static mindustry.type.ItemStack.with;
 
-public class TantrosBlocks {
+public class blocks {
     public static Block
 
     // region Misc
 
-    //cores
-    corePod,
+    //storage
+    corePod;
     // endregion
 
     public static void load(){
+        //region storage
 
-
-        // region Misc
         corePod = new CoreBlock("core-pod"){{
             requirements(Category.effect, BuildVisibility.editorOnly, with(Items.copper, 1));
 
