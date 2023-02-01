@@ -8,7 +8,7 @@ name: "tantros-mod"
 author: "Poly#1810"
 
 #the fully qualified main class of the mod
-main: "example.ExampleJavaMod"
+main: "tantros.blocks"
 
 #the mod description as seen in the mod dialog
 description: "currently created from the Mindustry Java mod template."
