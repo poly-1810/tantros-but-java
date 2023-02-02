@@ -7,21 +7,21 @@ import mindustry.world.meta.BuildVisibility;
 
 import static mindustry.type.ItemStack.with;
 
-public class Blocks {
+public class TBlocks {
     public static Block
 
     // region Misc
 
-    //storage
+    // storage
     corePod;
     // endregion
 
-    public static void load(){
+    public static void load() {
         //region storage
 
         corePod = new CoreBlock("core-pod"){{
             requirements(Category.effect, BuildVisibility.editorOnly, with(Items.copper, 1));
-
+            size = 2;
         }};
 
 
