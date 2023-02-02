@@ -2,6 +2,7 @@ package tantros;
 
 import mindustry.mod.Mod;
 import tantros.content.Blocks;
+import tantros.content.Tantros;
 
 public class TantrosMod extends Mod {
     public TantrosMod() {}
@@ -9,5 +10,6 @@ public class TantrosMod extends Mod {
     @Override
     public void loadContent() {
         Blocks.load();
+        Tantros.load();
     }
 }
