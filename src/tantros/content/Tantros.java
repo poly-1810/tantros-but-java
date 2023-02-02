@@ -8,5 +8,6 @@ public class Tantros {
         Planets.tantros.visible = true;
         Planets.tantros.accessible = true;
         Planets.tantros.alwaysUnlocked = true;
+        Planets.tantros.unlockedOnLand.add(TBlocks.corePod);
     }
 }
