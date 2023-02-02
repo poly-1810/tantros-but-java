@@ -9,4 +9,6 @@ original mod was made by Abreaker, after he dropped the mod i chose to pick it u
 
 ## Other contributors:
 
-(Dont worry! just because the list here is empty, doesnt mean that there will never be other contributors! just dm me (Poly#1810), and pitch in your idea, and ill add your discord to this list! if i ever accidentally ignore a message request, just try again, its likely i hit the wrong button)
+- MeiNanziiii#5309 (helped with making a main class)
+
+(if you would like to contribute, just dm me (Poly#1810), and pitch in your idea, and ill add your discord to this list! if i ever accidentally ignore a message request, just try again, its likely i hit the wrong button)
