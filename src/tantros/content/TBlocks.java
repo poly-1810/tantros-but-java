@@ -47,7 +47,7 @@ public class TBlocks {
             variants = 5;
         }};
         // region crafting
-        tantrosHeater = new HeatProducer("tantros-heater"){{
+        tantrosHeater = new HeatProducer("tantros-electric-heater"){{
             requirements(Category.crafting, with(TItems.tantrosCopper, 30, TItems.brass, 10));
 
             drawer = new DrawMulti(new DrawDefault(), new DrawHeatOutput());
