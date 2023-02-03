@@ -3,10 +3,12 @@ package tantros.content;
 import mindustry.content.Fx;
 import mindustry.content.Items;
 import mindustry.content.UnitTypes;
+import mindustry.gen.Sounds;
 import mindustry.type.Category;
 import mindustry.type.ItemStack;
 import mindustry.world.Block;
 import mindustry.world.blocks.environment.OreBlock;
+import mindustry.world.blocks.heat.HeatProducer;
 import mindustry.world.blocks.production.HeatCrafter;
 import mindustry.world.blocks.storage.CoreBlock;
 import mindustry.world.draw.*;
@@ -23,6 +25,7 @@ public class TBlocks {
     oreTantrosCopper,
     oreZinc,
     // crafting
+    tantrosHeater,
     brassSmelter,
     // storage
     corePod;
@@ -44,6 +47,19 @@ public class TBlocks {
             variants = 5;
         }};
         // region crafting
+        tantrosHeater = new HeatProducer("tantros-heater"){{
+            requirements(Category.crafting, with(TItems.tantrosCopper, 30, TItems.brass, 10));
+
+            drawer = new DrawMulti(new DrawDefault(), new DrawHeatOutput());
+            size = 2;
+            rotateDraw = false;
+            heatOutput = 5f;
+            regionRotated1 = 1;
+            ambientSound = Sounds.hum;
+            itemCapacity = 0;
+
+            consumePower(100f / 60f);
+        }};
         brassSmelter = new HeatCrafter("brass-smelter"){{
             requirements(Category.crafting, with(TItems.tantrosCopper, 50, TItems.zinc, 30));
 
