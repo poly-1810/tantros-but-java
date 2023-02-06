@@ -3,7 +3,9 @@ import mindustry.content.Items;
 import mindustry.content.UnitTypes;
 import mindustry.type.Category;
 import mindustry.world.Block;
+import mindustry.world.blocks.payloads.Constructor;
 import mindustry.world.blocks.payloads.PayloadConveyor;
+import mindustry.world.blocks.payloads.PayloadDeconstructor;
 import mindustry.world.blocks.payloads.PayloadRouter;
 import mindustry.world.blocks.storage.CoreBlock;
 import mindustry.world.meta.BuildVisibility;
@@ -19,7 +21,7 @@ public class TBlocks {
     //endregion
 
     // distribution
-    payloadBelt, payloadDistributor
+    payloadBelt, payloadDistributor, constructor, deconstructor
     ;
 
     public static void load() {
@@ -57,6 +59,26 @@ public class TBlocks {
             researchCostMultiplier = 2f;
             underBullets = true;
             size = 2;
+        }};
+
+        constructor = new Constructor("constructor") {{
+            requirements(Category.units, with(Items.copper, 1));
+            regionSuffix = "-dark";
+            hasPower = false;
+            buildSpeed = 0.5f;
+            maxBlockSize = 1;
+            itemCapacity = 60;
+            size = 2;
+        }};
+
+        deconstructor = new PayloadDeconstructor("deconstructor") {{
+            requirements(Category.units, with(Items.copper, 1));
+            regionSuffix = "-dark";
+            hasPower = false;
+            itemCapacity = 60;
+            size = 2;
+            maxPayloadSize = 1;
+            deconstructSpeed = 2.8f;
         }};
 
 
