@@ -19,7 +19,7 @@ public class TBlocks {
     //endregion
 
     // distribution
-    payloadBelt, payloadRouter
+    payloadBelt, payloadDistributor
     ;
 
     public static void load() {
@@ -49,7 +49,7 @@ public class TBlocks {
             size = 2;
         }};
 
-        payloadRouter = new PayloadRouter("payload-router") {{
+        payloadDistributor = new PayloadRouter("payload-distributor") {{
             requirements(Category.units, with(Items.copper, 1));
             moveTime = 25f;
             canOverdrive = false;
