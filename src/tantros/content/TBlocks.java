@@ -19,7 +19,8 @@ public class TBlocks {
     //endregion
 
     // distribution
-    payloadBelt, payloadRouter,
+    payloadBelt, payloadRouter
+    ;
 
     public static void load() {
         //region misc
