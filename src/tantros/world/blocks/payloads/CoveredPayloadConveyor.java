@@ -156,7 +156,6 @@ public class CoveredPayloadConveyor extends Block{
                 PayloadBlock.pushOutput(item, progress / moveTime);
             }
 
-            //TODO nondeterministic input priority
             int curStep = curStep();
             if(curStep > step){
                 boolean valid = step != -1;
@@ -168,7 +167,6 @@ public class CoveredPayloadConveyor extends Block{
                         //trigger update forward
                         next.updateTile();
 
-                        //TODO add self to queue of next conveyor, then check if this conveyor was selected next frame - selection happens deterministically
                         if(next != null && next.acceptPayload(this, item)){
                             //move forward.
                             next.handlePayload(this, item);

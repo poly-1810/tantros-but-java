@@ -4,6 +4,7 @@ import mindustry.content.UnitTypes;
 import mindustry.type.Category;
 import mindustry.world.Block;
 import mindustry.world.blocks.payloads.Constructor;
+import mindustry.world.blocks.payloads.PayloadConveyor;
 import mindustry.world.blocks.payloads.PayloadDeconstructor;
 import mindustry.world.blocks.payloads.PayloadRouter;
 import mindustry.world.blocks.storage.CoreBlock;
@@ -41,7 +42,7 @@ public class TBlocks {
 
         //endregion
         //region distribution
-        payloadBelt = new CoveredPayloadConveyor("payload-belt") {{
+        payloadBelt = new PayloadConveyor("payload-belt") {{
             requirements(Category.units, with(Items.copper, 1));
             moveTime = 25f;
             canOverdrive = false;
