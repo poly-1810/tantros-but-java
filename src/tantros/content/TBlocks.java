@@ -4,12 +4,11 @@ import mindustry.content.UnitTypes;
 import mindustry.type.Category;
 import mindustry.world.Block;
 import mindustry.world.blocks.payloads.Constructor;
-import mindustry.world.blocks.payloads.PayloadConveyor;
 import mindustry.world.blocks.payloads.PayloadDeconstructor;
-import mindustry.world.blocks.payloads.PayloadRouter;
 import mindustry.world.blocks.storage.CoreBlock;
 import mindustry.world.meta.BuildVisibility;
 import tantros.world.blocks.payloads.CoveredPayloadConveyor;
+import tantros.world.blocks.payloads.CoveredPayloadRouter;
 
 import static mindustry.type.ItemStack.with;
 
@@ -52,7 +51,7 @@ public class TBlocks {
             size = 2;
         }};
 
-        payloadDistributor = new PayloadRouter("payload-distributor") {{
+        payloadDistributor = new CoveredPayloadRouter("payload-distributor") {{
             requirements(Category.units, with(Items.copper, 1));
             moveTime = 25f;
             canOverdrive = false;
