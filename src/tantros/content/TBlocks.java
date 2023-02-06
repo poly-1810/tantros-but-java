@@ -42,7 +42,7 @@ public class TBlocks {
 
         //endregion
         //region distribution
-        payloadBelt = new PayloadConveyor("payload-belt") {{
+        payloadBelt = new CoveredPayloadConveyor("payload-belt") {{
             requirements(Category.units, with(Items.copper, 1));
             moveTime = 25f;
             canOverdrive = false;
