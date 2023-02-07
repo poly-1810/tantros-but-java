@@ -24,7 +24,7 @@ public class TItems {
             cost = 1.5f;
             healthScaling = 0.7f;
         }};
-        brass = new Item("brass", Color.valueOf("EAB678")){{
+        brass = new Item("brass", Color.valueOf("EDC687")){{
             cost = 1;
             healthScaling = 0.7f;
         }};
