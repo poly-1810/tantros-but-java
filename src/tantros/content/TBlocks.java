@@ -1,4 +1,5 @@
 package tantros.content;
+import mindustry.content.Fx;
 import mindustry.content.Items;
 import mindustry.content.UnitTypes;
 import mindustry.type.Category;
@@ -50,6 +51,7 @@ public class TBlocks {
             researchCostMultiplier = 2f;
             underBullets = true;
             size = 2;
+            category = Category.distribution;
         }};
 
         payloadDistributor = new CoveredPayloadRouter("payload-distributor") {{
@@ -60,6 +62,7 @@ public class TBlocks {
             researchCostMultiplier = 2f;
             underBullets = true;
             size = 2;
+            category = Category.distribution;
         }};
 
         constructor = new Constructor("constructor") {{
@@ -69,6 +72,7 @@ public class TBlocks {
             buildSpeed = 0.5f;
             maxBlockSize = 1;
             size = 2;
+            category = Category.distribution;
         }};
 
         deconstructor = new PayloadDeconstructor("deconstructor") {{
@@ -79,6 +83,7 @@ public class TBlocks {
             size = 2;
             maxPayloadSize = 1;
             deconstructSpeed = 2.8f;
+            category = Category.distribution;
         }};
 
         payloadDriver = new PayloadMassDriver("payload-launcher") {{
@@ -87,7 +92,16 @@ public class TBlocks {
             size = 2;
             reload = 4f;
             chargeTime = 20f;
-            maxPayloadSize = 2f;
+            maxPayloadSize = 1f;
+            range = 56;
+            grabWidth = 3f;
+            grabHeight = 1.6f;
+            length = 5.75f;
+            rotateSpeed = 3.5f;
+            knockback = 2;
+            shake = 0.5f;
+            shootEffect = Fx.none;
+            category = Category.distribution;
         }};
 
 
