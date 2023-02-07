@@ -87,7 +87,7 @@ public class TBlocks {
             size = 2;
             reload = 4f;
             chargeTime = 20f;
-            maxPayloadSize = 1f;
+            maxPayloadSize = 2f;
         }};
 
 
