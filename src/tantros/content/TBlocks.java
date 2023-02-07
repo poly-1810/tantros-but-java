@@ -5,6 +5,7 @@ import mindustry.type.Category;
 import mindustry.world.Block;
 import mindustry.world.blocks.payloads.Constructor;
 import mindustry.world.blocks.payloads.PayloadDeconstructor;
+import mindustry.world.blocks.payloads.PayloadMassDriver;
 import mindustry.world.blocks.storage.CoreBlock;
 import mindustry.world.meta.BuildVisibility;
 import tantros.world.blocks.payloads.CoveredPayloadConveyor;
@@ -21,7 +22,7 @@ public class TBlocks {
     //endregion
 
     // distribution
-    payloadBelt, payloadDistributor, constructor, deconstructor
+    payloadBelt, payloadDistributor, constructor, deconstructor, payloadDriver
     ;
 
     public static void load() {
@@ -78,6 +79,15 @@ public class TBlocks {
             size = 2;
             maxPayloadSize = 1;
             deconstructSpeed = 2.8f;
+        }};
+
+        payloadDriver = new PayloadMassDriver("payload-launcher") {{
+            requirements(Category.units, with(Items.copper,1));
+            regionSuffix ="-dark";
+            size = 2;
+            reload = 4f;
+            chargeTime = 20f;
+            maxPayloadSize = 1f;
         }};
 
 
