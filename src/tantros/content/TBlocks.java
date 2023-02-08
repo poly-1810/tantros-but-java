@@ -1,4 +1,5 @@
 package tantros.content;
+import arc.math.Interp;
 import mindustry.content.Fx;
 import mindustry.content.Items;
 import mindustry.content.UnitTypes;
@@ -30,9 +31,10 @@ public class TBlocks {
         //region misc
 
         corePod = new CoreBlock("core-pod"){{
-            requirements(Category.effect, BuildVisibility.editorOnly, with(Items.copper, 1));
+            requirements(Category.effect, BuildVisibility.editorOnly, with(TItems.Tcopper, 400, TItems.calcite, 100, TItems.nickel, 250, TItems.zinc, 250));
             alwaysUnlocked = true;
-
+            armor = 15;
+            incinerateNonBuildable = false;
             isFirstTier = true;
             unitType = UnitTypes.alpha;
             health = 1000;
@@ -44,40 +46,46 @@ public class TBlocks {
         //endregion
         //region distribution
         payloadBelt = new CoveredPayloadConveyor("payload-belt") {{
-            requirements(Category.units, with(Items.copper, 1));
-            moveTime = 25f;
+            requirements(Category.units, with(TItems.nickel, 2));
             canOverdrive = false;
-            health = 100;
-            researchCostMultiplier = 2f;
+            scaledHealth = 50;
+            moveTime = 24;
             underBullets = true;
             size = 2;
+            interp = Interp.pow2Out;
+            researchCostMultiplier = 0.25f;
             category = Category.distribution;
         }};
 
         payloadDistributor = new CoveredPayloadRouter("payload-distributor") {{
-            requirements(Category.units, with(Items.copper, 1));
-            moveTime = 25f;
+            requirements(Category.units, with(TItems.Tcopper, 2, TItems.nickel, 4));
             canOverdrive = false;
-            health = 100;
-            researchCostMultiplier = 2f;
+            scaledHealth = 50;
+            moveTime = 24;
+            interp = Interp.pow2Out;
             underBullets = true;
             size = 2;
             category = Category.distribution;
         }};
 
         constructor = new Constructor("constructor") {{
-            requirements(Category.units, with(Items.copper, 1));
+            requirements(Category.units, with(TItems.nickel, 12));
             regionSuffix = "-dark";
+            envEnabled = 4;
+            scaledHealth = 90;
             hasPower = false;
             buildSpeed = 0.5f;
             maxBlockSize = 1;
             size = 2;
+            researchCostMultiplier = 0.25f;
             category = Category.distribution;
         }};
 
         deconstructor = new PayloadDeconstructor("deconstructor") {{
-            requirements(Category.units, with(Items.copper, 1));
+            requirements(Category.units, with(TItems.nickel, 12));
             regionSuffix = "-dark";
+            scaledHealth = 90;
+            researchCostMultiplier = 0.25f;
             hasPower = false;
             itemCapacity = 60;
             size = 2;

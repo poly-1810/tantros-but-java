@@ -14,7 +14,7 @@ public class TItems {
             charge = 0.3f;
             healthScaling = 1.2f;
         }};
-        Tcopper = new Item("copper", Color.valueOf("29A88B")){{
+        Tcopper = new Item("tcopper", Color.valueOf("29A88B")){{
             hardness = 1;
             cost = 0.3f;
             healthScaling = 0.5f;
