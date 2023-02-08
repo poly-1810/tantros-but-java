@@ -71,7 +71,6 @@ public class TBlocks {
         constructor = new Constructor("constructor") {{
             requirements(Category.units, with(TItems.nickel, 12));
             regionSuffix = "-dark";
-            envEnabled = 4;
             scaledHealth = 90;
             hasPower = false;
             buildSpeed = 0.5f;
