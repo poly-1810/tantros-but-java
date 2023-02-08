@@ -52,6 +52,7 @@ public class TBlocks {
             moveTime = 24;
             underBullets = true;
             size = 2;
+            payloadLimit = 1;
             interp = Interp.pow2Out;
             researchCostMultiplier = 0.25f;
             category = Category.distribution;
@@ -65,6 +66,7 @@ public class TBlocks {
             interp = Interp.pow2Out;
             underBullets = true;
             size = 2;
+            payloadLimit = 1;
             category = Category.distribution;
         }};
 
