@@ -1,10 +1,14 @@
 package tantros.content;
+import arc.graphics.Color;
 import arc.math.Interp;
 import mindustry.content.Fx;
 import mindustry.content.Items;
 import mindustry.content.UnitTypes;
+import mindustry.entities.bullet.ExplosionBulletType;
+import mindustry.entities.effect.ParticleEffect;
 import mindustry.type.Category;
 import mindustry.world.Block;
+import mindustry.world.blocks.defense.Wall;
 import mindustry.world.blocks.payloads.Constructor;
 import mindustry.world.blocks.payloads.PayloadDeconstructor;
 import mindustry.world.blocks.payloads.PayloadMassDriver;
@@ -21,8 +25,8 @@ public class TBlocks {
 
     // misc
     corePod,
-    //endregion
-
+    // item blocks
+    copperWall,
     // distribution
     payloadBelt, payloadDistributor, constructor, deconstructor, payloadDriver
     ;
@@ -111,6 +115,33 @@ public class TBlocks {
             shake = 0.5f;
             shootEffect = Fx.none;
             category = Category.distribution;
+        }};
+        //endregion
+        //region item blocks
+        copperWall = new Wall("copper-wall"){{
+            requirements(Category.defense, with(TItems.Tcopper, 6));
+            scaledHealth = 70;
+            armor = 2;
+            size = 1;
+            buildCostMultiplier = 4.8f;
+            researchCostMultiplier = 0.25f;
+            destroyBullet = new ExplosionBulletType(){{
+               hitEffect = Fx.none;
+                despawnEffect = new ParticleEffect(){{
+                    particles = 8;
+                    lifetime = 60f;
+                    sizeFrom = 3.5f;
+                    sizeTo = 0f;
+                    colorFrom = Color.valueOf("29a88b");
+                    colorTo = Color.valueOf("29a88b00");
+                    length = 16f;
+                    interp = Interp.pow3Out;
+                    sizeInterp = Interp.pow2In;
+                }};
+               splashDamage = 12.5f;
+               splashDamageRadius = 16f;
+               killShooter = false;
+            }};
         }};
 
 
