@@ -26,7 +26,7 @@ public class TBlocks {
     // misc
     corePod,
     // item blocks
-    copperWall,
+    tcopperWall,
     // distribution
     payloadBelt, payloadDistributor, constructor, deconstructor, payloadDriver
     ;
@@ -118,7 +118,7 @@ public class TBlocks {
         }};
         //endregion
         //region item blocks
-        copperWall = new Wall("copper-wall"){{
+        tcopperWall = new Wall("tcopper-wall"){{
             requirements(Category.defense, with(TItems.Tcopper, 6));
             scaledHealth = 70;
             armor = 2;
