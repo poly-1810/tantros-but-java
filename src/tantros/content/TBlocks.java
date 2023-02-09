@@ -18,6 +18,7 @@ import mindustry.world.blocks.storage.CoreBlock;
 import mindustry.world.meta.BuildVisibility;
 import tantros.world.blocks.payloads.CoveredPayloadConveyor;
 import tantros.world.blocks.payloads.CoveredPayloadRouter;
+import tantros.world.blocks.walls.ReactiveWalls;
 
 import static mindustry.type.ItemStack.with;
 
@@ -275,13 +276,14 @@ public class TBlocks {
                 category = Category.distribution;
             }};
         }};
-        rubedoBlock = new Wall("rubedo-block"){{
-            requirements(Category.defense, with(TItems.brass, 24));
-            scaledHealth = -1f;
+        rubedoBlock = new ReactiveWalls("rubedo-block"){{
+            requirements(Category.defense, with(TItems.rubedo, 24));
+            scaledHealth = 0;
             armor = 4;
             size = 1;
             buildCostMultiplier = 4.8f;
             researchCostMultiplier = 0.25f;
+            placeableOn = false;
             destroyBullet = new ExplosionBulletType(){{
                 hitEffect = Fx.none;
                 despawnEffect = new ParticleEffect(){{
@@ -290,7 +292,7 @@ public class TBlocks {
                     sizeFrom = 16.5f;
                     sizeTo = 0f;
                     colorFrom = Color.valueOf("CE735E");
-                    colorTo = Color.valueOf("7E264200");
+                    colorTo = Color.valueOf("7E264233");
                     length = 64f;
                     interp = Interp.pow3Out;
                     sizeInterp = Interp.pow2In;
