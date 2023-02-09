@@ -28,9 +28,9 @@ public class TBlocks {
     // misc
     corePod,
     // walls
-    tcopperWall, brassWall, calciteWall, cobaltWall, nickelWall, zincWall,
+    tcopperWall, brassWall, calciteWall, cobaltWall, nickelWall, zincWall, rubedoWall,
     // itemwalls
-    tcopperBlock, brassBlock, calciteBlock, cobaltBlock, nickelBlock, zincBlock,
+    tcopperBlock, brassBlock, calciteBlock, cobaltBlock, nickelBlock, zincBlock, rubedoBlock,
     // distribution
     payloadBelt, payloadDistributor, constructor, deconstructor, payloadDriver
     ;
@@ -252,6 +252,32 @@ public class TBlocks {
         brassBlock = new Wall("brass-block"){{
             requirements(Category.defense, with(TItems.brass, 24));
             scaledHealth = 30;
+            armor = 4;
+            size = 1;
+            buildCostMultiplier = 4.8f;
+            researchCostMultiplier = 0.25f;
+            destroyBullet = new ExplosionBulletType(){{
+                hitEffect = Fx.none;
+                despawnEffect = new ParticleEffect(){{
+                    particles = 8;
+                    lifetime = 60f;
+                    sizeFrom = 3.5f;
+                    sizeTo = 0f;
+                    colorFrom = Color.valueOf("EDC687");
+                    colorTo = Color.valueOf("EDC68700");
+                    length = 16f;
+                    interp = Interp.pow3Out;
+                    sizeInterp = Interp.pow2In;
+                }};
+                splashDamage = 35f;
+                splashDamageRadius = 16f;
+                killShooter = false;
+                category = Category.distribution;
+            }};
+        }};
+        cobaltBlock = new Wall("cobalt-block"){{
+            requirements(Category.defense, with(TItems.brass, 24));
+            scaledHealth = 0;
             armor = 4;
             size = 1;
             buildCostMultiplier = 4.8f;
