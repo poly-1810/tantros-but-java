@@ -275,9 +275,9 @@ public class TBlocks {
                 category = Category.distribution;
             }};
         }};
-        cobaltBlock = new Wall("cobalt-block"){{
+        rubedoBlock = new Wall("rubedo-block"){{
             requirements(Category.defense, with(TItems.brass, 24));
-            scaledHealth = 0;
+            scaledHealth = -1f;
             armor = 4;
             size = 1;
             buildCostMultiplier = 4.8f;
@@ -285,18 +285,18 @@ public class TBlocks {
             destroyBullet = new ExplosionBulletType(){{
                 hitEffect = Fx.none;
                 despawnEffect = new ParticleEffect(){{
-                    particles = 8;
+                    particles = 64;
                     lifetime = 60f;
-                    sizeFrom = 3.5f;
+                    sizeFrom = 16.5f;
                     sizeTo = 0f;
-                    colorFrom = Color.valueOf("EDC687");
-                    colorTo = Color.valueOf("EDC68700");
-                    length = 16f;
+                    colorFrom = Color.valueOf("CE735E");
+                    colorTo = Color.valueOf("7E264200");
+                    length = 64f;
                     interp = Interp.pow3Out;
                     sizeInterp = Interp.pow2In;
                 }};
-                splashDamage = 35f;
-                splashDamageRadius = 16f;
+                splashDamage = 300f;
+                splashDamageRadius = 240f;
                 killShooter = false;
                 category = Category.distribution;
             }};
