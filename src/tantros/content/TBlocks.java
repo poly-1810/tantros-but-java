@@ -1,7 +1,6 @@
 package tantros.content;
 import arc.graphics.Color;
 import arc.math.Interp;
-import arc.struct.Seq;
 import mindustry.content.Fx;
 import mindustry.content.Items;
 import mindustry.content.UnitTypes;
