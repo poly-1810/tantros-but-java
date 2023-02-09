@@ -1,10 +1,13 @@
 package tantros.content;
 import arc.graphics.Color;
 import arc.math.Interp;
+import arc.struct.Seq;
 import mindustry.content.Fx;
 import mindustry.content.Items;
 import mindustry.content.UnitTypes;
+import mindustry.entities.bullet.BulletType;
 import mindustry.entities.bullet.ExplosionBulletType;
+import mindustry.entities.bullet.LightningBulletType;
 import mindustry.entities.effect.ParticleEffect;
 import mindustry.type.Category;
 import mindustry.world.Block;
@@ -26,9 +29,9 @@ public class TBlocks {
     // misc
     corePod,
     // walls
-    tcopperWall,
+    tcopperWall, brassWall, calciteWall, cobaltWall, nickelWall, zincWall,
     // itemwalls
-    tcopperBlock,
+    tcopperBlock, brassBlock, calciteBlock, cobaltBlock, nickelBlock, zincBlock,
     // distribution
     payloadBelt, payloadDistributor, constructor, deconstructor, payloadDriver
     ;
@@ -145,6 +148,80 @@ public class TBlocks {
                killShooter = false;
             }};
         }};
+        brassWall = new Wall("brass-wall"){{
+            requirements(Category.defense, with(TItems.brass, 6));
+            armor = 4;
+            size = 1;
+            scaledHealth = 140;
+            researchCostMultiplier = 0.5f;
+        }};
+        calciteWall = new Wall("calcite-wall"){{
+            requirements(Category.defense, with(TItems.calcite, 6));
+            scaledHealth = 145;
+            armor = 2;
+            size = 1;
+            buildCostMultiplier = 7.2f;
+            researchCostMultiplier = 0.25f;
+        }};
+
+        cobaltWall = new Wall("cobalt-wall"){{
+            requirements(Category.defense, with(TItems.cobalt, 6));
+            armor = 4;
+            scaledHealth = 110;
+            size = 1;
+            destroyBullet = new BulletType(){{
+                lifetime = 0;
+                despawnEffect = Fx.none;
+                hitEffect = Fx.none;
+                damage = 0;
+                spawnBullets.add(new LightningBulletType(){{
+                    damage = 15f;
+                    lightningLength = 5;
+                    lightningLengthRand = 2;
+                    lightningColor = Color.valueOf("8ca9e8");
+                }}, new LightningBulletType(){{
+                    damage = 15f;
+                    lightningLength = 5;
+                    lightningLengthRand = 2;
+                    lightningColor = Color.valueOf("8ca9e8");
+                }});
+            }};
+        }};
+        nickelWall = new Wall("nickel-wall"){{
+            requirements(Category.defense, with(TItems.nickel, 6));
+            scaledHealth = 110;
+            armor = 3;
+            size = 1;
+            researchCostMultiplier = 0.25f;
+        }};
+        zincWall = new Wall("zinc-wall"){{
+            requirements(Category.defense, with(TItems.zinc, 6));
+            scaledHealth = 90;
+            armor = 3;
+            size = 1;
+            buildCostMultiplier = 7.2f;
+            destroyBullet = new ExplosionBulletType(){{
+                hitEffect = Fx.none;
+                despawnEffect = new ParticleEffect(){{
+                    particles = 4;
+                    lifetime = 60;
+                    sizeFrom = 3;
+                    sizeTo = 0;
+                    colorFrom = Color.valueOf("9A9DBF");
+                    colorTo = Color.valueOf("9A9DBF");
+                    length = 16;
+                    offset = 45;
+                    interp = Interp.pow3Out;
+                    sizeInterp = Interp.linear;
+                }};
+                splashDamage = 0;
+                splashDamageRadius = 0;
+                collides = false;
+                killShooter = false;
+            }};
+            researchCostMultiplier = 0.5f;
+        }};
+
         //endregion
         //region itemwalls
         tcopperBlock = new Wall("tcopper-block"){{
@@ -173,6 +250,7 @@ public class TBlocks {
                 category = Category.distribution;
             }};
         }};
+        //endregion
 
 
     }
