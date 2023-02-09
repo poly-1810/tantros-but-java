@@ -25,8 +25,10 @@ public class TBlocks {
 
     // misc
     corePod,
-    // item blocks
+    // walls
     tcopperWall,
+    // itemwalls
+    tcopperBlock,
     // distribution
     payloadBelt, payloadDistributor, constructor, deconstructor, payloadDriver
     ;
@@ -117,7 +119,7 @@ public class TBlocks {
             category = Category.distribution;
         }};
         //endregion
-        //region item blocks
+        //region walls
         tcopperWall = new Wall("tcopper-wall"){{
             requirements(Category.defense, with(TItems.Tcopper, 6));
             scaledHealth = 70;
@@ -143,7 +145,33 @@ public class TBlocks {
                killShooter = false;
             }};
         }};
-
+        //endregion
+        //region itemwalls
+        tcopperBlock = new Wall("tcopper-block"){{
+            requirements(Category.defense, with(TItems.Tcopper, 24));
+            scaledHealth = 10;
+            armor = 0;
+            size = 1;
+            buildCostMultiplier = 4.8f;
+            researchCostMultiplier = 0.25f;
+            destroyBullet = new ExplosionBulletType(){{
+                hitEffect = Fx.none;
+                despawnEffect = new ParticleEffect(){{
+                    particles = 16;
+                    lifetime = 120f;
+                    sizeFrom = 6.5f;
+                    sizeTo = 0f;
+                    colorFrom = Color.valueOf("29a88b");
+                    colorTo = Color.valueOf("29a88b00");
+                    length = 32f;
+                    interp = Interp.pow3Out;
+                    sizeInterp = Interp.pow2In;
+                }};
+                splashDamage = 24f;
+                splashDamageRadius = 32f;
+                killShooter = false;
+            }};
+        }};
 
 
     }
