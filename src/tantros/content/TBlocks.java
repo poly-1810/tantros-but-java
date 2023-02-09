@@ -170,6 +170,7 @@ public class TBlocks {
                 splashDamage = 24f;
                 splashDamageRadius = 32f;
                 killShooter = false;
+                category = Category.distribution;
             }};
         }};
 
