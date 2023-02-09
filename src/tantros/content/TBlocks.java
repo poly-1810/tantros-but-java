@@ -259,18 +259,18 @@ public class TBlocks {
             destroyBullet = new ExplosionBulletType(){{
                 hitEffect = Fx.none;
                 despawnEffect = new ParticleEffect(){{
-                    particles = 16;
-                    lifetime = 120f;
-                    sizeFrom = 6.5f;
+                    particles = 8;
+                    lifetime = 60f;
+                    sizeFrom = 3.5f;
                     sizeTo = 0f;
                     colorFrom = Color.valueOf("EDC687");
                     colorTo = Color.valueOf("EDC68700");
-                    length = 32f;
+                    length = 16f;
                     interp = Interp.pow3Out;
                     sizeInterp = Interp.pow2In;
                 }};
-                splashDamage = 24f;
-                splashDamageRadius = 32f;
+                splashDamage = 35f;
+                splashDamageRadius = 16f;
                 killShooter = false;
                 category = Category.distribution;
             }};
