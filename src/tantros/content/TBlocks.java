@@ -292,13 +292,13 @@ public class TBlocks {
                     sizeFrom = 16.5f;
                     sizeTo = 0f;
                     colorFrom = Color.valueOf("CE735EFF");
-                    colorTo = Color.valueOf("7E2642DD");
+                    colorTo = Color.valueOf("7E2642FF");
                     length = 64f;
                     interp = Interp.pow3Out;
                     sizeInterp = Interp.pow2In;
                 }};
                 splashDamage = 300f;
-                splashDamageRadius = 240f;
+                splashDamageRadius = 64f;
                 killShooter = false;
                 category = Category.distribution;
             }};
