@@ -315,8 +315,8 @@ public class TBlocks {
                     lifetime = 120f;
                     sizeFrom = 6.5f;
                     sizeTo = 0f;
-                    colorFrom = Color.valueOf("29a88b");
-                    colorTo = Color.valueOf("29a88b00");
+                    colorFrom = Color.valueOf("8ca9e8");
+                    colorTo = Color.valueOf("8ca9e800");
                     length = 32f;
                     interp = Interp.pow3Out;
                     sizeInterp = Interp.pow2In;
@@ -331,12 +331,12 @@ public class TBlocks {
                     damage = 0;
                     spawnBullets.add(new LightningBulletType(){{
                         damage = 15f;
-                        lightningLength = 15;
-                        lightningLengthRand = 6;
+                        lightningLength = 16;
+                        lightningLengthRand = 8;
                         lightningColor = Color.valueOf("8ca9e8");
                     }}, new LightningBulletType(){{
                         damage = 15f;
-                        lightningLength = 20;
+                        lightningLength = 16;
                         lightningLengthRand = 8;
                         lightningColor = Color.valueOf("8ca9e8");
                     }});
