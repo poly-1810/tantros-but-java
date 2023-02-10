@@ -3,3 +3,4 @@ main: "poly.tantros.PolyTantros"
 version: 0.1a-r90
 minGameVersion: 141
 java: true
+hideBrowser: true
