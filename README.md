@@ -1,15 +1,37 @@
-# Tantros mod!
-original mod was made by Abreaker, after he dropped the mod i chose to pick it up and finish it. many others than just abreaker originally contributed to abreaker's mod, but im not going to list them here, as this will be a complete rewrite of the mod. 
+# Poly's Tantros
 
-## Credits!
+Poly's **Tantros** - Mindustry mod they adds a lot of content for **Tantros** planet.
 
-#### Major thanks to MEEP of Faith#7277 for helping me learn java to write the mod!
+![](assets/items.gif)
 
-#### Thanks to ABreaker#5940, for writing the original mod, and thanks to everyone in his modding crew which pitched ideas for the original mod!
+###### Original mod by ABreaker#5940
 
-## Other contributors:
+# 🚀 Content 
 
-- MeiNanziiii#5309 (helped with making a main class, and making tantros actually accessible)
+Mod adds accessible and available **Tantros** with a lot of exclusive stuff! Like:
+- Resource blocks
+
+  ![](assets/sprites/blocks/resources/brass-block.png) ![](assets/sprites/blocks/resources/calcite-block.png) ![](assets/sprites/blocks/resources/cobalt-block.png) ![](assets/sprites/blocks/resources/nickel-block.png) ![](assets/sprites/blocks/resources/rubedo-block.png) ![](assets/sprites/blocks/resources/tcopper-block.png) ![](assets/sprites/blocks/resources/zinc-block.png)
+- 9 new items
+
+  ![](assets/sprites/items/brass.png) ![](assets/sprites/items/calcite.png) ![](assets/sprites/items/carbon.png) ![](assets/sprites/items/cobalt.png) ![](assets/sprites/items/nickel.png) ![](assets/sprites/items/rubedo.png) ![](assets/sprites/items/sheet-metal.png) ![](assets/sprites/items/tcopper.png) ![](assets/sprites/items/zinc.png)
+- 4 new ores
+
+  ![](assets/sprites/blocks/environment/ore-cobalt1.png) ![](assets/sprites/blocks/environment/ore-nickel1.png) ![](assets/sprites/blocks/environment/ore-tantros-copper1.png) ![](assets/sprites/blocks/environment/ore-zinc1.png)
+- exclusive item transportation system
+
+  ![](assets/sprites/blocks/distribution/payload-launcher/payload-launcher.png)
+- and more content!
+
+## 📜 Credits!
+
+##### Major thanks to MEEP of Faith#7277 for helping me learn java to write the mod!
+
+##### Thanks to ABreaker#5940, for writing the original mod, and thanks to everyone in his modding crew which pitched ideas for the original mod!
+
+## 📜 Other contributors:
+
+- MeiNanziiii#5309 (always helping with random problems and fixes bugs or weird moments)
 - Slotterleet#7897 (helped me figure out how to make a new class)
 - Flin#8261 (i was stupid, he told me where i was stupid)
 
