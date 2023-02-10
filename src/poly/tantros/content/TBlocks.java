@@ -226,11 +226,11 @@ public class TBlocks {
         //endregion
         //region itemwalls
         tcopperBlock = new ResourceBlock("tcopper-block"){{
-            requirements(null, BuildVisibility.editorOnly, with(TItems.tCopper, 24));
+            requirements(Category.distribution, with(TItems.tCopper, 24));
             scaledHealth = 10;
             armor = 0;
             size = 1;
-            buildCostMultiplier = 0.2f;
+            buildCostMultiplier = 0.1f;
             researchCostMultiplier = 0.25f;
             destroyBullet = new ExplosionBulletType(){{
                 hitEffect = Fx.none;
@@ -252,11 +252,11 @@ public class TBlocks {
             }};
         }};
         brassBlock = new ResourceBlock("brass-block"){{
-            requirements(null, BuildVisibility.editorOnly, with(TItems.brass, 24));
+            requirements(Category.distribution, with(TItems.brass, 24));
             scaledHealth = 30;
             armor = 4;
             size = 1;
-            buildCostMultiplier = 2.0f;
+            buildCostMultiplier = 0.1f;
             researchCostMultiplier = 0.25f;
             destroyBullet = new ExplosionBulletType(){{
                 hitEffect = Fx.none;
@@ -278,12 +278,12 @@ public class TBlocks {
             }};
         }};
         rubedoBlock = new ResourceBlock("rubedo-block"){{
-            requirements(null, BuildVisibility.editorOnly,  with(TItems.rubedo, 24));
+            requirements(Category.distribution, with(TItems.rubedo, 24));
             scaledHealth = 0;
             breakOnPlace = true;
             armor = 4;
             size = 1;
-            buildCostMultiplier = 4.8f;
+            buildCostMultiplier = 0.1f;
             researchCostMultiplier = 0.25f;
             destroyBullet = new ExplosionBulletType(){{
                 hitEffect = Fx.none;
