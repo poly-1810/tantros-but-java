@@ -279,7 +279,7 @@ public class TBlocks {
             requirements(Category.distribution, with(TItems.rubedo, 24));
             scaledHealth = 0;
             breakOnPlace = true;
-            armor = 4;
+            armor = 1;
             size = 1;
             buildCostMultiplier = 0.0f;
             researchCostMultiplier = 0.25f;
@@ -302,9 +302,9 @@ public class TBlocks {
             }};
         }};
         cobaltBlock = new ResourceBlock("cobalt-block"){{
-            requirements(Category.distribution, with(TItems.tCopper, 24));
+            requirements(Category.distribution, with(TItems.cobalt, 24));
             scaledHealth = 25;
-            armor = 0;
+            armor = 4;
             size = 1;
             buildCostMultiplier = 0.0f;
             researchCostMultiplier = 0.25f;
@@ -321,7 +321,7 @@ public class TBlocks {
                     interp = Interp.pow3Out;
                     sizeInterp = Interp.pow2In;
                 }};
-                splashDamage = 24f;
+                splashDamage = 6f;
                 splashDamageRadius = 32f;
                 killShooter = false;
                 fragBullet = new BulletType(){{
@@ -330,14 +330,14 @@ public class TBlocks {
                     hitEffect = Fx.none;
                     damage = 0;
                     spawnBullets.add(new LightningBulletType(){{
-                        damage = 15f;
+                        damage = 3f;
                         lightningLength = 4;
-                        lightningLengthRand = 8;
+                        lightningLengthRand = 2;
                         lightningColor = Color.valueOf("8ca9e8");
                     }}, new LightningBulletType(){{
-                        damage = 15f;
+                        damage = 3f;
                         lightningLength = 4;
-                        lightningLengthRand = 8;
+                        lightningLengthRand = 2;
                         lightningColor = Color.valueOf("8ca9e8");
                     }});
                 }};
