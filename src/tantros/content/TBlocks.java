@@ -288,11 +288,11 @@ public class TBlocks {
                 hitEffect = Fx.none;
                 despawnEffect = new ParticleEffect(){{
                     particles = 64;
-                    lifetime = 60f;
+                    lifetime = 240;
                     sizeFrom = 16.5f;
                     sizeTo = 0f;
-                    colorFrom = Color.valueOf("CE735E");
-                    colorTo = Color.valueOf("7E264233");
+                    colorFrom = Color.valueOf("CE735EFF");
+                    colorTo = Color.valueOf("7E2642DD");
                     length = 64f;
                     interp = Interp.pow3Out;
                     sizeInterp = Interp.pow2In;
