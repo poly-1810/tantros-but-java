@@ -331,12 +331,12 @@ public class TBlocks {
                     damage = 0;
                     spawnBullets.add(new LightningBulletType(){{
                         damage = 15f;
-                        lightningLength = 16;
+                        lightningLength = 4;
                         lightningLengthRand = 8;
                         lightningColor = Color.valueOf("8ca9e8");
                     }}, new LightningBulletType(){{
                         damage = 15f;
-                        lightningLength = 16;
+                        lightningLength = 4;
                         lightningLengthRand = 8;
                         lightningColor = Color.valueOf("8ca9e8");
                     }});
