@@ -226,7 +226,7 @@ public class TBlocks {
         //endregion
         //region itemwalls
         tcopperBlock = new ResourceBlock("tcopper-block"){{
-            requirements(null, BuildVisibility.editorOnly, with(TItems.tCopper, 24));
+            requirements(Category.distribution, with(TItems.tCopper, 24));
             scaledHealth = 10;
             armor = 0;
             size = 1;
@@ -252,7 +252,7 @@ public class TBlocks {
             }};
         }};
         brassBlock = new ResourceBlock("brass-block"){{
-            requirements(null, BuildVisibility.editorOnly, with(TItems.brass, 24));
+            requirements(Category.distribution, with(TItems.brass, 24));
             scaledHealth = 30;
             armor = 4;
             size = 1;
@@ -278,7 +278,7 @@ public class TBlocks {
             }};
         }};
         rubedoBlock = new ResourceBlock("rubedo-block"){{
-            requirements(null, BuildVisibility.editorOnly,  with(TItems.rubedo, 24));
+            requirements(Category.distribution, with(TItems.rubedo, 24));
             scaledHealth = 0;
             breakOnPlace = true;
             armor = 4;
