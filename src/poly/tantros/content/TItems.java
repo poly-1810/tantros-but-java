@@ -1,11 +1,11 @@
-package tantros.content;
+package poly.tantros.content;
 
 import arc.graphics.Color;
 import mindustry.type.Item;
 
 public class TItems {
     public static Item
-    Tcopper, cobalt, calcite, brass, carbon, nickel, rubedo, zinc, sheetMetal;
+    tCopper, cobalt, calcite, brass, carbon, nickel, rubedo, zinc, sheetMetal;
 
     public static void load() {
         cobalt = new Item("cobalt", Color.valueOf("8CA9E8")){{
@@ -14,7 +14,7 @@ public class TItems {
             charge = 0.3f;
             healthScaling = 1.2f;
         }};
-        Tcopper = new Item("tcopper", Color.valueOf("29A88B")){{
+        tCopper = new Item("tcopper", Color.valueOf("29A88B")){{
             hardness = 1;
             cost = 0.3f;
             healthScaling = 0.5f;

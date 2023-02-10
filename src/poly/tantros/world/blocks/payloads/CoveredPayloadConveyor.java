@@ -1,4 +1,4 @@
-package tantros.world.blocks.payloads;
+package poly.tantros.world.blocks.payloads;
 
 import arc.*;
 import arc.graphics.g2d.*;

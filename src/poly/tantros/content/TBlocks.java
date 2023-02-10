@@ -1,4 +1,5 @@
-package tantros.content;
+package poly.tantros.content;
+
 import arc.graphics.Color;
 import arc.math.Interp;
 import mindustry.content.Fx;
@@ -16,9 +17,9 @@ import mindustry.world.blocks.payloads.PayloadDeconstructor;
 import mindustry.world.blocks.payloads.PayloadMassDriver;
 import mindustry.world.blocks.storage.CoreBlock;
 import mindustry.world.meta.BuildVisibility;
-import tantros.world.blocks.payloads.CoveredPayloadConveyor;
-import tantros.world.blocks.payloads.CoveredPayloadRouter;
-import tantros.world.blocks.walls.ReactiveWalls;
+import poly.tantros.world.blocks.resources.ResourceBlock;
+import poly.tantros.world.blocks.payloads.CoveredPayloadConveyor;
+import poly.tantros.world.blocks.payloads.CoveredPayloadRouter;
 
 import static mindustry.type.ItemStack.with;
 
@@ -29,18 +30,18 @@ public class TBlocks {
     // misc
     corePod,
     // walls
-    tcopperWall, brassWall, calciteWall, cobaltWall, nickelWall, zincWall, rubedoWall,
-    // itemwalls
-    tcopperBlock, brassBlock, calciteBlock, cobaltBlock, nickelBlock, zincBlock, rubedoBlock,
+    brassWall, calciteWall, cobaltWall, rubedoWall, nickelWall, tcopperWall, zincWall,
+    // blocks
+    brassBlock, calciteBlock, cobaltBlock, rubedoBlock, nickelBlock, tcopperBlock, zincBlock,
     // distribution
-    payloadBelt, payloadDistributor, constructor, deconstructor, payloadDriver
+    payloadBelt, payloadDistributor, fabricator, defabricator, payloadLauncher
     ;
 
     public static void load() {
         //region misc
 
         corePod = new CoreBlock("core-pod"){{
-            requirements(Category.effect, BuildVisibility.editorOnly, with(TItems.Tcopper, 400, TItems.calcite, 100, TItems.nickel, 250, TItems.zinc, 250));
+            requirements(Category.effect, with(TItems.tCopper, 400, TItems.calcite, 100, TItems.nickel, 250, TItems.zinc, 250));
             alwaysUnlocked = true;
             armor = 15;
             incinerateNonBuildable = false;
@@ -68,7 +69,7 @@ public class TBlocks {
         }};
 
         payloadDistributor = new CoveredPayloadRouter("payload-distributor") {{
-            requirements(Category.units, with(TItems.Tcopper, 2, TItems.nickel, 4));
+            requirements(Category.units, with(TItems.tCopper, 2, TItems.nickel, 4));
             canOverdrive = false;
             scaledHealth = 50;
             moveTime = 24;
@@ -79,7 +80,7 @@ public class TBlocks {
             category = Category.distribution;
         }};
 
-        constructor = new Constructor("constructor") {{
+        fabricator = new Constructor("constructor") {{
             requirements(Category.units, with(TItems.nickel, 12));
             regionSuffix = "-dark";
             scaledHealth = 90;
@@ -91,7 +92,7 @@ public class TBlocks {
             category = Category.distribution;
         }};
 
-        deconstructor = new PayloadDeconstructor("deconstructor") {{
+        defabricator = new PayloadDeconstructor("deconstructor") {{
             requirements(Category.units, with(TItems.nickel, 12));
             regionSuffix = "-dark";
             scaledHealth = 90;
@@ -104,7 +105,7 @@ public class TBlocks {
             category = Category.distribution;
         }};
 
-        payloadDriver = new PayloadMassDriver("payload-launcher") {{
+        payloadLauncher = new PayloadMassDriver("payload-launcher") {{
             requirements(Category.units, with(Items.copper,1));
             regionSuffix ="-dark";
             size = 2;
@@ -124,7 +125,7 @@ public class TBlocks {
         //endregion
         //region walls
         tcopperWall = new Wall("tcopper-wall"){{
-            requirements(Category.defense, with(TItems.Tcopper, 6));
+            requirements(Category.defense, with(TItems.tCopper, 6));
             scaledHealth = 70;
             armor = 2;
             size = 1;
@@ -224,8 +225,8 @@ public class TBlocks {
 
         //endregion
         //region itemwalls
-        tcopperBlock = new Wall("tcopper-block"){{
-            requirements(Category.defense, with(TItems.Tcopper, 24));
+        tcopperBlock = new ResourceBlock("tcopper-block"){{
+            requirements(null, BuildVisibility.editorOnly, with(TItems.tCopper, 24));
             scaledHealth = 10;
             armor = 0;
             size = 1;
@@ -250,8 +251,8 @@ public class TBlocks {
                 category = Category.distribution;
             }};
         }};
-        brassBlock = new Wall("brass-block"){{
-            requirements(Category.defense, with(TItems.brass, 24));
+        brassBlock = new ResourceBlock("brass-block"){{
+            requirements(null, BuildVisibility.editorOnly, with(TItems.brass, 24));
             scaledHealth = 30;
             armor = 4;
             size = 1;
@@ -276,14 +277,14 @@ public class TBlocks {
                 category = Category.distribution;
             }};
         }};
-        rubedoBlock = new ReactiveWalls("rubedo-block"){{
-            requirements(Category.defense, with(TItems.rubedo, 24));
+        rubedoBlock = new ResourceBlock("rubedo-block"){{
+            requirements(null, BuildVisibility.editorOnly,  with(TItems.rubedo, 24));
             scaledHealth = 0;
+            breakOnPlace = true;
             armor = 4;
             size = 1;
             buildCostMultiplier = 4.8f;
             researchCostMultiplier = 0.25f;
-            placeableOn = false;
             destroyBullet = new ExplosionBulletType(){{
                 hitEffect = Fx.none;
                 despawnEffect = new ParticleEffect(){{
@@ -303,8 +304,5 @@ public class TBlocks {
                 category = Category.distribution;
             }};
         }};
-        //endregion
-
-
     }
 }
