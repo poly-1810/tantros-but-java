@@ -230,7 +230,7 @@ public class TBlocks {
             scaledHealth = 10;
             armor = 0;
             size = 1;
-            buildCostMultiplier = 4.8f;
+            buildCostMultiplier = 0.2f;
             researchCostMultiplier = 0.25f;
             destroyBullet = new ExplosionBulletType(){{
                 hitEffect = Fx.none;
@@ -256,7 +256,7 @@ public class TBlocks {
             scaledHealth = 30;
             armor = 4;
             size = 1;
-            buildCostMultiplier = 4.8f;
+            buildCostMultiplier = 2.0f;
             researchCostMultiplier = 0.25f;
             destroyBullet = new ExplosionBulletType(){{
                 hitEffect = Fx.none;
