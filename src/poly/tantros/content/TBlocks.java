@@ -80,7 +80,7 @@ public class TBlocks {
             category = Category.distribution;
         }};
 
-        fabricator = new Constructor("constructor") {{
+        fabricator = new Constructor("fabricator") {{
             requirements(Category.units, with(TItems.nickel, 12));
             regionSuffix = "-dark";
             scaledHealth = 90;
@@ -92,7 +92,7 @@ public class TBlocks {
             category = Category.distribution;
         }};
 
-        defabricator = new PayloadDeconstructor("deconstructor") {{
+        defabricator = new PayloadDeconstructor("defabricator") {{
             requirements(Category.units, with(TItems.nickel, 12));
             regionSuffix = "-dark";
             scaledHealth = 90;
