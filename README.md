@@ -2,7 +2,7 @@
 
 Poly's **Tantros** - Mindustry mod they adds a lot of content for **Tantros** planet.
 
-![](assets/items.gif)
+![](assets/items.png)
 
 ###### Original mod by ABreaker#5940
 
