@@ -248,7 +248,6 @@ public class TBlocks {
                 splashDamage = 24f;
                 splashDamageRadius = 32f;
                 killShooter = false;
-                category = Category.distribution;
             }};
         }};
         brassBlock = new ResourceBlock("brass-block"){{
@@ -274,7 +273,6 @@ public class TBlocks {
                 splashDamage = 35f;
                 splashDamageRadius = 16f;
                 killShooter = false;
-                category = Category.distribution;
             }};
         }};
         rubedoBlock = new ResourceBlock("rubedo-block"){{
@@ -301,7 +299,48 @@ public class TBlocks {
                 splashDamage = 300f;
                 splashDamageRadius = 64f;
                 killShooter = false;
-                category = Category.distribution;
+            }};
+        }};
+        cobaltBlock = new ResourceBlock("cobalt-block"){{
+            requirements(Category.distribution, with(TItems.tCopper, 24));
+            scaledHealth = 25;
+            armor = 0;
+            size = 1;
+            buildCostMultiplier = 0.0f;
+            researchCostMultiplier = 0.25f;
+            destroyBullet = new ExplosionBulletType(){{
+                hitEffect = Fx.none;
+                despawnEffect = new ParticleEffect(){{
+                    particles = 16;
+                    lifetime = 120f;
+                    sizeFrom = 6.5f;
+                    sizeTo = 0f;
+                    colorFrom = Color.valueOf("29a88b");
+                    colorTo = Color.valueOf("29a88b00");
+                    length = 32f;
+                    interp = Interp.pow3Out;
+                    sizeInterp = Interp.pow2In;
+                }};
+                splashDamage = 24f;
+                splashDamageRadius = 32f;
+                killShooter = false;
+                fragBullet = new BulletType(){{
+                    lifetime = 0;
+                    despawnEffect = Fx.none;
+                    hitEffect = Fx.none;
+                    damage = 0;
+                    spawnBullets.add(new LightningBulletType(){{
+                        damage = 15f;
+                        lightningLength = 15;
+                        lightningLengthRand = 6;
+                        lightningColor = Color.valueOf("8ca9e8");
+                    }}, new LightningBulletType(){{
+                        damage = 15f;
+                        lightningLength = 20;
+                        lightningLengthRand = 8;
+                        lightningColor = Color.valueOf("8ca9e8");
+                    }});
+                }};
             }};
         }};
     }
