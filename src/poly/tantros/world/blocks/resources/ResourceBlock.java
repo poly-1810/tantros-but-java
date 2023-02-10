@@ -5,7 +5,7 @@ import mindustry.world.blocks.defense.Wall;
 
 public class ResourceBlock extends Wall {
     public boolean breakOnPlace = false;
-    public boolean placeable = false;
+    public boolean placeable = true;
 
     public ResourceBlock(String name) {
         super(name);
