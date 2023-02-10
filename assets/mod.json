@@ -1,0 +1,13 @@
+{
+  "name": "poly-tantros",
+  "displayName": "Poly's Tantros",
+  "author": "[#86f195]Poly#1810[]",
+  "description": "Mod adds content to Tantros",
+  "subtitle": "Mod adds content to Tantros",
+  "version": "0.1a",
+  "main": "poly.tantros.PolyTantros",
+  "minGameVersion": "141",
+  "dependencies": [],
+  "hidden": false,
+  "hideBrowser": true
+}

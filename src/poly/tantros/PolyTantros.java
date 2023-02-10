@@ -32,7 +32,7 @@ public class PolyTantros extends Mod {
             ;
             mod.meta.description =
                     """
-                    
+                    Mod adds content to Tantros
                     """
             ;
         }
