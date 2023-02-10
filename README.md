@@ -35,4 +35,5 @@ Mod adds accessible and available **Tantros** with a lot of exclusive stuff! Lik
 - Slotterleet#7897 (helped me figure out how to make a new class)
 - Flin#8261 (i was stupid, he told me where i was stupid)
 
-(if you would like to contribute, just dm me (Poly#1810), and pitch in your idea, and ill add your discord to this list! (ill also add your discord to the list if you point out where im stupid) if i ever accidentally ignore a message request, just try again, its likely i hit the wrong button)
+If you would like to help contribute, we have a discord server!
+https://discord.gg/tm5yU6hpMw
