@@ -1,4 +1,5 @@
 package tantros.content;
+
 import arc.graphics.Color;
 import arc.math.Interp;
 import mindustry.content.Fx;
@@ -18,7 +19,7 @@ import mindustry.world.blocks.storage.CoreBlock;
 import mindustry.world.meta.BuildVisibility;
 import tantros.world.blocks.payloads.CoveredPayloadConveyor;
 import tantros.world.blocks.payloads.CoveredPayloadRouter;
-import tantros.world.blocks.walls.ReactiveWalls;
+import tantros.world.blocks.resources.ResourceBlock;
 
 import static mindustry.type.ItemStack.with;
 
@@ -30,7 +31,7 @@ public class TBlocks {
     corePod,
     // walls
     tcopperWall, brassWall, calciteWall, cobaltWall, nickelWall, zincWall, rubedoWall,
-    // itemwalls
+    // blocks
     tcopperBlock, brassBlock, calciteBlock, cobaltBlock, nickelBlock, zincBlock, rubedoBlock,
     // distribution
     payloadBelt, payloadDistributor, constructor, deconstructor, payloadDriver
@@ -45,7 +46,7 @@ public class TBlocks {
             armor = 15;
             incinerateNonBuildable = false;
             isFirstTier = true;
-            unitType = UnitTypes.alpha;
+            unitType = UnitTypes.evoke;
             health = 1000;
             itemCapacity = 500;
             size = 2;
@@ -224,8 +225,8 @@ public class TBlocks {
 
         //endregion
         //region itemwalls
-        tcopperBlock = new Wall("tcopper-block"){{
-            requirements(Category.defense, with(TItems.Tcopper, 24));
+        tcopperBlock = new ResourceBlock("tcopper-block"){{
+            requirements(null, BuildVisibility.editorOnly, with(TItems.Tcopper, 24));
             scaledHealth = 10;
             armor = 0;
             size = 1;
@@ -250,8 +251,8 @@ public class TBlocks {
                 category = Category.distribution;
             }};
         }};
-        brassBlock = new Wall("brass-block"){{
-            requirements(Category.defense, with(TItems.brass, 24));
+        brassBlock = new ResourceBlock("brass-block"){{
+            requirements(null, BuildVisibility.editorOnly, with(TItems.brass, 24));
             scaledHealth = 30;
             armor = 4;
             size = 1;
@@ -276,14 +277,14 @@ public class TBlocks {
                 category = Category.distribution;
             }};
         }};
-        rubedoBlock = new ReactiveWalls("rubedo-block"){{
-            requirements(Category.defense, with(TItems.rubedo, 24));
+        rubedoBlock = new ResourceBlock("rubedo-block"){{
+            requirements(null, BuildVisibility.editorOnly,  with(TItems.rubedo, 24));
             scaledHealth = 0;
+            breakOnPlace = true;
             armor = 4;
             size = 1;
             buildCostMultiplier = 4.8f;
             researchCostMultiplier = 0.25f;
-            placeableOn = false;
             destroyBullet = new ExplosionBulletType(){{
                 hitEffect = Fx.none;
                 despawnEffect = new ParticleEffect(){{
@@ -303,8 +304,5 @@ public class TBlocks {
                 category = Category.distribution;
             }};
         }};
-        //endregion
-
-
     }
 }
