@@ -1,5 +1,12 @@
-# Tantros mod!
-original mod was made by Abreaker, after he dropped the mod i chose to pick it up and finish it. many others than just abreaker originally contributed to abreaker's mod, but im not going to list them here, as this will be a complete rewrite of the mod. 
+![logo][https://github.com/poly-1810/tantros-but-java/tree/master/assets/icon.png?raw=true]
+
+# Poly's Tantros
+
+Mod adds accessible and available Tantros with a lot of exclusive stuff! Like:
+- Resource blocks
+- 9 new items (like brass ![brass][https://github.com/poly-1810/tantros-but-java/blob/master/assets/sprites/items/brass.png?raw=true], cobalt ![cobalt][https://github.com/poly-1810/tantros-but-java/blob/master/assets/sprites/items/cobalt.png?raw=true])
+- 5 new ores
+- 2 drills
 
 ## Credits!
 

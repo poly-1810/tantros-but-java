@@ -19,8 +19,10 @@ public class PolyTantros extends Mod {
         Planets.tantros.visible = true;
         Planets.tantros.accessible = true;
         Planets.tantros.alwaysUnlocked = true;
+
         if (!headless) {
             LoadedMod mod = Vars.mods.locateMod("poly-tantros");
+
             mod.meta.displayName = "[#86f195]Poly's[] [#597be3]Tantros[]";
             mod.meta.author =
                     """
