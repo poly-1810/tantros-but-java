@@ -252,7 +252,7 @@ public class TBlocks {
         }};
         brassBlock = new ResourceBlock("brass-block"){{
             requirements(Category.distribution, with(TItems.brass, 24));
-            scaledHealth = 30;
+            scaledHealth = 10;
             armor = 4;
             size = 1;
             buildCostMultiplier = 0.0f;
@@ -260,9 +260,10 @@ public class TBlocks {
             destroyBullet = new ExplosionBulletType(){{
                 hitEffect = Fx.none;
                 despawnEffect = new ParticleEffect(){{
+                    line = true;
                     particles = 8;
                     lifetime = 60f;
-                    sizeFrom = 3.5f;
+                    sizeFrom = 6.5f;
                     sizeTo = 0f;
                     colorFrom = Color.valueOf("EDC687");
                     colorTo = Color.valueOf("EDC68700");
@@ -303,7 +304,7 @@ public class TBlocks {
         }};
         cobaltBlock = new ResourceBlock("cobalt-block"){{
             requirements(Category.distribution, with(TItems.cobalt, 24));
-            scaledHealth = 25;
+            scaledHealth = 10;
             armor = 4;
             size = 1;
             buildCostMultiplier = 0.0f;
