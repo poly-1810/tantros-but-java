@@ -6,6 +6,7 @@ import mindustry.mod.Mod;
 import mindustry.mod.Mods.LoadedMod;
 import poly.tantros.content.TBlocks;
 import poly.tantros.content.TItems;
+import poly.tantros.content.TUnitTypes;
 import poly.tantros.maps.planet.PolyTantrosPlanetGenerator;
 
 import static mindustry.Vars.headless;
@@ -43,6 +44,7 @@ public class PolyTantros extends Mod {
     @Override
     public void loadContent() {
         TItems.load();
+        TUnitTypes.load();
         TBlocks.load();
     }
 }
