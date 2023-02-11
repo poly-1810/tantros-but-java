@@ -51,8 +51,6 @@ public class TBlocks {
             itemCapacity = 500;
             size = 2;
             unitCapModifier = 5;
-            description = "Core of the base. Heavily armored to withstand Tantros's high pressure. Once destroyed, the sector is lost.";
-            details = "The first version that can finally be sent to Tantros. Has no thrusters and has a rather low capacity for materials.";
         }};
 
         //endregion
