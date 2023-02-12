@@ -46,7 +46,7 @@ public class TBlocks {
             armor = 15;
             incinerateNonBuildable = false;
             isFirstTier = true;
-            unitType = UnitTypes.alpha;
+            unitType = TUnitTypes.trident;
             health = 1000;
             itemCapacity = 500;
             size = 2;
