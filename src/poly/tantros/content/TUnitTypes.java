@@ -138,10 +138,12 @@ public class TUnitTypes {
             armor = 7f;
             weapons.add(new Weapon("poly-tantros-requiem-silo"){{
                 reload = 50f;
+                recoil = 0f;
+                outlineColor = Color.valueOf("4a4b53");
                 rotate = false;
                 mirror = true;
                 alternate = false;
-                x = 8.75f;
+                x = 5.75f;
                 y = -1.5f;
                 shootY = 0.5f;
                 layerOffset = -5f;
@@ -153,6 +155,7 @@ public class TUnitTypes {
                     mirror = true;
                     moveX = 3.75f;
                     moveY = -1f;
+                    outlineColor = Color.valueOf("4a4b53");
                     layerOffset = 1f;
                     progress = PartProgress.warmup;
                 }});
