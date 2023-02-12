@@ -145,7 +145,7 @@ public class TUnitTypes {
                 y = -1.5f;
                 shootY = 0.5f;
                 layerOffset = -5f;
-                baseRotation = -70f;
+                baseRotation = -90f;
                 shootCone = 360f;
                 shootWarmupSpeed = 0.2f;
                 minWarmup = 0.8f;
