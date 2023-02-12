@@ -57,7 +57,7 @@ public class TUnitTypes {
             buildSpeed = 0.5f;
             buildRange = 96f;
             itemCapacity = 100;
-            outlineColor = Color.valueOf("4a4b53");
+            outlineColor = Color.valueOf("3B3C43");
             healColor = Color.valueOf("ffd37f");
             engineOffset = 0f;
             engineSize = 0f;
@@ -97,6 +97,7 @@ public class TUnitTypes {
                    splashDamage = 17.5f;
                    splashDamageRadius = 24f;
                    ammoMultiplier = 1f;
+                   shootEffect = Fx.none;
                    backColor = Color.valueOf("ffd37f");
                    frontColor = Color.valueOf("ffffff");
                    hitColor = Color.valueOf("ffd37f");
@@ -113,7 +114,7 @@ public class TUnitTypes {
                 parentizeEffects = false;
             }}, new ArmorPlateAbility(){{
                 healthMultiplier = 0.5f;
-                color = Color.valueOf("ffd37f");
+                color = Color.valueOf("FFBA367F");
             }});
         }};
 
@@ -142,7 +143,7 @@ public class TUnitTypes {
                 rotate = false;
                 mirror = true;
                 alternate = false;
-                x = 8.75f;
+                x = 6.5f;
                 y = -1.5f;
                 shootY = 0.5f;
                 layerOffset = -5f;
