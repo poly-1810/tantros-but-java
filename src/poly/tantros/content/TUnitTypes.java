@@ -34,7 +34,7 @@ public class TUnitTypes {
 
             EntityMapping.nameMap.put(name, constructor);
 
-            envEnabled = 4;
+            //envEnabled = 4;
             health = 400f;
             flying = true;
             speed = 2.75f;
@@ -122,7 +122,7 @@ public class TUnitTypes {
 
             EntityMapping.nameMap.put(name, constructor);
 
-            envEnabled = 4;
+            //envEnabled = 4;
             health = 350f;
             flying = true;
             speed = 1.1f;
