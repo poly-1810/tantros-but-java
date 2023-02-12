@@ -131,19 +131,18 @@ public class TUnitTypes {
             hitSize = 17f;
             lowAltitude = true;
             rotateSpeed = 5f;
-            outlineColor = Color.valueOf("4a4b53");
+            outlineColor = Color.valueOf("3B3C43");
             healColor = Color.valueOf("8ca9e8");
             engineOffset = 0f;
             engineSize = 0f;
             armor = 7f;
             weapons.add(new Weapon("poly-tantros-requiem-silo"){{
                 reload = 50f;
-                recoil = 0f;
-                outlineColor = Color.valueOf("4a4b53");
+                recoil = 0;
                 rotate = false;
                 mirror = true;
                 alternate = false;
-                x = 5.75f;
+                x = 8.75f;
                 y = -1.5f;
                 shootY = 0.5f;
                 layerOffset = -5f;
@@ -155,7 +154,6 @@ public class TUnitTypes {
                     mirror = true;
                     moveX = 3.75f;
                     moveY = -1f;
-                    outlineColor = Color.valueOf("4a4b53");
                     layerOffset = 1f;
                     progress = PartProgress.warmup;
                 }});
