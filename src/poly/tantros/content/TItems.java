@@ -1,11 +1,14 @@
 package poly.tantros.content;
 
 import arc.graphics.Color;
+import arc.struct.Seq;
+import mindustry.content.Items;
 import mindustry.type.Item;
 
 public class TItems {
-    public static Item
-    tCopper, cobalt, calcite, brass, carbon, nickel, rubedo, zinc, sheetMetal;
+    public static Item cobalt, calcite, brass, carbon, nickel, rubedo, sheetMetal, zinc, tCopper;
+
+    public static final Seq<Item> tantrosItems = new Seq<>();
 
     public static void load() {
         cobalt = new Item("cobalt", Color.valueOf("8CA9E8")){{
@@ -13,11 +16,6 @@ public class TItems {
             cost = 1.8f;
             charge = 0.3f;
             healthScaling = 1.2f;
-        }};
-        tCopper = new Item("tcopper", Color.valueOf("29A88B")){{
-            hardness = 1;
-            cost = 0.3f;
-            healthScaling = 0.5f;
         }};
         calcite = new Item("calcite", Color.valueOf("D0D8E7")){{
             hardness = 1;
@@ -45,15 +43,22 @@ public class TItems {
             flammability = 0.5f;
             healthScaling = 0.5f;
         }};
-        zinc = new Item("zinc", Color.valueOf("9A9DBF")){{
-            hardness = 2;
-            cost = 0.7f;
-            healthScaling = 0.7f;
-        }};
         sheetMetal = new Item("sheet-metal", Color.valueOf("9B928B")){{
             hardness = 3;
             cost = 0.6f;
             healthScaling = 0.65f;
         }};
+        tCopper = new Item("tcopper", Color.valueOf("29A88B")){{
+            hardness = 1;
+            cost = 0.3f;
+            healthScaling = 0.5f;
+        }};
+        zinc = new Item("zinc", Color.valueOf("9A9DBF")){{
+            hardness = 2;
+            cost = 0.7f;
+            healthScaling = 0.7f;
+        }};
+
+        tantrosItems.addAll(brass, calcite, carbon, cobalt, Items.graphite, rubedo, Items.sand, sheetMetal, tCopper, zinc);
     }
 }

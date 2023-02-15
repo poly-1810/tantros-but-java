@@ -1,6 +1,7 @@
 package poly.tantros;
 
 import mindustry.Vars;
+import mindustry.content.Items;
 import mindustry.content.Planets;
 import mindustry.mod.Mod;
 import mindustry.mod.Mods.LoadedMod;
@@ -19,6 +20,9 @@ public class PolyTantros extends Mod {
         Planets.tantros.visible = true;
         Planets.tantros.accessible = true;
         Planets.tantros.alwaysUnlocked = true;
+        Planets.tantros.defaultCore = Effect.corePod;
+        Planets.tantros.hiddenItems.addAll(Items.serpuloItems).addAll(Items.erekirItems).removeAll(TItems.tantrosItems);
+        Planets.tantros.unlockedOnLand.add(Effect.corePod);
 
         if (!headless) {
             LoadedMod mod = Vars.mods.locateMod("poly-tantros");
