@@ -4,11 +4,13 @@ import arc.graphics.Blending;
 import arc.graphics.Color;
 import arc.math.Interp;
 import mindustry.ai.types.AssemblerAI;
+import mindustry.ai.types.MissileAI;
 import mindustry.content.Fx;
 import mindustry.entities.abilities.ArmorPlateAbility;
 import mindustry.entities.abilities.MoveEffectAbility;
 import mindustry.entities.bullet.BasicBulletType;
 import mindustry.entities.bullet.BombBulletType;
+import mindustry.entities.bullet.LaserBulletType;
 import mindustry.entities.effect.ParticleEffect;
 import mindustry.entities.part.HaloPart;
 import mindustry.entities.part.RegionPart;
@@ -20,6 +22,7 @@ import mindustry.gen.UnitEntity;
 import mindustry.type.UnitType;
 import mindustry.type.Weapon;
 import mindustry.type.ammo.ItemAmmoType;
+import mindustry.type.unit.MissileUnitType;
 
 public class TUnitTypes {
     public static UnitType
@@ -31,7 +34,8 @@ public class TUnitTypes {
     requiem,
 
     // stuff
-    assemblySub
+    assemblySub,
+    snapPiranha
 
     ;
 
@@ -318,6 +322,82 @@ public class TUnitTypes {
                         teamColor = true;
                         effect = Fx.disperseTrail;
                         parentizeEffects = true;
+                    }}
+            );
+        }};
+        snapPiranha = new MissileUnitType("snap-piranha"){{
+            envEnabled = 4;
+            createWreck = false;
+            createScorch = false;
+            aiController = MissileAI::new;
+            logicControllable = false;
+            playerControllable = false;
+            isEnemy = false;
+            useUnitCap = false;
+            allowedInPayloads = false;
+            flying = true;
+            physics = true;
+            hidden = true;
+            outlineColor = Color.valueOf("4a4b53");
+            targetPriority = -1f;
+            speed = 3.5f;
+            lifetime = 140f;
+            health = 15f;
+            armor = 4f;
+            maxRange = 0f;
+            drawCell = false;
+            lowAltitude = true;
+            hitSize = 7f;
+            targetable = true;
+            trailLength = 5;
+            rotateSpeed = 11f;
+            fogRadius = 0f;
+            missileAccelTime = 5f;
+            homingDelay = 15f;
+            engineColor = Color.valueOf("ea8878");
+            trailColor = Color.valueOf("ea8878");
+            parts.addAll(
+                    new RegionPart("-jaw"){{
+                        mirror = true;
+                        under = true;
+                        x = -1f;
+                        y = 2f;
+                        rotation = 30f;
+                        moveRot = -20f;
+                        progress = PartProgress.recoil;
+                        layerOffset = -1f;
+                    }}
+            );
+            weapons.addAll(
+                    new Weapon(){{
+                        x = 0f;
+                        y = 0f;
+                        shootY = 2f;
+                        reload = 15f;
+                        mirror = false;
+                        rotate = true;
+                        rotationLimit = 80;
+                        rotateSpeed = 360f;
+                        autoTarget = true;
+                        predictTarget = false;
+                        controllable = false;
+                        shootCone = 20f;
+                        targetInterval = 0f;
+                        targetSwitchInterval = 0f;
+                        recoilTime = 40f;
+                        bullet = new LaserBulletType(){{
+                            damage = 5f;
+                            length = 16f;
+                            width = 24f;
+                            lengthFalloff = 0.35f;
+                            sideLength = 16f;
+                            sideWidth = 1.5f;
+                            sideAngle = 35f;
+                            colors = new Color[]{Color.valueOf("ea8878"), Color.valueOf("ea8878")};
+                            shootEffect = Fx.none;
+                            smokeEffect = Fx.none;
+                            hitColor = Color.valueOf("ea8878");
+                        }};
                     }}
             );
         }};
