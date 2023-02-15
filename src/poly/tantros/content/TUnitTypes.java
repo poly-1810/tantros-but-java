@@ -3,13 +3,16 @@ package poly.tantros.content;
 import arc.graphics.Blending;
 import arc.graphics.Color;
 import arc.math.Interp;
+import mindustry.ai.types.AssemblerAI;
 import mindustry.content.Fx;
 import mindustry.entities.abilities.ArmorPlateAbility;
 import mindustry.entities.abilities.MoveEffectAbility;
 import mindustry.entities.bullet.BasicBulletType;
 import mindustry.entities.bullet.BombBulletType;
 import mindustry.entities.effect.ParticleEffect;
+import mindustry.entities.part.HaloPart;
 import mindustry.entities.part.RegionPart;
+import mindustry.entities.part.ShapePart;
 import mindustry.entities.pattern.ShootAlternate;
 import mindustry.entities.pattern.ShootPattern;
 import mindustry.gen.EntityMapping;
@@ -25,7 +28,11 @@ public class TUnitTypes {
     trident,
 
     // submarines
-    requiem
+    requiem,
+
+    // stuff
+    assemblySub
+
     ;
 
     public static void load() {
@@ -34,7 +41,7 @@ public class TUnitTypes {
 
             EntityMapping.nameMap.put(name, constructor);
 
-            //envEnabled = 4;
+            envEnabled = 4;
             health = 400f;
             flying = true;
             speed = 2.75f;
@@ -123,7 +130,7 @@ public class TUnitTypes {
 
             EntityMapping.nameMap.put(name, constructor);
 
-            //envEnabled = 4;
+            envEnabled = 4;
             health = 350f;
             flying = true;
             speed = 1.1f;
@@ -143,11 +150,11 @@ public class TUnitTypes {
                 rotate = false;
                 mirror = true;
                 alternate = false;
-                x = 6.5f;
+                x = 8.75f;
                 y = -1.5f;
                 shootY = 0.5f;
                 layerOffset = -5f;
-                baseRotation = -90f;
+                baseRotation = -70f;
                 shootCone = 360f;
                 shootWarmupSpeed = 0.2f;
                 minWarmup = 0.8f;
@@ -221,6 +228,98 @@ public class TUnitTypes {
                 effect = Fx.disperseTrail;
                 parentizeEffects = false;
             }});
+        }};
+
+        assemblySub = new UnitType("assembly-sub"){{
+            constructor = UnitEntity::create;
+
+            EntityMapping.nameMap.put(name, constructor);
+
+            envEnabled = 4;
+            aiController = AssemblerAI::new;
+            createWreck = false;
+            createScorch = false;
+            logicControllable = false;
+            playerControllable = false;
+            isEnemy = false;
+            useUnitCap = false;
+            allowedInPayloads = false;
+            flying = true;
+            hidden = true;
+            outlineColor = Color.valueOf("4a4b53");
+            targetPriority = -1f;
+            speed = 0.9f;
+            accel = 0.08f;
+            drag = 0.015f;
+            health = 100f;
+            armor = 6f;
+            maxRange = 0f;
+            lowAltitude = false;
+            hitSize = 9f;
+            targetable = false;
+            rotateSpeed = 3f;
+            fogRadius = 8f;
+            engineSize = 0;
+            parts.addAll(
+                    new RegionPart("-glow"){{
+                        color = Color.valueOf("d4816b66");
+                        layer = -1f;
+                        outline = false;
+                        blending = Blending.additive;
+                    }},
+                    new HaloPart(){{
+                        y = 3.5f;
+                        tri = true;
+                        color = Color.valueOf("ffd37f");
+                        haloRadius = 2.5f;
+                        haloRotateSpeed = 1f;
+                        rotateSpeed = 0f;
+                        layerOffset = -1f;
+                        shapes = 2;
+                        radius = 4f;
+                        triLength = 4f;
+                    }},
+                    new ShapePart(){{
+                         y = 3.5f;
+                         circle = true;
+                         hollow = true;
+                         color = Color.valueOf("ffd37f");
+                         radius = 3f;
+                         stroke = 1.5f;
+                         layerOffset = -1f;
+                    }}
+            );
+            abilities.addAll(
+                    new MoveEffectAbility(){{
+                        x = 0f;
+                        y = -3.5f;
+                        rotateEffect = true;
+                        interval = 5f;
+                        teamColor = true;
+                        effect = Fx.disperseTrail;
+                        parentizeEffects = false;
+                    }},
+                    new MoveEffectAbility(){{
+                        x = 3f;
+                        y = 1.5f;
+                        rotation = 45f;
+                        rotateEffect = true;
+                        interval = 5f;
+                        teamColor = true;
+                        effect = Fx.disperseTrail;
+                        parentizeEffects = true;
+                    }},
+                    new MoveEffectAbility(){{
+                        x = -3f;
+                        y = 1.5f;
+                        rotation = -45f;
+                        rotateEffect = true;
+                        interval = 5f;
+                        teamColor = true;
+                        effect = Fx.disperseTrail;
+                        parentizeEffects = true;
+                    }}
+            );
         }};
     }
 }
