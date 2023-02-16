@@ -8,6 +8,7 @@
   "main": "poly.tantros.PolyTantros",
   "minGameVersion": "141",
   "dependencies": [],
+  "java": true,
   "hidden": false,
   "hideBrowser": true
 }

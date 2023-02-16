@@ -3,6 +3,7 @@ package poly.tantros.content;
 import arc.graphics.Blending;
 import arc.graphics.Color;
 import arc.math.Interp;
+import arc.math.geom.Rect;
 import mindustry.ai.types.AssemblerAI;
 import mindustry.ai.types.MissileAI;
 import mindustry.content.Fx;
@@ -11,6 +12,7 @@ import mindustry.entities.abilities.MoveEffectAbility;
 import mindustry.entities.bullet.BasicBulletType;
 import mindustry.entities.bullet.BombBulletType;
 import mindustry.entities.bullet.LaserBulletType;
+import mindustry.entities.bullet.SapBulletType;
 import mindustry.entities.effect.ParticleEffect;
 import mindustry.entities.part.HaloPart;
 import mindustry.entities.part.RegionPart;
@@ -18,11 +20,13 @@ import mindustry.entities.part.ShapePart;
 import mindustry.entities.pattern.ShootAlternate;
 import mindustry.entities.pattern.ShootPattern;
 import mindustry.gen.EntityMapping;
+import mindustry.gen.TankUnit;
 import mindustry.gen.UnitEntity;
 import mindustry.type.UnitType;
 import mindustry.type.Weapon;
 import mindustry.type.ammo.ItemAmmoType;
 import mindustry.type.unit.MissileUnitType;
+import mindustry.type.unit.TankUnitType;
 
 public class TUnitTypes {
     public static UnitType
@@ -33,8 +37,13 @@ public class TUnitTypes {
     // submarines
     requiem,
 
+    // quads
+    chasm,
+
     // stuff
     assemblySub,
+
+    // bullet
     snapPiranha
 
     ;
@@ -232,6 +241,56 @@ public class TUnitTypes {
                 effect = Fx.disperseTrail;
                 parentizeEffects = false;
             }});
+        }};
+
+        chasm = new TankUnitType("chasm"){{
+            constructor = TankUnit::create;
+
+            EntityMapping.nameMap.put(name, constructor);
+
+            envEnabled = 4;
+            health = 270f;
+            speed = 2.2f;
+            accel = 0.045f;
+            drag = 0.02f;
+            rotateMoveFirst = true;
+            omniMovement = false;
+            treadRects = new Rect[]{new Rect(16, 17, 22, 25), new Rect(21, -34, 15, 22)};
+            treadFrames = 5;
+            rotateSpeed = 4f;
+            hitSize = 19f;
+            armor = 5f;
+            outlineColor = Color.valueOf("4a4b53");
+            healColor = Color.valueOf("feb380");
+            weapons.addAll(
+                    new Weapon("poly-tantros-chasm-weapon"){{
+                        reload = 12f;
+                        rotate = true;
+                        rotationLimit = 135f;
+                        rotateSpeed = 2f;
+                        mirror = true;
+                        predictTarget = false;
+                        recoil = 2f;
+                        x = 4.5f;
+                        y = 0;
+                        parts.addAll(
+                                new RegionPart("-top"){{
+                                    under = true;
+                                    layerOffset = 0.001f;
+                                    moveY = -1.25f;
+                                    progress = PartProgress.recoil;
+                                    heatProgress = PartProgress.warmup;
+                                }}
+                        );
+                        bullet = new SapBulletType(){{
+                            length = 64f;
+                            width = 0.5f;
+                            damage = 12.5f;
+                            sapStrength = 0.5f;
+                            color = Color.valueOf("feb380");
+                        }};
+                    }}
+            );
         }};
 
         assemblySub = new UnitType("assembly-sub"){{

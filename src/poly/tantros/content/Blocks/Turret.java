@@ -19,6 +19,7 @@ import mindustry.world.blocks.defense.turrets.ItemTurret;
 import mindustry.world.blocks.defense.turrets.PowerTurret;
 import mindustry.world.draw.DrawTurret;
 import poly.tantros.content.TItems;
+import poly.tantros.content.TStatuses;
 import poly.tantros.content.TUnitTypes;
 
 import static mindustry.type.ItemStack.with;
@@ -195,6 +196,8 @@ public class Turret {
                 sideLength = 24f;
                 lifetime = 30f;
                 knockback = 9f;
+                status = TStatuses.stunned;
+                statusDuration = 20f;
                 shootEffect = Fx.shootSmokeSmite;
                 smokeEffect = Fx.shootBigSmoke;
                 hitColor = Color.valueOf("feb380");
