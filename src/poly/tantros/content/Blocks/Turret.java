@@ -1,11 +1,13 @@
 package poly.tantros.content.Blocks;
 
 import arc.graphics.Color;
+import arc.math.Interp;
 import mindustry.content.Fx;
 import mindustry.entities.bullet.BasicBulletType;
 import mindustry.entities.bullet.BulletType;
 import mindustry.entities.bullet.LaserBulletType;
 import mindustry.entities.effect.MultiEffect;
+import mindustry.entities.effect.ParticleEffect;
 import mindustry.entities.part.HaloPart;
 import mindustry.entities.part.RegionPart;
 import mindustry.entities.pattern.ShootPattern;
@@ -17,6 +19,7 @@ import mindustry.world.blocks.defense.turrets.ItemTurret;
 import mindustry.world.blocks.defense.turrets.PowerTurret;
 import mindustry.world.draw.DrawTurret;
 import poly.tantros.content.TItems;
+import poly.tantros.content.TStatuses;
 import poly.tantros.content.TUnitTypes;
 
 import static mindustry.type.ItemStack.with;
@@ -193,6 +196,8 @@ public class Turret {
                 sideLength = 24f;
                 lifetime = 30f;
                 knockback = 9f;
+                status = TStatuses.stunned;
+                statusDuration = 20f;
                 shootEffect = Fx.shootSmokeSmite;
                 smokeEffect = Fx.shootBigSmoke;
                 hitColor = Color.valueOf("feb380");
@@ -273,6 +278,55 @@ public class Turret {
                 rotateSpeed = 4f;
                 shootType = new BasicBulletType(){{
                     sprite = "poly-tantros-bullet-wave";
+                    speed = 3.5f;
+                    drag = -0.01f;
+                    lifetime = 45f;
+                    damage = 2.25f;
+                    pierceArmor = true;
+                    width = 12f;
+                    hitSize = 16f;
+                    height = 12f;
+                    shrinkX = -0.75f;
+                    shrinkY = -0.5f;
+                    shootEffect = Fx.none;
+                    smokeEffect = Fx.none;
+                    despawnEffect = new ParticleEffect(){{
+                        region = "poly-tantros-bullet-wave-back";
+                        particles = 1;
+                        cone = 0f;
+                        length = 16f;
+                        baseLength = 16f;
+                        lifetime = 32f;
+                        offset = 90f;
+                        sizeFrom = 6f;
+                        sizeTo = 12f;
+                        colorFrom = Color.valueOf("8ca9e8");
+                        colorTo = Color.valueOf("8ca9e800");
+                        interp = Interp.pow3Out;
+                        offsetX = -12f;
+                    }};
+                    hitEffect = Fx.none;
+                    pierce = true;
+                    hitColor = Color.valueOf("8ca9e8");
+                    backColor = Color.valueOf("8ca9e8");
+                    trailColor = Color.valueOf("8ca9e8");
+                    trailEffect = new ParticleEffect(){{
+                        region = "poly-tantros-bullet-wave-back";
+                        particles = 1;
+                        cone = 0f;
+                        length = 4f;
+                        baseLength = 4f;
+                        lifetime = 90f;
+                        offset = 90f;
+                        sizeFrom = 8f;
+                        sizeTo = 4f;
+                        colorFrom = Color.valueOf("8ca9e899");
+                        colorTo = Color.valueOf("8ca9e800");
+                    }};
+                    trailRotation = true;
+                    trailInterval = 5f;
+                    frontColor = Color.valueOf("ffffff");
+                    buildingDamageMultiplier = 0.15f;
                 }};
             }};
         }};
