@@ -10,10 +10,10 @@ import poly.tantros.content.TUnitTypes;
 import static mindustry.type.ItemStack.with;
 
 public class Units {
-    public static Block quadConstructor, submarineConstructor;
+    public static Block quadAssembler, submarineAssembler;
 
     public static void load() {
-        quadConstructor = new UnitAssembler("quad-constructor"){{
+        quadAssembler = new UnitAssembler("quad-assembler"){{
             requirements(Category.units, with(TItems.cobalt, 50, TItems.nickel, 70, TItems.tCopper, 60));
 
             envEnabled = 4;
@@ -30,7 +30,7 @@ public class Units {
 
             consumePower(2.5f);
         }};
-        submarineConstructor = new UnitAssembler("submarine-constructor"){{
+        submarineAssembler = new UnitAssembler("submarine-assembler"){{
             requirements(Category.units, with(TItems.cobalt, 40, TItems.nickel, 80, TItems.tCopper, 80));
 
             envEnabled = 4;
