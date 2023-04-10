@@ -6,7 +6,7 @@
   "subtitle": "Mod adds content to Tantros",
   "version": "0.0.1",
   "main": "poly.tantros.PolyTantros",
-  "minGameVersion": "141",
+  "minGameVersion": "143.1",
   "dependencies": [],
   "java": true,
   "hidden": false,
