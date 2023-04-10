@@ -27,7 +27,7 @@ public class PolyTantros extends Mod {
         if (!headless) {
             LoadedMod mod = Vars.mods.locateMod("poly-tantros");
 
-            mod.meta.displayName = "[#86f195]Poly's[] [#597be3]Tantros[] (pre-alpha)";
+            mod.meta.displayName = "[#86f195]Poly's[] [#597be3]Tantros[] (beta)";
             mod.meta.author =
                     """
                     [#7d7d7d]ABreaker#5940 (original author)[]
