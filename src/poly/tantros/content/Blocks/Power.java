@@ -1,5 +1,6 @@
 package poly.tantros.content.Blocks;
 
+import arc.Core;
 import arc.graphics.Color;
 import arc.math.Interp;
 import mindustry.entities.effect.ParticleEffect;
@@ -11,6 +12,8 @@ import mindustry.world.blocks.power.PowerNode;
 import mindustry.world.blocks.power.VariableReactor;
 import mindustry.world.draw.*;
 import poly.tantros.content.TItems;
+import poly.tantros.world.blocks.power.LongNode;
+import poly.tantros.world.blocks.power.Node;
 
 import static mindustry.type.ItemStack.with;
 
@@ -44,7 +47,7 @@ public class Power {
                     new DrawDefault()
             );
         }};
-        powerCable = new PowerNode("power-cable"){{
+        powerCable = new LongNode("power-cable"){{
             requirements(Category.power, with(TItems.nickel, 5, TItems.tCopper, 15, TItems.zinc, 5));
 
             envEnabled = 4;
@@ -54,14 +57,16 @@ public class Power {
             maxNodes = 1;
             laserScale = 0.75f;
             autolink = false;
+            laserColor2 = Color.valueOf("ffffff");
         }};
-        powerPipe = new BeamNode("power-pipe"){{
+        powerPipe = new Node("power-pipe"){{
             requirements(Category.power, with(TItems.nickel, 2, TItems.tCopper, 2, TItems.zinc, 2));
 
             envEnabled = 4;
             scaledHealth = 25f;
             size = 1;
             range = 4;
+            laserColor2 = Color.valueOf("ffffff");
             pulseMag = 0f;
             laserWidth = 0.5f;
         }};
