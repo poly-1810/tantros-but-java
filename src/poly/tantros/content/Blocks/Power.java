@@ -54,7 +54,6 @@ public class Power {
             maxNodes = 1;
             laserScale = 0.75f;
             autolink = false;
-            laserColor2 = Color.valueOf("ffffff");
         }};
         powerPipe = new BeamNode("power-pipe"){{
             requirements(Category.power, with(TItems.nickel, 2, TItems.tCopper, 2, TItems.zinc, 2));
@@ -63,7 +62,6 @@ public class Power {
             scaledHealth = 25f;
             size = 1;
             range = 4;
-            laserColor2 = Color.valueOf("ffffff");
             pulseMag = 0f;
             laserWidth = 0.5f;
         }};

@@ -44,10 +44,7 @@ public class TUnitTypes {
     assemblySub,
 
     // bullet
-    snapPiranha,
-
-    // tests
-    rocketLauncher
+    snapPiranha
 
     ;
 
@@ -463,64 +460,6 @@ public class TUnitTypes {
                         }};
                     }}
             );
-        }};
-
-        rocketLauncher = new UnitType("rocket-launcher"){{
-            constructor = UnitEntity::create;
-
-            EntityMapping.nameMap.put(name, constructor);
-
-            envEnabled = 4;
-            health = 400f;
-            speed = 2.75f;
-            accel = 0.1f;
-            drag = 0.05f;
-            hitSize = 17f;
-            lowAltitude = true;
-            rotateSpeed = 8f;
-            itemCapacity = 100;
-            outlineColor = Color.valueOf("3B3C43");
-            healColor = Color.valueOf("ffd37f");
-            engineOffset = 0f;
-            engineSize = 0f;
-            armor = 6f;
-            weapons.add(new Weapon(){{
-                shootSound = Sounds.missileLaunch;
-                reload = 200f;
-                rotate = false;
-                shootCone = 360;
-                mirror = false;
-                predictTarget = false;
-                inaccuracy = 0f;
-                velocityRnd = 0.5f;
-                x = 0;
-                y = 0;
-                shoot = new ShootPattern(){{
-                    shots = 3;
-                    shotDelay = 40f;
-                }};
-                bullet = new MissileBulletType(){{
-                    shootEffect = Fx.shootSmokeMissile;
-                    speed = 6f;
-                    damage = 40f;
-                    lifetime = 120f;
-                    outlineColor = Pal.darkOutline;
-                    engineColor = trailColor = Pal.redLight;
-                    engineLayer = Layer.effect;
-                    width = 10f;
-                    height = 16f;
-                    engineSize = 3.1f;
-                    engineOffset = 10f;
-                    rotateSpeed = 0.25f;
-                    trailLength = 16;
-                    missileAccelTime = 50f;
-                    lowAltitude = true;
-                    loopSound = Sounds.missileTrail;
-                    loopSoundVolume = 0.6f;
-                    deathSound = Sounds.largeExplosion;
-                    targetAir = false;
-                }};
-            }});
         }};
     }
 }
