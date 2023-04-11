@@ -4,6 +4,7 @@ import arc.graphics.Color;
 import arc.math.Interp;
 import mindustry.content.Fx;
 import mindustry.entities.bullet.BasicBulletType;
+import mindustry.entities.bullet.BombBulletType;
 import mindustry.entities.bullet.BulletType;
 import mindustry.entities.bullet.LaserBulletType;
 import mindustry.entities.effect.MultiEffect;
@@ -127,8 +128,7 @@ public class Turret {
                     }}
             );
         }};
-        // TODO fix this
-        /* spark = new PowerTurret("spark"){{
+        spark = new PowerTurret("spark"){{
             requirements(Category.turret, with(TItems.tCopper, 10, TItems.calcite, 10, TItems.zinc, 5, TItems.nickel, 5));
 
             envEnabled = 4;
@@ -151,7 +151,28 @@ public class Turret {
                 shotDelay = 15f;
             }};
             rotateSpeed = 4f;
-        }}; */
+
+            shootType = new BombBulletType(){{
+                collides = false;
+                lifetime = 180;
+                speed = 6;
+                drag = 0.05f;
+                splashDamage = 5f;
+                splashDamageRadius = 8f;
+                sprite = "large-bomb";
+                spin = 2;
+                width = 16;
+                height = 16;
+                shrinkX = 0.2f;
+                shrinkY = 0.2f;
+                backColor = Color.valueOf("84a94b");
+                hitColor = Color.valueOf("84a94b");
+                trailColor = Color.valueOf("84a94b");
+                trailWidth = 2.5f;
+                trailLength = 16;
+                collideTerrain = true;
+            }};
+        }};
         splice = new PowerTurret("splice"){{
             requirements(Category.turret, with(TItems.tCopper, 80, TItems.brass, 120, TItems.calcite, 60, TItems.zinc, 60));
 
