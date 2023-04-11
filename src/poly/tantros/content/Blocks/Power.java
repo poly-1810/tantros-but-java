@@ -1,19 +1,16 @@
 package poly.tantros.content.Blocks;
 
-import arc.Core;
 import arc.graphics.Color;
 import arc.math.Interp;
 import mindustry.entities.effect.ParticleEffect;
 import mindustry.type.Category;
 import mindustry.world.Block;
-import mindustry.world.blocks.power.BeamNode;
 import mindustry.world.blocks.power.ConsumeGenerator;
-import mindustry.world.blocks.power.PowerNode;
 import mindustry.world.blocks.power.VariableReactor;
 import mindustry.world.draw.*;
 import poly.tantros.content.TItems;
-import poly.tantros.world.blocks.power.LongNode;
-import poly.tantros.world.blocks.power.Node;
+import poly.tantros.world.blocks.power.PowerCable;
+import poly.tantros.world.blocks.power.PowerPipe;
 
 import static mindustry.type.ItemStack.with;
 
@@ -47,7 +44,7 @@ public class Power {
                     new DrawDefault()
             );
         }};
-        powerCable = new LongNode("power-cable"){{
+        powerCable = new PowerCable("power-cable"){{
             requirements(Category.power, with(TItems.nickel, 5, TItems.tCopper, 15, TItems.zinc, 5));
 
             envEnabled = 4;
@@ -59,7 +56,7 @@ public class Power {
             autolink = false;
             laserColor2 = Color.valueOf("ffffff");
         }};
-        powerPipe = new Node("power-pipe"){{
+        powerPipe = new PowerPipe("power-pipe"){{
             requirements(Category.power, with(TItems.nickel, 2, TItems.tCopper, 2, TItems.zinc, 2));
 
             envEnabled = 4;
