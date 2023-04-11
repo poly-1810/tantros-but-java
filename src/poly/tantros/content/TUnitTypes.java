@@ -4,11 +4,15 @@ import arc.graphics.Blending;
 import arc.graphics.Color;
 import arc.math.Interp;
 import arc.math.geom.Rect;
+import mindustry.ai.UnitCommand;
 import mindustry.ai.types.AssemblerAI;
+import mindustry.ai.types.DefenderAI;
+import mindustry.ai.types.HugAI;
 import mindustry.ai.types.MissileAI;
 import mindustry.content.Fx;
 import mindustry.entities.abilities.ArmorPlateAbility;
 import mindustry.entities.abilities.MoveEffectAbility;
+import mindustry.entities.abilities.UnitSpawnAbility;
 import mindustry.entities.bullet.*;
 import mindustry.entities.effect.ParticleEffect;
 import mindustry.entities.part.HaloPart;
@@ -16,9 +20,7 @@ import mindustry.entities.part.RegionPart;
 import mindustry.entities.part.ShapePart;
 import mindustry.entities.pattern.ShootAlternate;
 import mindustry.entities.pattern.ShootPattern;
-import mindustry.gen.EntityMapping;
-import mindustry.gen.TankUnit;
-import mindustry.gen.UnitEntity;
+import mindustry.gen.*;
 import mindustry.type.UnitType;
 import mindustry.type.Weapon;
 import mindustry.type.ammo.ItemAmmoType;
@@ -41,7 +43,11 @@ public class TUnitTypes {
     assemblySub,
 
     // bullet
-    snapPiranha
+    snapPiranha,
+
+    tendril,
+    chain,
+    chainDrone
 
     ;
 
@@ -455,6 +461,152 @@ public class TUnitTypes {
                             smokeEffect = Fx.none;
                             hitColor = Color.valueOf("ea8878");
                         }};
+                    }}
+            );
+        }};
+
+        tendril = new UnitType("tendril"){{
+            constructor = CrawlUnit::create;
+
+            EntityMapping.nameMap.put(name, constructor);
+
+            envEnabled = 4;
+            health = 450f;
+            speed = 0.8f;
+            omniMovement = false;
+            segments = 2;
+            drawBody = false;
+            drawCell = false;
+            crushDamage = 2f;
+            segmentPhase = 5f;
+            segmentRotSpeed = 2f;
+            segmentMag = 1.5f;
+            segmentScl = 1f;
+            aiController = HugAI::new;
+            rotateSpeed = 3f;
+            hitSize = 22f;
+            armor = 8f;
+            outlineColor = Color.valueOf("4a4b53");
+            healColor = Color.valueOf("feb380");
+        }};
+
+        chainDrone = new UnitType("chain-drone"){{
+            constructor = UnitEntity::create;
+
+            EntityMapping.nameMap.put(name, constructor);
+
+            envEnabled = 4;
+            aiController = DefenderAI::new;
+            defaultCommand = UnitCommand.rebuildCommand;
+            isEnemy = false;
+            flying = true;
+            hidden = true;
+            outlineColor = Color.valueOf("4a4b53");
+            targetPriority = -1f;
+            speed = 2f;
+            accel = 0.1f;
+            drag = 0.05f;
+            lifetime = 450f;
+            health = 75f;
+            armor = 3f;
+            maxRange = 0f;
+            drawCell = false;
+            lowAltitude = true;
+            hitSize = 4f;
+            targetable = true;
+            trailLength = 12;
+            engineSize = 2.5f;
+            rotateSpeed = 5f;
+            buildSpeed = 0.1f;
+        }};
+        chain = new UnitType("chain"){{
+            constructor = LegsUnit::create;
+
+            EntityMapping.nameMap.put(name, constructor);
+
+            envEnabled = 4;
+            groundLayer = 75f;
+            health = 270f;
+            armor = 6f;
+            speed = 1.45f;
+            drag = 0.2f;
+            hitSize = 9f;
+            buildRange = 96f;
+            fogRadius = 8f;
+            ammoCapacity = 20;
+            ammoType = new ItemAmmoType(){{
+                range = 32f;
+                ammoPerItem = 5;
+                item = TItems.cobalt;
+            }};
+            rotateSpeed = 5f;
+            lockLegBase = true;
+            legContinuousMove = true;
+            legGroupSize = 3;
+            legStraightness = 0.2f;
+            baseLegStraightness = 0.3f;
+            legStraightLength = 0.8f;
+            legCount = 6;
+            legLength = 14f;
+            legExtension = -3f;
+            legBaseOffset = 2f;
+            legMaxLength = 1.3f;
+            legMinLength = 0.15f;
+            legMoveSpace = 1.2f;
+            legForwardScl = 1.1f;
+            rippleScale = 0.2f;
+            drownTimeMultiplier = 150f;
+            mineWalls = true;
+            mineFloor = true;
+            mineHardnessScaling = true;
+            mineSpeed = 5f;
+            mineTier = 2;
+            buildSpeed = 0.2f;
+            itemCapacity = 100;
+            outlineColor = Color.valueOf("4a4b53");
+            healColor = Color.valueOf("ffd37f");
+            weapons.addAll(
+                    new Weapon("poly-tantros-chain-claw"){{
+                        reload = 25f;
+                        rotate = true;
+                        rotationLimit = 45f;
+                        rotateSpeed = 2f;
+                        mirror = true;
+                        predictTarget = false;
+                        recoil = -3.5f;
+                        top = false;
+                        x = 6.5f;
+                        y = 2f;
+                        parts.addAll(
+                                new RegionPart("-mandible-l"){{
+                                    under = true;
+                                    moveX = 1.25f;
+                                    progress = PartProgress.recoil;
+                                    heatProgress = PartProgress.warmup;
+                                }},
+                                new RegionPart("-mandible-r"){{
+                                    under = true;
+                                    moveX = -1.25f;
+                                    progress = PartProgress.recoil;
+                                    heatProgress = PartProgress.warmup;
+                                }}
+                        );
+                        bullet = new LaserBulletType(){{
+                            lifetime = 20f;
+                            length = 48f;
+                            damage = 72.5f;
+                            colors = new Color[]{Color.valueOf("ffd37f66"), Color.valueOf("ffd37f")};
+                        }};
+                    }}
+            );
+            abilities.addAll(
+                    new UnitSpawnAbility(){{
+                        spawnX = 0f;
+                        spawnY = -3.5f;
+                        unit = chainDrone;
+                        spawnTime = 1800f;
+                        spawnEffect = Fx.shootSmokeTitan;
+                        parentizeEffects = true;
                     }}
             );
         }};
