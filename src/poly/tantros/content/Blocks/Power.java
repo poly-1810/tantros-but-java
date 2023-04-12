@@ -1,18 +1,16 @@
 package poly.tantros.content.Blocks;
 
-import arc.graphics.Color;
-import arc.math.Interp;
-import mindustry.entities.effect.ParticleEffect;
-import mindustry.type.Category;
-import mindustry.world.Block;
-import mindustry.world.blocks.power.ConsumeGenerator;
-import mindustry.world.blocks.power.VariableReactor;
+import arc.graphics.*;
+import arc.math.*;
+import mindustry.entities.effect.*;
+import mindustry.type.*;
+import mindustry.world.*;
+import mindustry.world.blocks.power.*;
 import mindustry.world.draw.*;
-import poly.tantros.content.TItems;
-import poly.tantros.world.blocks.power.PowerCable;
-import poly.tantros.world.blocks.power.PowerPipe;
+import mindustry.world.meta.*;
+import poly.tantros.content.*;
 
-import static mindustry.type.ItemStack.with;
+import static mindustry.type.ItemStack.*;
 
 public class Power {
     public static Block hydraulicGenerator, powerCable, powerPipe, steamGenerator;
@@ -44,7 +42,7 @@ public class Power {
                     new DrawDefault()
             );
         }};
-        powerCable = new PowerCable("power-cable"){{
+        powerCable = new PowerNode("power-cable"){{
             requirements(Category.power, with(TItems.nickel, 5, TItems.tCopper, 15, TItems.zinc, 5));
 
             envEnabled = 4;
@@ -56,7 +54,7 @@ public class Power {
             autolink = false;
             laserColor2 = Color.valueOf("ffffff");
         }};
-        powerPipe = new PowerPipe("power-pipe"){{
+        powerPipe = new BeamNode("power-pipe"){{
             requirements(Category.power, with(TItems.nickel, 2, TItems.tCopper, 2, TItems.zinc, 2));
 
             envEnabled = 4;
