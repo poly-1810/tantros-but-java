@@ -1,18 +1,28 @@
 package poly.tantros;
 
+import arc.Events;
 import mindustry.Vars;
 import mindustry.content.Items;
 import mindustry.content.Planets;
+import mindustry.game.EventType;
 import mindustry.mod.Mod;
 import mindustry.mod.Mods.LoadedMod;
 import poly.tantros.content.*;
 import poly.tantros.content.Blocks.*;
 import poly.tantros.maps.planet.PolyTantrosPlanetGenerator;
+import poly.tantros.ui.dialogs.TDisclaimer;
 
+import static arc.Core.app;
 import static mindustry.Vars.headless;
 
 public class PolyTantros extends Mod {
-    public PolyTantros() {}
+    public PolyTantros() {
+        Events.on(EventType.ClientLoadEvent.class, ignored -> {
+            app.post(() -> {
+                new TDisclaimer().show();
+            });
+        });
+    }
 
     @Override
     public void init() {
