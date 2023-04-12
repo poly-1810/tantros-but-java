@@ -74,7 +74,7 @@ public class Environment {
         }};
 
         // underwater
-        purbushBig = new SeaBush("purbush-big"){{
+        purbushBig = new SeaBush("pur-bush-big"){{
             lobesMin = 8;
             lobesMax = 10;
             botAngle = 60f;
