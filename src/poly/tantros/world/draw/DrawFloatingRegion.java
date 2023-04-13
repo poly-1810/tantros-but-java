@@ -11,7 +11,7 @@ import mindustry.world.*;
 import mindustry.world.draw.*;
 import poly.tantros.graphics.*;
 
-public class DrawFloatingRegion extends DrawBlock{
+public class DrawFloatingRegion extends DrawBlock {
     public TextureRegion region;
     public String suffix = "";
     public float camOffset = 0.25f;
@@ -20,15 +20,16 @@ public class DrawFloatingRegion extends DrawBlock{
     public float layerFrom = Layer.light + 0.25f;
     public float layerTo = Layer.light + 2.1f;
 
-    public DrawFloatingRegion(String suffix){
+    public DrawFloatingRegion(String suffix) {
         this.suffix = suffix;
     }
 
-    public DrawFloatingRegion(){
+    public DrawFloatingRegion() {
+        // nothing
     }
 
     @Override
-    public void draw(Building build){
+    public void draw(Building build) {
         float z = Draw.z();
         Draw.z(layer(build));
 
@@ -41,34 +42,34 @@ public class DrawFloatingRegion extends DrawBlock{
         Draw.z(z);
     }
     
-    public float layer(Building build){
+    public float layer(Building build) {
         return build.warmup() > surfaceTime ? layerTo : layerFrom;
     }
 
-    public float x(Building build){
+    public float x(Building build) {
         return build.x + Mathf.cos(Time.time, driftScl, driftMag) * build.warmup();
     }
 
-    public float y(Building build){
+    public float y(Building build) {
         return build.y + Mathf.sin(driftScl, driftMag) * build.warmup();
     }
 
-    public float off(Building build){
+    public float off(Building build) {
         return camOffset * build.warmup();
     }
 
     @Override
-    public void drawPlan(Block block, BuildPlan plan, Eachable<BuildPlan> list){
+    public void drawPlan(Block block, BuildPlan plan, Eachable<BuildPlan> list) {
         Draw.rect(region, plan.drawx(), plan.drawy());
     }
 
     @Override
-    public TextureRegion[] icons(Block block){
+    public TextureRegion[] icons(Block block) {
         return new TextureRegion[]{region};
     }
 
     @Override
-    public void load(Block block){
+    public void load(Block block) {
         region = Core.atlas.find(block.name + suffix);
     }
 }

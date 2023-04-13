@@ -60,7 +60,7 @@ public class Power {
             requirements(Category.power, with(TItems.nickel, 10));
 
             envEnabled = Env.terrestrial | Env.underwater;
-            scaledHealth = 5f; //Very fragile
+            scaledHealth = 5f; // very fragile
             powerProduction = 0.12f;
         }};
 
