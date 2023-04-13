@@ -7,6 +7,7 @@ import mindustry.entities.effect.ParticleEffect;
 import mindustry.type.Category;
 import mindustry.world.Block;
 import mindustry.world.blocks.production.Drill;
+import mindustry.world.meta.*;
 import poly.tantros.content.TItems;
 
 import static mindustry.type.ItemStack.with;
@@ -18,7 +19,7 @@ public class Production {
         siftDrill = new Drill("sift-drill"){{
             requirements(Category.production, with(TItems.tCopper, 20));
 
-            envEnabled = 4;
+            envEnabled = Env.terrestrial | Env.underwater;
             scaledHealth = 65f;
             size = 3;
             squareSprite = false;

@@ -8,6 +8,7 @@ import mindustry.world.blocks.heat.HeatConductor;
 import mindustry.world.blocks.heat.HeatProducer;
 import mindustry.world.blocks.production.HeatCrafter;
 import mindustry.world.draw.*;
+import mindustry.world.meta.*;
 import poly.tantros.content.TItems;
 
 import static mindustry.type.ItemStack.with;
@@ -19,7 +20,7 @@ public class Crafting {
         brassSmelter = new HeatCrafter("brass-smelter"){{
             requirements(Category.crafting, with(TItems.tCopper, 30, TItems.zinc, 20, TItems.calcite, 20));
 
-            envEnabled = 4;
+            envEnabled = Env.terrestrial | Env.underwater;
             scaledHealth = 90f;
             size = 2;
             craftTime = 90f;
@@ -57,7 +58,7 @@ public class Crafting {
         electricHeater = new HeatProducer("tantros-electric-heater"){{
             requirements(Category.crafting, with(TItems.tCopper, 40, TItems.nickel, 30, TItems.zinc, 15, TItems.calcite, 15));
 
-            envEnabled = 4;
+            envEnabled = Env.terrestrial | Env.underwater;
             scaledHealth = 90f;
             size = 2;
             heatOutput = 2f;
@@ -73,7 +74,7 @@ public class Crafting {
         heatDistributor = new HeatConductor("tantros-heat-distributor"){{
             requirements(Category.crafting, with(TItems.tCopper, 10, TItems.nickel, 10, TItems.zinc, 5, TItems.calcite, 5));
 
-            envEnabled = 4;
+            envEnabled = Env.terrestrial | Env.underwater;
             scaledHealth = 90f;
             size = 1;
             visualMaxHeat = 5f;

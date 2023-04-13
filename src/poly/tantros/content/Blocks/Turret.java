@@ -19,6 +19,7 @@ import mindustry.world.Block;
 import mindustry.world.blocks.defense.turrets.ItemTurret;
 import mindustry.world.blocks.defense.turrets.PowerTurret;
 import mindustry.world.draw.DrawTurret;
+import mindustry.world.meta.*;
 import poly.tantros.content.TItems;
 import poly.tantros.content.TStatuses;
 import poly.tantros.content.TUnitTypes;
@@ -32,7 +33,7 @@ public class Turret {
         remnant = new ItemTurret("remnant"){{
             requirements(Category.turret, with(TItems.tCopper, 10, TItems.calcite, 15, TItems.nickel, 5));
 
-            envEnabled = 4;
+            envEnabled = Env.terrestrial | Env.underwater;
             scaledHealth = 120f;
             size = 1;
             reload = 50f;
@@ -89,7 +90,7 @@ public class Turret {
         snap = new ItemTurret("snap"){{
             requirements(Category.turret, with(TItems.tCopper, 50, TItems.calcite, 20, TItems.nickel, 20));
 
-            envEnabled = 4;
+            envEnabled = Env.terrestrial | Env.underwater;
             scaledHealth = 120f;
             size = 2;
             reload = 90f;
@@ -131,7 +132,7 @@ public class Turret {
         spark = new PowerTurret("spark"){{
             requirements(Category.turret, with(TItems.tCopper, 10, TItems.calcite, 10, TItems.zinc, 5, TItems.nickel, 5));
 
-            envEnabled = 4;
+            envEnabled = Env.terrestrial | Env.underwater;
             scaledHealth = 140f;
             size = 1;
             reload = 150f;
@@ -176,7 +177,7 @@ public class Turret {
         splice = new PowerTurret("splice"){{
             requirements(Category.turret, with(TItems.tCopper, 80, TItems.brass, 120, TItems.calcite, 60, TItems.zinc, 60));
 
-            envEnabled = 4;
+            envEnabled = Env.terrestrial | Env.underwater;
             scaledHealth = 120f;
             size = 3;
             reload = 90f;
@@ -228,7 +229,7 @@ public class Turret {
         wail = new PowerTurret("wail"){{
             requirements(Category.turret, with(TItems.tCopper, 15, TItems.zinc, 10));
 
-            envEnabled = 4;
+            envEnabled = Env.terrestrial | Env.underwater;
             scaledHealth = 140f;
             size = 1;
             reload = 50f;

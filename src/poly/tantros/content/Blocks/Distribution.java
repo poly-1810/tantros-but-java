@@ -10,6 +10,7 @@ import mindustry.world.Block;
 import mindustry.world.blocks.payloads.Constructor;
 import mindustry.world.blocks.payloads.PayloadDeconstructor;
 import mindustry.world.blocks.payloads.PayloadMassDriver;
+import mindustry.world.meta.*;
 import poly.tantros.content.TItems;
 import poly.tantros.world.blocks.payloads.CoveredPayloadConveyor;
 import poly.tantros.world.blocks.payloads.CoveredPayloadRouter;
@@ -23,7 +24,7 @@ public class Distribution {
         defabricator = new PayloadDeconstructor("defabricator") {{
             requirements(Category.units, with(TItems.nickel, 12));
 
-            envEnabled = 4;
+            envEnabled = Env.terrestrial | Env.underwater;
             regionSuffix = "-dark";
             scaledHealth = 90;
             researchCostMultiplier = 0.25f;
@@ -37,7 +38,7 @@ public class Distribution {
         fabricator = new Constructor("fabricator") {{
             requirements(Category.units, with(TItems.nickel, 12));
 
-            envEnabled = 4;
+            envEnabled = Env.terrestrial | Env.underwater;
             regionSuffix = "-dark";
             scaledHealth = 90;
             hasPower = false;
@@ -50,7 +51,7 @@ public class Distribution {
         payloadBelt = new CoveredPayloadConveyor("payload-belt") {{
             requirements(Category.units, with(TItems.nickel, 2));
 
-            envEnabled = 4;
+            envEnabled = Env.terrestrial | Env.underwater;
             canOverdrive = false;
             scaledHealth = 50;
             moveTime = 24;
@@ -64,7 +65,7 @@ public class Distribution {
         payloadDistributor = new CoveredPayloadRouter("payload-distributor") {{
             requirements(Category.units, with(TItems.tCopper, 2, TItems.nickel, 4));
 
-            envEnabled = 4;
+            envEnabled = Env.terrestrial | Env.underwater;
             canOverdrive = false;
             scaledHealth = 50;
             moveTime = 24;
@@ -77,7 +78,7 @@ public class Distribution {
         payloadLauncher = new PayloadMassDriver("payload-launcher") {{
             requirements(Category.distribution, with(TItems.nickel, 8, TItems.tCopper, 8, TItems.calcite, 4, TItems.zinc, 4));
 
-            envEnabled = 4;
+            envEnabled = Env.terrestrial | Env.underwater;
             regionSuffix = "-dark";
             size = 2;
             reload = 4f;

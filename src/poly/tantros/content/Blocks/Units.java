@@ -4,6 +4,7 @@ import mindustry.type.Category;
 import mindustry.type.PayloadStack;
 import mindustry.world.Block;
 import mindustry.world.blocks.units.UnitAssembler;
+import mindustry.world.meta.*;
 import poly.tantros.content.TItems;
 import poly.tantros.content.TUnitTypes;
 
@@ -16,7 +17,7 @@ public class Units {
         quadAssembler = new UnitAssembler("quad-assembler"){{
             requirements(Category.units, with(TItems.cobalt, 50, TItems.nickel, 70, TItems.tCopper, 60));
 
-            envEnabled = 4;
+            envEnabled = Env.terrestrial | Env.underwater;
             size = 4;
             configurable = false;
             areaSize = 6;
@@ -33,7 +34,7 @@ public class Units {
         submarineAssembler = new UnitAssembler("submarine-assembler"){{
             requirements(Category.units, with(TItems.cobalt, 40, TItems.nickel, 80, TItems.tCopper, 80));
 
-            envEnabled = 4;
+            envEnabled = Env.terrestrial | Env.underwater;
             size = 4;
             configurable = false;
             areaSize = 6;
