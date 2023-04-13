@@ -21,17 +21,16 @@ public class DrawFloatingCable extends DrawFloatingRegion{
     }
 
     {
-        layerFrom = Layer.light + 0.25f;
-        layerTo = Layer.light + 0.5f;
+        layerFrom = layerTo = Layer.light + 0.25f;
     }
 
     @Override
     public void draw(Building build){
         float z = Draw.z();
-        Draw.z(build.warmup() > surfaceTime ? layerTo : layerFrom);
+        Draw.z(layer(build));
 
         float x = x(build), y = y(build), off = off(build);
-        Draw.z(Draw.z() + DrawPseudo3D.layerOffset(build.x, build.y, x, y));
+        Draw.z(Draw.z() + DrawPseudo3D.layerOffset(x, y));
 
         float hWidth = region.height * Draw.scl * region.scl() * 2, hScl = DrawPseudo3D.hScale(off);
         float ex = DrawPseudo3D.xHeight(x, off), ey = DrawPseudo3D.yHeight(y, off);

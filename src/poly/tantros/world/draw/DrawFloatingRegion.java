@@ -17,8 +17,8 @@ public class DrawFloatingRegion extends DrawBlock{
     public float camOffset = 0.25f;
     public float driftScl = 50, driftMag = 2;
     public float surfaceTime = 0.95f;
-    public float layerFrom = Layer.light + 0.75f;
-    public float layerTo = Layer.light + 2.5f;
+    public float layerFrom = Layer.light + 0.25f;
+    public float layerTo = Layer.light + 2.1f;
 
     public DrawFloatingRegion(String suffix){
         this.suffix = suffix;
@@ -30,14 +30,19 @@ public class DrawFloatingRegion extends DrawBlock{
     @Override
     public void draw(Building build){
         float z = Draw.z();
-        Draw.z(build.warmup() > surfaceTime ? layerTo : layerFrom);
-        float x = x(build), y = y(build), off = off(build);
+        Draw.z(layer(build));
 
+        float x = x(build), y = y(build), off = off(build);
         Draw.z(Draw.z() + DrawPseudo3D.layerOffset(x, y));
+
         Draw.scl(DrawPseudo3D.hScale(off));
         Draw.rect(region, DrawPseudo3D.xHeight(x, off), DrawPseudo3D.yHeight(y, off));
         Draw.scl();
         Draw.z(z);
+    }
+    
+    public float layer(Building build){
+        return build.warmup() > surfaceTime ? layerTo : layerFrom;
     }
 
     public float x(Building build){
