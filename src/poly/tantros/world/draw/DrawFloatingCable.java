@@ -10,7 +10,7 @@ import mindustry.world.*;
 import poly.tantros.graphics.*;
 
 public class DrawFloatingCable extends DrawFloatingRegion{
-    public int segments = 5;
+    public int segments = 8;
 
     public DrawFloatingCable(String suffix){
         super(suffix);
