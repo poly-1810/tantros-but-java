@@ -6,10 +6,9 @@ import mindustry.entities.units.*;
 import mindustry.input.*;
 import mindustry.world.*;
 import mindustry.world.blocks.distribution.*;
-import mindustry.world.blocks.power.*;
 import poly.tantros.world.blocks.power.*;
 
-import static mindustry.Vars.player;
+import static mindustry.Vars.*;
 
 public class TPlacement{
     private static final Seq<BuildPlan> plans1 = new Seq<>();

@@ -1,12 +1,11 @@
 package poly.tantros.world.blocks.payloads;
 
-import arc.Core;
-import arc.graphics.g2d.Draw;
-import arc.graphics.g2d.TextureRegion;
+import arc.*;
+import arc.graphics.g2d.*;
 import arc.util.*;
 import mindustry.entities.units.*;
-import mindustry.graphics.Layer;
-import mindustry.world.blocks.payloads.PayloadRouter;
+import mindustry.graphics.*;
+import mindustry.world.blocks.payloads.*;
 
 public class CoveredPayloadRouter extends PayloadRouter{
     public TextureRegion iconRegion, coverRegion;

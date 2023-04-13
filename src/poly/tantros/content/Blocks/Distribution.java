@@ -1,21 +1,17 @@
 package poly.tantros.content.Blocks;
 
-import arc.graphics.Color;
-import arc.math.Interp;
-import mindustry.content.Fx;
-import mindustry.entities.effect.ParticleEffect;
-import mindustry.entities.effect.WaveEffect;
-import mindustry.type.Category;
-import mindustry.world.Block;
-import mindustry.world.blocks.payloads.Constructor;
-import mindustry.world.blocks.payloads.PayloadDeconstructor;
-import mindustry.world.blocks.payloads.PayloadMassDriver;
+import arc.graphics.*;
+import arc.math.*;
+import mindustry.content.*;
+import mindustry.entities.effect.*;
+import mindustry.type.*;
+import mindustry.world.*;
+import mindustry.world.blocks.payloads.*;
 import mindustry.world.meta.*;
-import poly.tantros.content.TItems;
-import poly.tantros.world.blocks.payloads.CoveredPayloadConveyor;
-import poly.tantros.world.blocks.payloads.CoveredPayloadRouter;
+import poly.tantros.content.*;
+import poly.tantros.world.blocks.payloads.*;
 
-import static mindustry.type.ItemStack.with;
+import static mindustry.type.ItemStack.*;
 
 public class Distribution {
     public static Block defabricator, fabricator, payloadBelt, payloadDistributor, payloadLauncher;

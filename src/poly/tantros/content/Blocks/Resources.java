@@ -1,19 +1,17 @@
 package poly.tantros.content.Blocks;
 
-import arc.graphics.Color;
-import arc.math.Interp;
-import mindustry.content.Fx;
-import mindustry.entities.bullet.BulletType;
-import mindustry.entities.bullet.ExplosionBulletType;
-import mindustry.entities.bullet.LightningBulletType;
-import mindustry.entities.effect.ParticleEffect;
-import mindustry.type.Category;
-import mindustry.world.Block;
+import arc.graphics.*;
+import arc.math.*;
+import mindustry.content.*;
+import mindustry.entities.bullet.*;
+import mindustry.entities.effect.*;
+import mindustry.type.*;
+import mindustry.world.*;
 import mindustry.world.meta.*;
-import poly.tantros.content.TItems;
-import poly.tantros.world.blocks.resources.ResourceBlock;
+import poly.tantros.content.*;
+import poly.tantros.world.blocks.resources.*;
 
-import static mindustry.type.ItemStack.with;
+import static mindustry.type.ItemStack.*;
 
 public class Resources {
     public static Block brassBlock, calciteBlock, cobaltBlock, nickelBlock, rubedoBlock, tCopperBlock, zincBlock;

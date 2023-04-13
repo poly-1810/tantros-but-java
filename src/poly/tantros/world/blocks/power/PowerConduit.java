@@ -5,18 +5,16 @@ import arc.math.*;
 import arc.math.geom.*;
 import arc.struct.*;
 import arc.util.*;
-import mindustry.content.*;
 import mindustry.entities.units.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.world.*;
-import mindustry.world.blocks.distribution.*;
 import mindustry.world.blocks.power.*;
 import poly.tantros.content.Blocks.*;
 import poly.tantros.input.*;
 
 import static arc.Core.*;
-import static mindustry.Vars.tilesize;
+import static mindustry.Vars.*;
 
 public class PowerConduit extends PowerBlock{
     public TextureRegion baseRegion;

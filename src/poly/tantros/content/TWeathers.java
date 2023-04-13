@@ -1,6 +1,6 @@
 package poly.tantros.content;
 
-import mindustry.type.weather.ParticleWeather;
+import mindustry.type.weather.*;
 
 public class TWeathers {
     public static ParticleWeather iceChunks;
