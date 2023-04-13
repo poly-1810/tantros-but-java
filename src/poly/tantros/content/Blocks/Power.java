@@ -15,9 +15,47 @@ import poly.tantros.world.draw.*;
 import static mindustry.type.ItemStack.*;
 
 public class Power {
-    public static Block surfaceSolarGenerator, hydraulicGenerator, powerConduit, powerPipe, powerCable, steamGenerator;
+    public static Block
+    //Transfer
+    powerConduit, powerPipe, powerCable,
 
-    public static void load() {
+    //Generation
+    surfaceSolarGenerator, hydraulicGenerator, steamGenerator;
+
+    public static void load(){
+        powerConduit = new PowerConduit("power-conduit"){{
+            requirements(Category.power, with(TItems.nickel, 5, TItems.tCopper, 10));
+
+            envEnabled = Env.terrestrial | Env.underwater;
+            scaledHealth = 25f;
+            size = 1;
+        }};
+        
+        powerPipe = new BeamNode("power-pipe"){{
+            requirements(Category.power, with(TItems.nickel, 2, TItems.tCopper, 2, TItems.zinc, 2));
+
+            envEnabled = Env.terrestrial | Env.underwater;
+            scaledHealth = 25f;
+            size = 1;
+            range = 4;
+            laserColor2 = Color.valueOf("ffffff");
+            pulseMag = 0f;
+            laserWidth = 0.5f;
+        }};
+
+        powerCable = new PowerNode("power-cable"){{
+            requirements(Category.power, with(TItems.nickel, 5, TItems.tCopper, 15, TItems.zinc, 5));
+
+            envEnabled = Env.terrestrial | Env.underwater;
+            scaledHealth = 30f;
+            size = 2;
+            laserRange = 16f;
+            maxNodes = 1;
+            laserScale = 0.75f;
+            autolink = false;
+            laserColor2 = Color.valueOf("ffffff");
+        }};
+        
         surfaceSolarGenerator = new FloatingSolarGenerator("floating-solar-panel"){{
             requirements(Category.power, with(TItems.nickel, 10));
 
@@ -51,39 +89,6 @@ public class Power {
                     }},
                     new DrawDefault()
             );
-        }};
-
-        powerConduit = new PowerConduit("power-conduit"){{
-            requirements(Category.power, with(TItems.nickel, 5, TItems.tCopper, 10));
-
-            envEnabled = Env.terrestrial | Env.underwater;
-            scaledHealth = 25f;
-            size = 1;
-        }};
-
-        powerPipe = new BeamNode("power-pipe"){{
-            requirements(Category.power, with(TItems.nickel, 2, TItems.tCopper, 2, TItems.zinc, 2));
-
-            envEnabled = Env.terrestrial | Env.underwater;
-            scaledHealth = 25f;
-            size = 1;
-            range = 4;
-            laserColor2 = Color.valueOf("ffffff");
-            pulseMag = 0f;
-            laserWidth = 0.5f;
-        }};
-
-        powerCable = new PowerNode("power-cable"){{
-            requirements(Category.power, with(TItems.nickel, 5, TItems.tCopper, 15, TItems.zinc, 5));
-
-            envEnabled = Env.terrestrial | Env.underwater;
-            scaledHealth = 30f;
-            size = 2;
-            laserRange = 16f;
-            maxNodes = 1;
-            laserScale = 0.75f;
-            autolink = false;
-            laserColor2 = Color.valueOf("ffffff");
         }};
 
         steamGenerator = new VariableReactor("steam-generator"){{
