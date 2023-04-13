@@ -1,6 +1,5 @@
 package poly.tantros.graphics;
 
-import arc.math.*;
 import mindustry.*;
 
 import static arc.Core.*;

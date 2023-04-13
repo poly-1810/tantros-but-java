@@ -10,17 +10,19 @@ import mindustry.world.draw.*;
 import mindustry.world.meta.*;
 import poly.tantros.content.*;
 import poly.tantros.world.blocks.power.*;
-import poly.tantros.world.draw.*;
 
 import static mindustry.type.ItemStack.*;
 
 public class Power {
     public static Block
-    //Transfer
+
+    // transfer
     powerConduit, powerPipe, powerCable,
 
-    //Generation
-    surfaceSolarGenerator, hydraulicGenerator, steamGenerator;
+    // generation
+    surfaceSolarGenerator, hydraulicGenerator, steamGenerator
+
+    ;
 
     public static void load(){
         powerConduit = new PowerConduit("power-conduit"){{
