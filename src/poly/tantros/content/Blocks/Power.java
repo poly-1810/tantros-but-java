@@ -10,13 +10,22 @@ import mindustry.world.draw.*;
 import mindustry.world.meta.*;
 import poly.tantros.content.*;
 import poly.tantros.world.blocks.power.*;
+import poly.tantros.world.draw.*;
 
 import static mindustry.type.ItemStack.*;
 
 public class Power {
-    public static Block hydraulicGenerator, powerConduit, powerPipe, powerCable, steamGenerator;
+    public static Block surfaceSolarGenerator, hydraulicGenerator, powerConduit, powerPipe, powerCable, steamGenerator;
 
     public static void load() {
+        surfaceSolarGenerator = new FloatingSolarGenerator("floating-solar-panel"){{
+            requirements(Category.power, with(TItems.nickel, 10));
+
+            envEnabled = Env.terrestrial | Env.underwater;
+            scaledHealth = 5f; //Very fragile
+            powerProduction = 0.12f;
+        }};
+
         hydraulicGenerator = new ConsumeGenerator("hydraulic-generator"){{
             requirements(Category.power, with(TItems.nickel, 30));
 
