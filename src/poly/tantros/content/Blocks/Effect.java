@@ -11,7 +11,7 @@ import poly.tantros.content.TUnitTypes;
 import static mindustry.type.ItemStack.with;
 
 public class Effect {
-    public static Block corePod, mendRadar, partNozzle, partProcessor;
+    public static Block corePod, partNozzle, partProcessor;
 
     public static void load() {
         corePod = new CoreBlock("core-pod"){{

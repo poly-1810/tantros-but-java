@@ -2,7 +2,9 @@ package poly.tantros.content.Blocks;
 
 import arc.graphics.*;
 import arc.math.*;
+import mindustry.content.Liquids;
 import mindustry.entities.effect.*;
+import mindustry.gen.Sounds;
 import mindustry.type.*;
 import mindustry.world.*;
 import mindustry.world.blocks.power.*;
@@ -20,7 +22,7 @@ public class Power {
     powerConduit, powerPipe, powerCable,
 
     // generation
-    surfaceSolarGenerator, hydraulicGenerator, steamGenerator
+    alkaliGenerator, surfaceSolarGenerator, hydraulicGenerator, steamGenerator
 
     ;
 
@@ -57,7 +59,22 @@ public class Power {
             autolink = false;
             laserColor2 = Color.valueOf("ffffff");
         }};
-        
+
+        // TODO balance
+        alkaliGenerator = new ImpactReactor("alkali-generator"){{
+            requirements(Category.power, with(TItems.carbon, 1));
+            size = 2;
+            health = 900;
+            powerProduction = 130f;
+            itemDuration = 140f;
+            ambientSound = Sounds.pulse;
+            ambientSoundVolume = 0.07f;
+
+            consumePower(25f);
+            consumeItem(TItems.rubedo);
+            consumeLiquid(Liquids.hydrogen, 0.25f);
+        }};
+
         surfaceSolarGenerator = new FloatingSolarGenerator("floating-solar-panel"){{
             requirements(Category.power, with(TItems.nickel, 10));
 
