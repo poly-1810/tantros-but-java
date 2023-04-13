@@ -10,6 +10,7 @@ import mindustry.entities.effect.ParticleEffect;
 import mindustry.type.Category;
 import mindustry.world.Block;
 import mindustry.world.blocks.defense.Wall;
+import mindustry.world.meta.*;
 import poly.tantros.content.TItems;
 
 import static mindustry.type.ItemStack.with;
@@ -21,7 +22,7 @@ public class Defense {
         brassWall = new Wall("brass-wall"){{
             requirements(Category.defense, with(TItems.brass, 6));
 
-            envEnabled = 4;
+            envEnabled = Env.terrestrial | Env.underwater;
             scaledHealth = 140f;
             armor = 4f;
             size = 1;
@@ -30,7 +31,7 @@ public class Defense {
         calciteWall = new Wall("calcite-wall"){{
             requirements(Category.defense, with(TItems.calcite, 6));
 
-            envEnabled = 4;
+            envEnabled = Env.terrestrial | Env.underwater;
             scaledHealth = 145f;
             armor = 2f;
             size = 1;
@@ -40,7 +41,7 @@ public class Defense {
         cobaltWall = new Wall("cobalt-wall"){{
             requirements(Category.defense, with(TItems.cobalt, 6));
 
-            envEnabled = 4;
+            envEnabled = Env.terrestrial | Env.underwater;
             scaledHealth = 110f;
             armor = 4f;
             size = 1;
@@ -65,7 +66,7 @@ public class Defense {
         nickelWall = new Wall("nickel-wall"){{
             requirements(Category.defense, with(TItems.nickel, 6));
 
-            envEnabled = 4;
+            envEnabled = Env.terrestrial | Env.underwater;
             scaledHealth = 110f;
             armor = 3f;
             size = 1;
@@ -74,7 +75,7 @@ public class Defense {
         tCopperWall = new Wall("tcopper-wall"){{
             requirements(Category.defense, with(TItems.tCopper, 6));
 
-            envEnabled = 4;
+            envEnabled = Env.terrestrial | Env.underwater;
             scaledHealth = 70f;
             armor = 2f;
             size = 1;
@@ -101,7 +102,7 @@ public class Defense {
         zincWall = new Wall("zinc-wall"){{
             requirements(Category.defense, with(TItems.zinc, 6));
 
-            envEnabled = 4;
+            envEnabled = Env.terrestrial | Env.underwater;
             scaledHealth = 90f;
             armor = 3f;
             size = 1;

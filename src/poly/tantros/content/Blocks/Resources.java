@@ -9,6 +9,7 @@ import mindustry.entities.bullet.LightningBulletType;
 import mindustry.entities.effect.ParticleEffect;
 import mindustry.type.Category;
 import mindustry.world.Block;
+import mindustry.world.meta.*;
 import poly.tantros.content.TItems;
 import poly.tantros.world.blocks.resources.ResourceBlock;
 
@@ -21,7 +22,7 @@ public class Resources {
         tCopperBlock = new ResourceBlock("tcopper-block"){{
             requirements(Category.distribution, with(TItems.tCopper, 24));
 
-            envEnabled = 4;
+            envEnabled = Env.terrestrial | Env.underwater;
             scaledHealth = 10;
             armor = 0;
             size = 1;
@@ -48,7 +49,7 @@ public class Resources {
         brassBlock = new ResourceBlock("brass-block"){{
             requirements(Category.distribution, with(TItems.brass, 24));
 
-            envEnabled = 4;
+            envEnabled = Env.terrestrial | Env.underwater;
             scaledHealth = 10;
             armor = 4;
             size = 1;
@@ -76,7 +77,7 @@ public class Resources {
         rubedoBlock = new ResourceBlock("rubedo-block"){{
             requirements(Category.distribution, with(TItems.rubedo, 24));
 
-            envEnabled = 4;
+            envEnabled = Env.terrestrial | Env.underwater;
             scaledHealth = 10;
             breakOnPlace = true;
             armor = 1;
@@ -104,7 +105,7 @@ public class Resources {
         cobaltBlock = new ResourceBlock("cobalt-block"){{
             requirements(Category.distribution, with(TItems.cobalt, 24));
 
-            envEnabled = 4;
+            envEnabled = Env.terrestrial | Env.underwater;
             scaledHealth = 10;
             armor = 4;
             size = 1;
@@ -148,7 +149,7 @@ public class Resources {
         nickelBlock = new ResourceBlock("nickel-block"){{
             requirements(Category.distribution, with(TItems.nickel, 12));
 
-            envEnabled = 4;
+            envEnabled = Env.terrestrial | Env.underwater;
             scaledHealth = 10;
             armor = 3;
             size = 1;
