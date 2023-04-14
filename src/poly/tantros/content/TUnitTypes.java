@@ -287,7 +287,7 @@ public class TUnitTypes {
         }};
 
         assemblySub = new UnitType("assembly-sub"){{
-            constructor = UnitEntity::create;
+            constructor = BuildingTetherPayloadUnit::create;
 
             EntityMapping.nameMap.put(name, constructor);
 
@@ -302,7 +302,6 @@ public class TUnitTypes {
             allowedInPayloads = false;
             flying = true;
             hidden = true;
-            bounded = false;
             outlineColor = Color.valueOf("4a4b53");
             targetPriority = -1f;
             speed = 0.9f;
