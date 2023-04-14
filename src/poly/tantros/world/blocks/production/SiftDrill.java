@@ -16,7 +16,6 @@ public class SiftDrill extends Drill {
     public float siftScl = 5f, siftMag = Float.MIN_VALUE;
     public float siftEffectTime = Float.MIN_VALUE, siftEffectMinDist = 0f, siftEffectMaxDist = -1f;
     public float updateEffects = 5f;
-    public TextureRegion sifterRegion;
 
     public SiftDrill(String name) {
         super(name);
@@ -36,7 +35,6 @@ public class SiftDrill extends Drill {
     @Override
     public void load() {
         super.load();
-        sifterRegion = Core.atlas.find(name + "-sifter");
     }
 
     public class SiftDrillBuild extends DrillBuild {
@@ -105,7 +103,7 @@ public class SiftDrill extends Drill {
                 Draw.color();
             }
 
-            Draw.rect(sifterRegion, x + Mathf.sin(timeDrilled, siftScl, siftMag), y);
+            Draw.rect(rotatorRegion, x + Mathf.sin(timeDrilled, siftScl, siftMag), y);
 
             Draw.z(Layer.blockAfterCracks + 0.1f);
             Draw.rect(topRegion, x, y);
