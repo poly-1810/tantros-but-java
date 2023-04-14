@@ -61,7 +61,7 @@ public class SiftDrill extends Drill {
                 progress += delta() * dominantItems * speed * warmup;
 
                 float pos = Mathf.sin(timeDrilled, siftScl, siftMag);
-                float posChance = 1f - Mathf.curve(Math.abs(pos), 0f, siftEffectTime);
+                float posChance = 1f - Math.abs(pos) / siftEffectTime;
                 for (int i = 0; i < updateEffects; i++) {
                     if (Mathf.chanceDelta(updateEffectChance * warmup * posChance)) {
                         float ex = x + pos, ey = y + Mathf.range(siftEffectMinDist, siftEffectMaxDist);
