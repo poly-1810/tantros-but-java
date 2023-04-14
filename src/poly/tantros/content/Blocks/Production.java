@@ -9,6 +9,7 @@ import mindustry.world.*;
 import mindustry.world.blocks.production.*;
 import mindustry.world.meta.*;
 import poly.tantros.content.*;
+import poly.tantros.world.blocks.production.*;
 
 import static mindustry.type.ItemStack.*;
 
@@ -16,7 +17,7 @@ public class Production {
     public static Block siftDrill;
 
     public static void load() {
-        siftDrill = new Drill("sift-drill"){{
+        siftDrill = new SiftDrill("sift-drill"){{
             requirements(Category.production, with(TItems.tCopper, 20));
 
             envEnabled = Env.terrestrial | Env.underwater;
@@ -27,7 +28,9 @@ public class Production {
             customShadow = true;
             drillTime = 420f;
             liquidBoostIntensity = 1f;
-            warmupSpeed = 0.003222222222f;
+            warmupSpeed = 1f / (2.5f * 60f);
+            siftScl = 15f;
+            siftMag = 6.25f;
             updateEffect = Fx.none;
             updateEffectChance = 0f;
             tier = 2;
