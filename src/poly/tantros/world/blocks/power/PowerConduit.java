@@ -14,7 +14,7 @@ import poly.tantros.content.Blocks.*;
 import poly.tantros.input.*;
 
 import static arc.Core.*;
-import static mindustry.Vars.tilesize;
+import static mindustry.Vars.*;
 
 public class PowerConduit extends PowerBlock {
     public TextureRegion baseRegion;
@@ -34,7 +34,7 @@ public class PowerConduit extends PowerBlock {
     public void init(){
         super.init();
 
-        if(bridgeReplacement == null || !(bridgeReplacement instanceof BeamNode)) bridgeReplacement = Power.powerPipe;
+        if(bridgeReplacement == null || !(bridgeReplacement instanceof DirectionalBeamNode)) bridgeReplacement = Power.powerPipe;
     }
 
     @Override
@@ -87,7 +87,7 @@ public class PowerConduit extends PowerBlock {
     public void handlePlacementLine(Seq<BuildPlan> plans) {
         if (bridgeReplacement == null) return;
 
-        TPlacement.calculateBridges(plans, (BeamNode)bridgeReplacement, b -> b == this || b.hasPower);
+        TPlacement.calculateBridges(plans, (DirectionalBeamNode)bridgeReplacement, b -> b == this || b.hasPower);
     }
 
     @Override

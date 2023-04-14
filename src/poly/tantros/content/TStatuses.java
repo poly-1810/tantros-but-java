@@ -1,7 +1,7 @@
 package poly.tantros.content;
 
-import arc.graphics.Color;
-import mindustry.type.StatusEffect;
+import arc.graphics.*;
+import mindustry.type.*;
 
 public class TStatuses {
     public static StatusEffect stunned;

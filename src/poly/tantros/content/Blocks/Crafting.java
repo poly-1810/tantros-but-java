@@ -1,17 +1,15 @@
 package poly.tantros.content.Blocks;
 
-import arc.graphics.Color;
-import mindustry.type.Category;
-import mindustry.type.ItemStack;
-import mindustry.world.Block;
-import mindustry.world.blocks.heat.HeatConductor;
-import mindustry.world.blocks.heat.HeatProducer;
-import mindustry.world.blocks.production.HeatCrafter;
+import arc.graphics.*;
+import mindustry.type.*;
+import mindustry.world.*;
+import mindustry.world.blocks.heat.*;
+import mindustry.world.blocks.production.*;
 import mindustry.world.draw.*;
 import mindustry.world.meta.*;
-import poly.tantros.content.TItems;
+import poly.tantros.content.*;
 
-import static mindustry.type.ItemStack.with;
+import static mindustry.type.ItemStack.*;
 
 public class Crafting {
     public static Block brassSmelter, electricHeater, heatDistributor;

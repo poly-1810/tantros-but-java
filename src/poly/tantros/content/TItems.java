@@ -1,9 +1,9 @@
 package poly.tantros.content;
 
-import arc.graphics.Color;
-import arc.struct.Seq;
-import mindustry.content.Items;
-import mindustry.type.Item;
+import arc.graphics.*;
+import arc.struct.*;
+import mindustry.content.*;
+import mindustry.type.*;
 
 public class TItems {
     public static Item cobalt, calcite, brass, carbon, nickel, rubedo, sheetMetal, zinc, tCopper;

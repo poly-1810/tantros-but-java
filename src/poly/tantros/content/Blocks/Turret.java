@@ -1,30 +1,21 @@
 package poly.tantros.content.Blocks;
 
-import arc.graphics.Color;
-import arc.math.Interp;
-import mindustry.content.Fx;
-import mindustry.entities.bullet.BasicBulletType;
-import mindustry.entities.bullet.BombBulletType;
-import mindustry.entities.bullet.BulletType;
-import mindustry.entities.bullet.LaserBulletType;
-import mindustry.entities.effect.MultiEffect;
-import mindustry.entities.effect.ParticleEffect;
-import mindustry.entities.part.HaloPart;
-import mindustry.entities.part.RegionPart;
-import mindustry.entities.pattern.ShootPattern;
-import mindustry.entities.pattern.ShootSummon;
-import mindustry.gen.Sounds;
-import mindustry.type.Category;
-import mindustry.world.Block;
-import mindustry.world.blocks.defense.turrets.ItemTurret;
-import mindustry.world.blocks.defense.turrets.PowerTurret;
-import mindustry.world.draw.DrawTurret;
+import arc.graphics.*;
+import arc.math.*;
+import mindustry.content.*;
+import mindustry.entities.bullet.*;
+import mindustry.entities.effect.*;
+import mindustry.entities.part.*;
+import mindustry.entities.pattern.*;
+import mindustry.gen.*;
+import mindustry.type.*;
+import mindustry.world.*;
+import mindustry.world.blocks.defense.turrets.*;
+import mindustry.world.draw.*;
 import mindustry.world.meta.*;
-import poly.tantros.content.TItems;
-import poly.tantros.content.TStatuses;
-import poly.tantros.content.TUnitTypes;
+import poly.tantros.content.*;
 
-import static mindustry.type.ItemStack.with;
+import static mindustry.type.ItemStack.*;
 
 public class Turret {
     public static Block remnant, snap, spark, splice, wail;

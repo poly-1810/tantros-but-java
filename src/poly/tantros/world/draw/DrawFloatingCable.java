@@ -34,12 +34,12 @@ public class DrawFloatingCable extends DrawFloatingRegion {
 
         float hWidth = region.height * Draw.scl * region.scl() * 2, hScl = DrawPseudo3D.hScale(off);
         float ex = DrawPseudo3D.xHeight(x, off), ey = DrawPseudo3D.yHeight(y, off);
+        float xStep = (ex - build.x) / segments, yStep = (ey - build.y) / segments, sStep = (hScl - 1f) / segments;
 
-        for (int i = 0; i < segments; i++) {
-            float p1 = (float)i / segments, p2 = (i + 1f) / segments,
-                x1 = Mathf.lerp(build.x, ex, p1), y1 = Mathf.lerp(build.y, ey, p1),
-                x2 = Mathf.lerp(build.x, ex, p2), y2 = Mathf.lerp(build.y, ey, p2),
-                s1 = Mathf.lerp(1f, hScl, p1), s2 = Mathf.lerp(1f, hScl, p2);
+        for(int i = 0; i < segments; i++){
+            float x1 = build.x + xStep * i, y1 = build.y + yStep * i,
+                x2 = build.x + xStep * (i + 1), y2 = build.y + yStep * (i + 1),
+                s1 = 1f + sStep * i, s2 = 1f + sStep * (i + 1);
 
             float len = Mathf.len(x2 - x1, y2 - y1);
             float diffX = (x2 - x1) / len * hWidth, diffY = (y2 - y1) / len * hWidth;

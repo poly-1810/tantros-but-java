@@ -1,19 +1,17 @@
 package poly.tantros.content.Blocks;
 
-import arc.graphics.Color;
-import arc.math.Interp;
-import mindustry.content.Fx;
-import mindustry.entities.bullet.BulletType;
-import mindustry.entities.bullet.ExplosionBulletType;
-import mindustry.entities.bullet.LightningBulletType;
-import mindustry.entities.effect.ParticleEffect;
-import mindustry.type.Category;
-import mindustry.world.Block;
-import mindustry.world.blocks.defense.Wall;
+import arc.graphics.*;
+import arc.math.*;
+import mindustry.content.*;
+import mindustry.entities.bullet.*;
+import mindustry.entities.effect.*;
+import mindustry.type.*;
+import mindustry.world.*;
+import mindustry.world.blocks.defense.*;
 import mindustry.world.meta.*;
-import poly.tantros.content.TItems;
+import poly.tantros.content.*;
 
-import static mindustry.type.ItemStack.with;
+import static mindustry.type.ItemStack.*;
 
 public class Defense {
     public static Block brassWall, calciteWall, cobaltWall, nickelWall, rubedoWall, tCopperWall, zincWall;

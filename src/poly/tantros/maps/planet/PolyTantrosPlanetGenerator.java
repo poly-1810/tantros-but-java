@@ -1,7 +1,7 @@
 package poly.tantros.maps.planet;
 
-import mindustry.maps.planet.TantrosPlanetGenerator;
-import mindustry.type.Sector;
+import mindustry.maps.planet.*;
+import mindustry.type.*;
 
 public class PolyTantrosPlanetGenerator extends TantrosPlanetGenerator {
     @Override

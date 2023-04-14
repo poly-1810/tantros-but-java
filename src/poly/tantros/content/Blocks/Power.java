@@ -35,7 +35,7 @@ public class Power {
             size = 1;
         }};
         
-        powerPipe = new BeamNode("power-pipe"){{
+        powerPipe = new DirectionalBeamNode("power-pipe"){{
             requirements(Category.power, with(TItems.nickel, 2, TItems.tCopper, 2, TItems.zinc, 2));
 
             envEnabled = Env.terrestrial | Env.underwater;
