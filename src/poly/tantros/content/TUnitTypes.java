@@ -1,31 +1,20 @@
 package poly.tantros.content;
 
-import arc.graphics.Blending;
-import arc.graphics.Color;
-import arc.math.Interp;
-import arc.math.geom.Rect;
-import mindustry.ai.UnitCommand;
-import mindustry.ai.types.AssemblerAI;
-import mindustry.ai.types.DefenderAI;
-import mindustry.ai.types.HugAI;
-import mindustry.ai.types.MissileAI;
-import mindustry.content.Fx;
-import mindustry.entities.abilities.ArmorPlateAbility;
-import mindustry.entities.abilities.MoveEffectAbility;
-import mindustry.entities.abilities.UnitSpawnAbility;
+import arc.graphics.*;
+import arc.math.*;
+import arc.math.geom.*;
+import mindustry.ai.*;
+import mindustry.ai.types.*;
+import mindustry.content.*;
+import mindustry.entities.abilities.*;
 import mindustry.entities.bullet.*;
-import mindustry.entities.effect.ParticleEffect;
-import mindustry.entities.part.HaloPart;
-import mindustry.entities.part.RegionPart;
-import mindustry.entities.part.ShapePart;
-import mindustry.entities.pattern.ShootAlternate;
-import mindustry.entities.pattern.ShootPattern;
+import mindustry.entities.effect.*;
+import mindustry.entities.part.*;
+import mindustry.entities.pattern.*;
 import mindustry.gen.*;
-import mindustry.type.UnitType;
-import mindustry.type.Weapon;
-import mindustry.type.ammo.ItemAmmoType;
-import mindustry.type.unit.MissileUnitType;
-import mindustry.type.unit.TankUnitType;
+import mindustry.type.*;
+import mindustry.type.ammo.*;
+import mindustry.type.unit.*;
 import mindustry.world.meta.*;
 
 public class TUnitTypes {

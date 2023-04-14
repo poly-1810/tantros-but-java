@@ -1,19 +1,18 @@
 package poly.tantros;
 
-import arc.Events;
-import mindustry.Vars;
-import mindustry.content.Items;
-import mindustry.content.Planets;
-import mindustry.game.EventType;
-import mindustry.mod.Mod;
-import mindustry.mod.Mods.LoadedMod;
-import poly.tantros.content.*;
+import arc.*;
+import mindustry.*;
+import mindustry.content.*;
+import mindustry.game.*;
+import mindustry.mod.*;
+import mindustry.mod.Mods.*;
 import poly.tantros.content.Blocks.*;
-import poly.tantros.maps.planet.PolyTantrosPlanetGenerator;
-import poly.tantros.ui.dialogs.TDisclaimer;
+import poly.tantros.content.*;
+import poly.tantros.maps.planet.*;
+import poly.tantros.ui.dialogs.*;
 
-import static arc.Core.app;
-import static mindustry.Vars.headless;
+import static arc.Core.*;
+import static mindustry.Vars.*;
 
 public class PolyTantros extends Mod {
     public PolyTantros() {

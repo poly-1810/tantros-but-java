@@ -1,9 +1,9 @@
 package poly.tantros.ui.dialogs;
 
-import arc.scene.ui.TextButton;
-import arc.util.Align;
-import mindustry.gen.Icon;
-import mindustry.ui.dialogs.BaseDialog;
+import arc.scene.ui.*;
+import arc.util.*;
+import mindustry.gen.*;
+import mindustry.ui.dialogs.*;
 
 public class TDisclaimer extends BaseDialog {
     public TDisclaimer() {

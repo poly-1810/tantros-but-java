@@ -1,7 +1,7 @@
 package poly.tantros.world.blocks.resources;
 
-import mindustry.Vars;
-import mindustry.world.blocks.defense.Wall;
+import mindustry.*;
+import mindustry.world.blocks.defense.*;
 
 public class ResourceBlock extends Wall {
     public boolean breakOnPlace = false;

@@ -10,7 +10,6 @@ import mindustry.world.draw.*;
 import mindustry.world.meta.*;
 import poly.tantros.content.*;
 import poly.tantros.world.blocks.power.*;
-import poly.tantros.world.draw.*;
 
 import static mindustry.type.ItemStack.*;
 
@@ -31,7 +30,7 @@ public class Power {
             size = 1;
         }};
         
-        powerPipe = new BeamNode("power-pipe"){{
+        powerPipe = new DirectionalBeamNode("power-pipe"){{
             requirements(Category.power, with(TItems.nickel, 2, TItems.tCopper, 2, TItems.zinc, 2));
 
             envEnabled = Env.terrestrial | Env.underwater;

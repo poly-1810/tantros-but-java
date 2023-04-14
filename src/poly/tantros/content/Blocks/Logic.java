@@ -1,12 +1,12 @@
 package poly.tantros.content.Blocks;
 
-import mindustry.type.Category;
-import mindustry.world.Block;
-import mindustry.world.blocks.logic.LogicBlock;
+import mindustry.type.*;
+import mindustry.world.*;
+import mindustry.world.blocks.logic.*;
 import mindustry.world.meta.*;
-import poly.tantros.content.TItems;
+import poly.tantros.content.*;
 
-import static mindustry.type.ItemStack.with;
+import static mindustry.type.ItemStack.*;
 
 public class Logic {
     public static Block processor;
