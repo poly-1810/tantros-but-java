@@ -7,16 +7,16 @@ import mindustry.entities.units.*;
 import mindustry.graphics.*;
 import mindustry.world.blocks.payloads.*;
 
-public class CoveredPayloadRouter extends PayloadRouter{
+public class CoveredPayloadRouter extends PayloadRouter {
     public TextureRegion iconRegion, coverRegion;
 
-    public CoveredPayloadRouter(String name){
+    public CoveredPayloadRouter(String name) {
         super(name);
         size = 2;
     }
 
     @Override
-    public void load(){
+    public void load() {
         super.load();
 
         iconRegion = Core.atlas.find(name + "-icon");
@@ -24,17 +24,17 @@ public class CoveredPayloadRouter extends PayloadRouter{
     }
 
     @Override
-    protected TextureRegion[] icons(){
+    protected TextureRegion[] icons() {
         return new TextureRegion[]{iconRegion, coverRegion};
     }
 
     @Override
-    public void drawPlanRegion(BuildPlan plan, Eachable<BuildPlan> list){
+    public void drawPlanRegion(BuildPlan plan, Eachable<BuildPlan> list) {
         Draw.rect(iconRegion, plan.drawx(), plan.drawy(), plan.rotation * 90);
         Draw.rect(coverRegion, plan.drawx(), plan.drawy());
     }
 
-    public class CoveredPayloadRouterBuild extends PayloadRouterBuild{
+    public class CoveredPayloadRouterBuild extends PayloadRouterBuild {
         @Override
         public void draw(){
             super.draw();

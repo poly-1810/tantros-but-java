@@ -31,7 +31,7 @@ public class PowerConduit extends PowerBlock {
     }
 
     @Override
-    public void init(){
+    public void init() {
         super.init();
 
         if(bridgeReplacement == null || !(bridgeReplacement instanceof DirectionalBeamNode)) bridgeReplacement = Power.powerPipe;
@@ -61,12 +61,12 @@ public class PowerConduit extends PowerBlock {
         boolean[] connections = new boolean[4];
         //Copied from Autotiler
         list.each(other -> {
-            if(other.breaking || other == plan) return;
+            if (other.breaking || other == plan) return;
 
             int i = 0;
             for (Point2 point : Geometry.d4) {
                 int x = plan.x + point.x, y = plan.y + point.y;
-                if(x >= other.x - (other.block.size - 1) / 2 && x <= other.x + (other.block.size / 2) && y >= other.y - (other.block.size - 1) / 2 && y <= other.y + (other.block.size / 2)){
+                if (x >= other.x - (other.block.size - 1) / 2 && x <= other.x + (other.block.size / 2) && y >= other.y - (other.block.size - 1) / 2 && y <= other.y + (other.block.size / 2)) {
                     connections[i] = other.block.hasPower;
                 }
                 i++;

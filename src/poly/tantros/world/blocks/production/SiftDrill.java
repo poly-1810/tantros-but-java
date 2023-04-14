@@ -1,5 +1,6 @@
 package poly.tantros.world.blocks.production;
 
+import arc.Core;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
@@ -11,12 +12,13 @@ import poly.tantros.content.*;
 
 import static mindustry.Vars.*;
 
-public class SiftDrill extends Drill{
+public class SiftDrill extends Drill {
     public float siftScl = 5f, siftMag = Float.MIN_VALUE;
     public float siftEffectTime = Float.MIN_VALUE, siftEffectMinDist = 0f, siftEffectMaxDist = -1f;
     public float updateEffects = 5f;
+    public TextureRegion sifterRegion;
 
-    public SiftDrill(String name){
+    public SiftDrill(String name) {
         super(name);
         drillEffect = Fx.none;
         updateEffect = TFx.siftDust;
@@ -24,22 +26,28 @@ public class SiftDrill extends Drill{
     }
 
     @Override
-    public void init(){
+    public void init() {
         super.init();
-        if(siftMag == Float.MIN_VALUE) siftMag = size * tilesize / 2f;
-        if(siftEffectTime == Float.MIN_VALUE) siftEffectTime = siftMag * 1.1f;
-        if(siftEffectMaxDist < 0f) siftEffectMaxDist = size * tilesize / 2f;
+        if (siftMag == Float.MIN_VALUE) siftMag = size * tilesize / 2f;
+        if (siftEffectTime == Float.MIN_VALUE) siftEffectTime = siftMag * 1.1f;
+        if (siftEffectMaxDist < 0f) siftEffectMaxDist = size * tilesize / 2f;
     }
 
-    public class SiftDrillBuild extends DrillBuild{
+    @Override
+    public void load() {
+        super.load();
+        sifterRegion = Core.atlas.find(name + "-sifter");
+    }
+
+    public class SiftDrillBuild extends DrillBuild {
         @Override
-        public void updateTile(){
+        public void updateTile() {
             //Copy over Drill code just so I can mess with the update effect.
-            if(timer(timerDump, dumpTime)){
+            if (timer(timerDump, dumpTime)) {
                 dump(dominantItem != null && items.has(dominantItem) ? dominantItem : null);
             }
 
-            if(dominantItem == null){
+            if (dominantItem == null) {
                 return;
             }
 
@@ -47,7 +55,7 @@ public class SiftDrill extends Drill{
 
             float delay = getDrillTime(dominantItem);
 
-            if(items.total() < itemCapacity && dominantItems > 0 && efficiency > 0){
+            if (items.total() < itemCapacity && dominantItems > 0 && efficiency > 0) {
                 float speed = Mathf.lerp(1f, liquidBoostIntensity, optionalEfficiency) * efficiency;
 
                 lastDrillSpeed = (speed * dominantItems * warmup) / delay;
@@ -56,30 +64,30 @@ public class SiftDrill extends Drill{
 
                 float pos = Mathf.sin(timeDrilled, siftScl, siftMag);
                 float posChance = 1f - Mathf.curve(Math.abs(pos), 0f, siftEffectTime);
-                for(int i = 0; i < updateEffects; i++){
-                    if(Mathf.chanceDelta(updateEffectChance * warmup * posChance)){
+                for (int i = 0; i < updateEffects; i++) {
+                    if (Mathf.chanceDelta(updateEffectChance * warmup * posChance)) {
                         float ex = x + pos, ey = y + Mathf.range(siftEffectMinDist, siftEffectMaxDist);
 
                         updateEffect.at(ex, ey, posChance * warmup, Tmp.c1.set(world.tileWorld(ex, ey).floor().mapColor).mul(1.5f + Mathf.range(0.15f)));
                     }
                 }
-            }else{
+            } else {
                 lastDrillSpeed = 0f;
                 warmup = Mathf.approachDelta(warmup, 0f, warmupSpeed);
                 return;
             }
 
-            if(dominantItems > 0 && progress >= delay && items.total() < itemCapacity){
+            if (dominantItems > 0 && progress >= delay && items.total() < itemCapacity) {
                 offload(dominantItem);
 
                 progress %= delay;
 
-                if(wasVisible && Mathf.chanceDelta(updateEffectChance * warmup)) drillEffect.at(x + Mathf.range(drillEffectRnd), y + Mathf.range(drillEffectRnd), dominantItem.color);
+                if (wasVisible && Mathf.chanceDelta(updateEffectChance * warmup)) drillEffect.at(x + Mathf.range(drillEffectRnd), y + Mathf.range(drillEffectRnd), dominantItem.color);
             }
         }
 
         @Override
-        public void draw(){
+        public void draw() {
             float s = 0.3f;
             float ts = 0.6f;
 
@@ -88,7 +96,7 @@ public class SiftDrill extends Drill{
             drawDefaultCracks();
 
             Draw.z(Layer.blockAfterCracks);
-            if(drawRim){
+            if (drawRim) {
                 Draw.color(heatColor);
                 Draw.alpha(warmup * ts * (1f - s + Mathf.absin(Time.time, 3f, s)));
                 Draw.blend(Blending.additive);
@@ -97,12 +105,12 @@ public class SiftDrill extends Drill{
                 Draw.color();
             }
 
-            Draw.rect(rotatorRegion, x + Mathf.sin(timeDrilled, siftScl, siftMag), y);
+            Draw.rect(sifterRegion, x + Mathf.sin(timeDrilled, siftScl, siftMag), y);
 
             Draw.z(Layer.blockAfterCracks + 0.1f);
             Draw.rect(topRegion, x, y);
 
-            if(dominantItem != null && drawMineItem){
+            if (dominantItem != null && drawMineItem){
                 Draw.color(dominantItem.color);
                 Draw.rect(itemRegion, x, y);
                 Draw.color();

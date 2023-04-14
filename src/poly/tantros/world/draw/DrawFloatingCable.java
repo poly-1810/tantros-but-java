@@ -36,7 +36,7 @@ public class DrawFloatingCable extends DrawFloatingRegion {
         float ex = DrawPseudo3D.xHeight(x, off), ey = DrawPseudo3D.yHeight(y, off);
         float xStep = (ex - build.x) / segments, yStep = (ey - build.y) / segments, sStep = (hScl - 1f) / segments;
 
-        for(int i = 0; i < segments; i++){
+        for (int i = 0; i < segments; i++) {
             float x1 = build.x + xStep * i, y1 = build.y + yStep * i,
                 x2 = build.x + xStep * (i + 1), y2 = build.y + yStep * (i + 1),
                 s1 = 1f + sStep * i, s2 = 1f + sStep * (i + 1);
