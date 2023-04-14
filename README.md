@@ -1,6 +1,6 @@
 # Poly's Tantros
 
-Poly's **Tantros** - Mindustry mod they adds a lot of content for **Tantros** planet.
+Poly's **Tantros** - Mindustry mod they add a lot of content for **Tantros** planet.
 
 ![](assets/items.png)
 
@@ -33,7 +33,7 @@ Mod adds accessible and available **Tantros** with a lot of exclusive stuff! Lik
 
 - MeiNanziiii#5309 (always helping with random problems and fixes bugs or weird moments)
 - Slotterleet#7897 (helped me figure out how to make a new class)
-- Flin#8261 (i was stupid, he told me where i was stupid)
+- Flin#8261 (I was stupid, he told me where I was stupid)
 
 If you would like to help contribute, we have a discord server!
 https://discord.gg/tm5yU6hpMw

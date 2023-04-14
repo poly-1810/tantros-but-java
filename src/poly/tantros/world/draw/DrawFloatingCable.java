@@ -9,14 +9,14 @@ import mindustry.graphics.*;
 import mindustry.world.*;
 import poly.tantros.graphics.*;
 
-public class DrawFloatingCable extends DrawFloatingRegion{
+public class DrawFloatingCable extends DrawFloatingRegion {
     public int segments = 8;
 
-    public DrawFloatingCable(String suffix){
+    public DrawFloatingCable(String suffix) {
         super(suffix);
     }
 
-    public DrawFloatingCable(){
+    public DrawFloatingCable() {
         super();
     }
 
@@ -25,7 +25,7 @@ public class DrawFloatingCable extends DrawFloatingRegion{
     }
 
     @Override
-    public void draw(Building build){
+    public void draw(Building build) {
         float z = Draw.z();
         Draw.z(layer(build));
 
@@ -36,7 +36,7 @@ public class DrawFloatingCable extends DrawFloatingRegion{
         float ex = DrawPseudo3D.xHeight(x, off), ey = DrawPseudo3D.yHeight(y, off);
         float xStep = (ex - build.x) / segments, yStep = (ey - build.y) / segments, sStep = (hScl - 1f) / segments;
 
-        for(int i = 0; i < segments; i++){
+        for (int i = 0; i < segments; i++) {
             float x1 = build.x + xStep * i, y1 = build.y + yStep * i,
                 x2 = build.x + xStep * (i + 1), y2 = build.y + yStep * (i + 1),
                 s1 = 1f + sStep * i, s2 = 1f + sStep * (i + 1);
@@ -64,11 +64,12 @@ public class DrawFloatingCable extends DrawFloatingRegion{
     }
 
     @Override
-    public void drawPlan(Block block, BuildPlan plan, Eachable<BuildPlan> list){
+    public void drawPlan(Block block, BuildPlan plan, Eachable<BuildPlan> list) {
+        // nothing
     }
 
     @Override
-    public TextureRegion[] icons(Block block){
+    public TextureRegion[] icons(Block block) {
         return new TextureRegion[]{};
     }
 }

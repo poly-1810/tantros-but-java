@@ -15,11 +15,14 @@ import static mindustry.type.ItemStack.*;
 
 public class Power {
     public static Block
-    //Transfer
+
+    // transfer
     powerConduit, powerPipe, powerCable,
 
-    //Generation
-    surfaceSolarGenerator, hydraulicGenerator, steamGenerator;
+    // generation
+    surfaceSolarGenerator, hydraulicGenerator, steamGenerator
+
+    ;
 
     public static void load(){
         powerConduit = new PowerConduit("power-conduit"){{
@@ -54,12 +57,12 @@ public class Power {
             autolink = false;
             laserColor2 = Color.valueOf("ffffff");
         }};
-        
+
         surfaceSolarGenerator = new FloatingSolarGenerator("floating-solar-panel"){{
             requirements(Category.power, with(TItems.nickel, 10));
 
             envEnabled = Env.terrestrial | Env.underwater;
-            scaledHealth = 5f; //Very fragile
+            scaledHealth = 5f; // very fragile
             powerProduction = 0.12f;
         }};
 

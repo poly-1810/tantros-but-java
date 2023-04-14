@@ -17,7 +17,7 @@ public class Distribution {
     public static Block defabricator, fabricator, payloadBelt, payloadDistributor, payloadLauncher;
 
     public static void load() {
-        defabricator = new PayloadDeconstructor("defabricator") {{
+        defabricator = new PayloadDeconstructor("defabricator"){{
             requirements(Category.units, with(TItems.nickel, 12));
 
             envEnabled = Env.terrestrial | Env.underwater;
@@ -31,7 +31,7 @@ public class Distribution {
             deconstructSpeed = 2.8f;
             category = Category.distribution;
         }};
-        fabricator = new Constructor("fabricator") {{
+        fabricator = new Constructor("fabricator"){{
             requirements(Category.units, with(TItems.nickel, 12));
 
             envEnabled = Env.terrestrial | Env.underwater;
@@ -44,7 +44,7 @@ public class Distribution {
             researchCostMultiplier = 0.25f;
             category = Category.distribution;
         }};
-        payloadBelt = new CoveredPayloadConveyor("payload-belt") {{
+        payloadBelt = new CoveredPayloadConveyor("payload-belt"){{
             requirements(Category.units, with(TItems.nickel, 2));
 
             envEnabled = Env.terrestrial | Env.underwater;
@@ -58,7 +58,7 @@ public class Distribution {
             researchCostMultiplier = 0.25f;
             category = Category.distribution;
         }};
-        payloadDistributor = new CoveredPayloadRouter("payload-distributor") {{
+        payloadDistributor = new CoveredPayloadRouter("payload-distributor"){{
             requirements(Category.units, with(TItems.tCopper, 2, TItems.nickel, 4));
 
             envEnabled = Env.terrestrial | Env.underwater;
@@ -71,7 +71,7 @@ public class Distribution {
             payloadLimit = 1;
             category = Category.distribution;
         }};
-        payloadLauncher = new PayloadMassDriver("payload-launcher") {{
+        payloadLauncher = new PayloadMassDriver("payload-launcher"){{
             requirements(Category.distribution, with(TItems.nickel, 8, TItems.tCopper, 8, TItems.calcite, 4, TItems.zinc, 4));
 
             envEnabled = Env.terrestrial | Env.underwater;
