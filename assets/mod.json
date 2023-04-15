@@ -4,7 +4,7 @@
   "author": "Poly#1810",
   "description": "Explore the depths of planet Tantros with new mind-blowing additions!",
   "subtitle": "Explore the depths of planet Tantros!",
-  "version": "0.2-b2",
+  "version": "0.2-b3",
   "main": "poly.tantros.PolyTantros",
   "minGameVersion": "143.1",
   "dependencies": [],

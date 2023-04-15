@@ -18,7 +18,7 @@ import poly.tantros.content.*;
 import static mindustry.type.ItemStack.*;
 
 public class Turret {
-    public static Block remnant, snap, spark, splice, wail;
+    public static Block remnant, snap, spark, splice, swipe, wail;
 
     public static void load() {
         remnant = new ItemTurret("remnant"){{
@@ -216,6 +216,86 @@ public class Turret {
                 hitColor = Color.valueOf("feb380");
                 colors = new Color[]{Color.valueOf("feb38066"), Color.valueOf("feb380")};
             }};
+        }};
+        swipe = new ItemTurret("swipe"){{
+            requirements(Category.turret, with(TItems.carbon, 1));
+
+            envEnabled = Env.terrestrial | Env.underwater;
+            scaledHealth = 130f;
+            size = 2;
+            reload = 60f;
+            recoil = 2f;
+            range = 160f;
+            shootSound = Sounds.shootSmite;
+            minWarmup = 0.99f;
+            shootWarmupSpeed = 0.24f;
+            shootY = -0.5f;
+            ammoPerShot = 2;
+            heatColor = Color.valueOf("8ca9e8");
+
+            ammo(
+                    TItems.cobalt, new BasicBulletType(7f, 25){{
+                        sprite = "large-orb";
+                        width = 12f;
+                        height = 16f;
+                        hitSize = 8f;
+
+                        shootEffect = new MultiEffect(Fx.shootTitan, Fx.colorSparkBig, new WaveEffect(){{
+                            colorFrom = colorTo = Color.valueOf("8ca9e8");
+                            lifetime = 12f;
+                            sizeTo = 20f;
+                            strokeFrom = 3f;
+                            strokeTo = 0.3f;
+                        }});
+                        smokeEffect = Fx.shootSmokeSmite;
+                        ammoMultiplier = 1;
+                        pierceCap = 4;
+                        pierce = true;
+                        pierceBuilding = true;
+                        hitColor = backColor = trailColor = Color.valueOf("8CA9E8");
+                        frontColor = Color.white;
+                        trailWidth = 2.8f;
+                        trailLength = 9;
+                        hitEffect = Fx.hitBulletColor;
+                        buildingDamageMultiplier = 0.3f;
+
+                        despawnEffect = new MultiEffect(Fx.hitBulletColor, new WaveEffect(){{
+                            sizeTo = 30f;
+                            colorFrom = colorTo = Color.valueOf("8ca9e8");
+                            lifetime = 12f;
+                        }});
+
+                        trailRotation = true;
+                        trailEffect = Fx.disperseTrail;
+                        trailInterval = 3f;
+
+                        intervalBullet = new LightningBulletType(){{
+                            damage = 5;
+                            collidesAir = false;
+                            ammoMultiplier = 1f;
+                            lightningColor = Color.valueOf("8ca9e8");
+                            lightningLength = 5;
+                            lightningLengthRand = 10;
+
+                            buildingDamageMultiplier = 0.25f;
+
+                            lightningType = new BulletType(0.0001f, 0f){{
+                                lifetime = Fx.lightning.lifetime;
+                                hitEffect = Fx.hitLancer;
+                                despawnEffect = Fx.none;
+                                status = StatusEffects.shocked;
+                                statusDuration = 10f;
+                                hittable = false;
+                                lightColor = Color.white;
+                                buildingDamageMultiplier = 0.25f;
+                            }};
+                        }};
+
+                        bulletInterval = 3f;
+                    }}
+            );
+
+            drawer = new DrawTurret("plated-");
         }};
         wail = new PowerTurret("wail"){{
             requirements(Category.turret, with(TItems.tCopper, 15, TItems.zinc, 10));
