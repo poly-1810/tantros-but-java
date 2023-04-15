@@ -76,19 +76,19 @@ public class Distribution {
 
             envEnabled = Env.terrestrial | Env.underwater;
             regionSuffix = "-dark";
+            scaledHealth = 50f;
             size = 2;
+            range = 56f;
+            maxPayloadSize = 1;
             reload = 4f;
             chargeTime = 20f;
-            maxPayloadSize = 1f;
-            range = 56f;
+            shake = 0.5f;
+            knockback = 2f;
+            rotateSpeed = 3.5f;
             grabWidth = 3f;
             grabHeight = 1.6f;
             length = 5.75f;
-            rotateSpeed = 3.5f;
-            knockback = 2;
-            shake = 0.5f;
             shootEffect = Fx.none;
-            transferEffect = TFx.launcherFx;
             smokeEffect = new ParticleEffect(){{
                 colorFrom = Color.valueOf("efe3ff");
                 colorTo = Color.valueOf("efe3ff");

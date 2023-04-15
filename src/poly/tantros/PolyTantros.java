@@ -55,7 +55,6 @@ public class PolyTantros extends Mod {
 
     @Override
     public void loadContent() {
-        TFx.load();
         TItems.load();
         TStatuses.load();
         TUnitTypes.load();
