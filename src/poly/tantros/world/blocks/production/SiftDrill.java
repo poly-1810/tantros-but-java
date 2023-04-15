@@ -21,6 +21,7 @@ public class SiftDrill extends Drill {
         drillEffect = Fx.none;
         updateEffect = TFx.siftDust;
         updateEffectChance = 0.25f;
+        hasLiquids = false;
     }
 
     @Override

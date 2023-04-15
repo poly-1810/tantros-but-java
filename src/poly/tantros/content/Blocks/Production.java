@@ -9,7 +9,7 @@ import poly.tantros.world.blocks.production.*;
 import static mindustry.type.ItemStack.*;
 
 public class Production {
-    public static Block siftDrill;
+    public static Block siftDrill, deepDrill;
 
     public static void load() {
         siftDrill = new SiftDrill("sift-drill"){{
@@ -30,6 +30,16 @@ public class Production {
             siftEffectMinDist = 15f / 4f;
             siftEffectMaxDist = 34f / 4f;
             researchCostMultiplier = 0.125f;
+        }};
+
+        deepDrill = new DeepDrill("deep-drill"){{
+            requirements(Category.production, with(TItems.carbon, 1));
+
+            envEnabled = Env.terrestrial | Env.underwater;
+            scaledHealth = 65f;
+            size = 4;
+
+            consumePower(20f);
         }};
     }
 }

@@ -93,7 +93,7 @@ public class Power {
             );
         }};
 
-        steamGenerator = new VariableReactor("steam-generator"){{
+        steamGenerator = new SteamGenerator("steam-generator"){{
             requirements(Category.power, with(TItems.tCopper, 30, TItems.nickel, 20, TItems.calcite, 20));
 
             envEnabled = Env.terrestrial | Env.underwater;
@@ -101,7 +101,6 @@ public class Power {
             size = 3;
             powerProduction = 7.5f;
             maxHeat = 15f;
-            unstableSpeed = -0f;
             effect = new ParticleEffect(){{
                 layer = 50f;
                 colorFrom = Color.valueOf("d4f0ff00");

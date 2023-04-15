@@ -6,7 +6,7 @@ import mindustry.graphics.*;
 
 import static arc.graphics.g2d.Draw.color;
 
-public class TFx{
+public class TFx {
     public static final Effect
 
     siftDust = new Effect(20f, e -> {
