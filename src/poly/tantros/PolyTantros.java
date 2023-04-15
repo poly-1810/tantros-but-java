@@ -39,15 +39,15 @@ public class PolyTantros extends Mod {
             mod.meta.displayName = "[#86f195]Poly's[] [#597be3]Tantros[] (beta)";
             mod.meta.author =
                     """
-                    [#7d7d7d]ABreaker#5940 (original author)[]
-                    [#86f195]Poly#1810 (port author)[]
-                    [#c7baad]MeiNanziiii#5309 (translations & stuff)[]
-                    [#f9c11c]MEEPofFaith#7277 (fixes & helping)[]
+                    [#86f195]Poly#1810 (this mod)[]
+                    [#c7baad]MeiNanziiii#5309 (translator & mod dev)[]
+                    [#f9c11c]MEEPofFaith#7277 (cool mod dev)[]
+                    [#7d7d7d]ABreaker#5940 (original mod)[]
                     """
             ;
             mod.meta.description =
                     """
-                    Mod adds content to Tantros
+                    Explore the depths of planet Tantros with new mind-blowing additions!
                     """
             ;
         }
@@ -58,6 +58,7 @@ public class PolyTantros extends Mod {
         TItems.load();
         TStatuses.load();
         TUnitTypes.load();
+        TWeathers.load();
 
         // loading blocks
         Crafting.load();
@@ -72,7 +73,5 @@ public class PolyTantros extends Mod {
         Resources.load();
         Turret.load();
         Units.load();
-
-        TWeathers.load();
     }
 }
