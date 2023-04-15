@@ -9,7 +9,7 @@ import mindustry.world.*;
 import mindustry.world.blocks.payloads.*;
 import mindustry.world.meta.*;
 import poly.tantros.content.*;
-import poly.tantros.world.blocks.payloads.*;
+import poly.tantros.world.blocks.distribution.*;
 
 import static mindustry.type.ItemStack.*;
 

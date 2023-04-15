@@ -23,21 +23,24 @@ public class TUnitTypes {
     // core
     trident,
 
-    // submarines
-    requiem,
-
-    // quads
-    chasm,
-
-    // stuff
+    // assembler
     assemblySub,
 
-    // bullet
-    snapPiranha,
+    // submarine
+    requiem,
 
+    // quad
+    chasm,
+
+    // isopod
     tendril,
+
+    // crustacean (maybe)
     chain,
-    chainDrone
+    chainDrone,
+
+    // bullet
+    snapPiranha
 
     ;
 
@@ -129,6 +132,98 @@ public class TUnitTypes {
                 healthMultiplier = 0.5f;
                 color = Color.valueOf("FFBA367F");
             }});
+        }};
+
+        assemblySub = new UnitType("assembly-sub"){{
+            constructor = BuildingTetherPayloadUnit::create;
+
+            EntityMapping.nameMap.put(name, constructor);
+
+            envEnabled = Env.terrestrial | Env.underwater;
+            aiController = AssemblerAI::new;
+            createWreck = false;
+            createScorch = false;
+            logicControllable = false;
+            playerControllable = false;
+            isEnemy = false;
+            useUnitCap = false;
+            allowedInPayloads = false;
+            flying = true;
+            hidden = true;
+            outlineColor = Color.valueOf("4a4b53");
+            targetPriority = -1f;
+            speed = 0.9f;
+            accel = 0.08f;
+            drag = 0.015f;
+            health = 100f;
+            armor = 6f;
+            maxRange = 0f;
+            lowAltitude = false;
+            hitSize = 9f;
+            targetable = false;
+            rotateSpeed = 3f;
+            fogRadius = 8f;
+            engineSize = 0;
+            parts.addAll(
+                    new RegionPart("-glow"){{
+                        color = Color.valueOf("d4816b66");
+                        layer = -1f;
+                        outline = false;
+                        blending = Blending.additive;
+                    }},
+                    new HaloPart(){{
+                        y = 3.5f;
+                        tri = true;
+                        color = Color.valueOf("ffd37f");
+                        haloRadius = 2.5f;
+                        haloRotateSpeed = 1f;
+                        rotateSpeed = 0f;
+                        layerOffset = -1f;
+                        shapes = 2;
+                        radius = 4f;
+                        triLength = 4f;
+                    }},
+                    new ShapePart(){{
+                        y = 3.5f;
+                        circle = true;
+                        hollow = true;
+                        color = Color.valueOf("ffd37f");
+                        radius = 3f;
+                        stroke = 1.5f;
+                        layerOffset = -1f;
+                    }}
+            );
+            abilities.addAll(
+                    new MoveEffectAbility(){{
+                        x = 0f;
+                        y = -3.5f;
+                        rotateEffect = true;
+                        interval = 5f;
+                        teamColor = true;
+                        effect = Fx.disperseTrail;
+                        parentizeEffects = false;
+                    }},
+                    new MoveEffectAbility(){{
+                        x = 3f;
+                        y = 1.5f;
+                        rotation = 45f;
+                        rotateEffect = true;
+                        interval = 5f;
+                        teamColor = true;
+                        effect = Fx.disperseTrail;
+                        parentizeEffects = true;
+                    }},
+                    new MoveEffectAbility(){{
+                        x = -3f;
+                        y = 1.5f;
+                        rotation = -45f;
+                        rotateEffect = true;
+                        interval = 5f;
+                        teamColor = true;
+                        effect = Fx.disperseTrail;
+                        parentizeEffects = true;
+                    }}
+            );
         }};
 
         requiem = new UnitType("requiem"){{
@@ -286,174 +381,6 @@ public class TUnitTypes {
             );
         }};
 
-        assemblySub = new UnitType("assembly-sub"){{
-            constructor = BuildingTetherPayloadUnit::create;
-
-            EntityMapping.nameMap.put(name, constructor);
-
-            envEnabled = Env.terrestrial | Env.underwater;
-            aiController = AssemblerAI::new;
-            createWreck = false;
-            createScorch = false;
-            logicControllable = false;
-            playerControllable = false;
-            isEnemy = false;
-            useUnitCap = false;
-            allowedInPayloads = false;
-            flying = true;
-            hidden = true;
-            outlineColor = Color.valueOf("4a4b53");
-            targetPriority = -1f;
-            speed = 0.9f;
-            accel = 0.08f;
-            drag = 0.015f;
-            health = 100f;
-            armor = 6f;
-            maxRange = 0f;
-            lowAltitude = false;
-            hitSize = 9f;
-            targetable = false;
-            rotateSpeed = 3f;
-            fogRadius = 8f;
-            engineSize = 0;
-            parts.addAll(
-                    new RegionPart("-glow"){{
-                        color = Color.valueOf("d4816b66");
-                        layer = -1f;
-                        outline = false;
-                        blending = Blending.additive;
-                    }},
-                    new HaloPart(){{
-                        y = 3.5f;
-                        tri = true;
-                        color = Color.valueOf("ffd37f");
-                        haloRadius = 2.5f;
-                        haloRotateSpeed = 1f;
-                        rotateSpeed = 0f;
-                        layerOffset = -1f;
-                        shapes = 2;
-                        radius = 4f;
-                        triLength = 4f;
-                    }},
-                    new ShapePart(){{
-                         y = 3.5f;
-                         circle = true;
-                         hollow = true;
-                         color = Color.valueOf("ffd37f");
-                         radius = 3f;
-                         stroke = 1.5f;
-                         layerOffset = -1f;
-                    }}
-            );
-            abilities.addAll(
-                    new MoveEffectAbility(){{
-                        x = 0f;
-                        y = -3.5f;
-                        rotateEffect = true;
-                        interval = 5f;
-                        teamColor = true;
-                        effect = Fx.disperseTrail;
-                        parentizeEffects = false;
-                    }},
-                    new MoveEffectAbility(){{
-                        x = 3f;
-                        y = 1.5f;
-                        rotation = 45f;
-                        rotateEffect = true;
-                        interval = 5f;
-                        teamColor = true;
-                        effect = Fx.disperseTrail;
-                        parentizeEffects = true;
-                    }},
-                    new MoveEffectAbility(){{
-                        x = -3f;
-                        y = 1.5f;
-                        rotation = -45f;
-                        rotateEffect = true;
-                        interval = 5f;
-                        teamColor = true;
-                        effect = Fx.disperseTrail;
-                        parentizeEffects = true;
-                    }}
-            );
-        }};
-        snapPiranha = new MissileUnitType("snap-piranha"){{
-            envEnabled = Env.terrestrial | Env.underwater;
-            createWreck = false;
-            createScorch = false;
-            aiController = MissileAI::new;
-            logicControllable = false;
-            playerControllable = false;
-            isEnemy = false;
-            useUnitCap = false;
-            allowedInPayloads = false;
-            flying = true;
-            physics = true;
-            hidden = true;
-            outlineColor = Color.valueOf("4a4b53");
-            targetPriority = -1f;
-            speed = 3.5f;
-            lifetime = 140f;
-            health = 15f;
-            armor = 4f;
-            maxRange = 0f;
-            drawCell = false;
-            lowAltitude = true;
-            hitSize = 7f;
-            targetable = true;
-            trailLength = 5;
-            rotateSpeed = 11f;
-            fogRadius = 0f;
-            missileAccelTime = 5f;
-            homingDelay = 15f;
-            engineColor = Color.valueOf("ea8878");
-            trailColor = Color.valueOf("ea8878");
-            parts.addAll(
-                    new RegionPart("-jaw"){{
-                        mirror = true;
-                        under = true;
-                        x = -1f;
-                        y = 2f;
-                        rotation = 30f;
-                        moveRot = -20f;
-                        progress = PartProgress.recoil;
-                        layerOffset = -1f;
-                    }}
-            );
-            weapons.addAll(
-                    new Weapon(){{
-                        x = 0f;
-                        y = 0f;
-                        shootY = 2f;
-                        reload = 15f;
-                        mirror = false;
-                        rotate = true;
-                        rotationLimit = 80;
-                        rotateSpeed = 360f;
-                        autoTarget = true;
-                        predictTarget = false;
-                        controllable = false;
-                        shootCone = 20f;
-                        targetInterval = 0f;
-                        targetSwitchInterval = 0f;
-                        recoilTime = 40f;
-                        bullet = new LaserBulletType(){{
-                            damage = 5f;
-                            length = 16f;
-                            width = 24f;
-                            lengthFalloff = 0.35f;
-                            sideLength = 16f;
-                            sideWidth = 1.5f;
-                            sideAngle = 35f;
-                            colors = new Color[]{Color.valueOf("ea8878"), Color.valueOf("ea8878")};
-                            shootEffect = Fx.none;
-                            smokeEffect = Fx.none;
-                            hitColor = Color.valueOf("ea8878");
-                        }};
-                    }}
-            );
-        }};
-
         tendril = new UnitType("tendril"){{
             constructor = CrawlUnit::create;
 
@@ -479,35 +406,6 @@ public class TUnitTypes {
             healColor = Color.valueOf("feb380");
         }};
 
-        chainDrone = new UnitType("chain-drone"){{
-            constructor = UnitEntity::create;
-
-            EntityMapping.nameMap.put(name, constructor);
-
-            envEnabled = Env.terrestrial | Env.underwater;
-            aiController = DefenderAI::new;
-            defaultCommand = UnitCommand.rebuildCommand;
-            isEnemy = false;
-            flying = true;
-            hidden = true;
-            outlineColor = Color.valueOf("4a4b53");
-            targetPriority = -1f;
-            speed = 2f;
-            accel = 0.1f;
-            drag = 0.05f;
-            lifetime = 450f;
-            health = 75f;
-            armor = 3f;
-            maxRange = 0f;
-            drawCell = false;
-            lowAltitude = true;
-            hitSize = 4f;
-            targetable = true;
-            trailLength = 12;
-            engineSize = 2.5f;
-            rotateSpeed = 5f;
-            buildSpeed = 0.1f;
-        }};
         chain = new UnitType("chain"){{
             constructor = LegsUnit::create;
 
@@ -596,6 +494,112 @@ public class TUnitTypes {
                         spawnTime = 1800f;
                         spawnEffect = Fx.shootSmokeTitan;
                         parentizeEffects = true;
+                    }}
+            );
+        }};
+        chainDrone = new UnitType("chain-drone"){{
+            constructor = UnitEntity::create;
+
+            EntityMapping.nameMap.put(name, constructor);
+
+            envEnabled = Env.terrestrial | Env.underwater;
+            aiController = DefenderAI::new;
+            defaultCommand = UnitCommand.rebuildCommand;
+            isEnemy = false;
+            flying = true;
+            hidden = true;
+            outlineColor = Color.valueOf("4a4b53");
+            targetPriority = -1f;
+            speed = 2f;
+            accel = 0.1f;
+            drag = 0.05f;
+            lifetime = 450f;
+            health = 75f;
+            armor = 3f;
+            maxRange = 0f;
+            drawCell = false;
+            lowAltitude = true;
+            hitSize = 4f;
+            targetable = true;
+            trailLength = 12;
+            engineSize = 2.5f;
+            rotateSpeed = 5f;
+            buildSpeed = 0.1f;
+        }};
+
+        snapPiranha = new MissileUnitType("snap-piranha"){{
+            envEnabled = Env.terrestrial | Env.underwater;
+            createWreck = false;
+            createScorch = false;
+            aiController = MissileAI::new;
+            logicControllable = false;
+            playerControllable = false;
+            isEnemy = false;
+            useUnitCap = false;
+            allowedInPayloads = false;
+            flying = true;
+            physics = true;
+            hidden = true;
+            outlineColor = Color.valueOf("4a4b53");
+            targetPriority = -1f;
+            speed = 3.5f;
+            lifetime = 140f;
+            health = 15f;
+            armor = 4f;
+            maxRange = 0f;
+            drawCell = false;
+            lowAltitude = true;
+            hitSize = 7f;
+            targetable = true;
+            trailLength = 5;
+            rotateSpeed = 11f;
+            fogRadius = 0f;
+            missileAccelTime = 5f;
+            homingDelay = 15f;
+            engineColor = Color.valueOf("ea8878");
+            trailColor = Color.valueOf("ea8878");
+            parts.addAll(
+                    new RegionPart("-jaw"){{
+                        mirror = true;
+                        under = true;
+                        x = -1f;
+                        y = 2f;
+                        rotation = 30f;
+                        moveRot = -20f;
+                        progress = PartProgress.recoil;
+                        layerOffset = -1f;
+                    }}
+            );
+            weapons.addAll(
+                    new Weapon(){{
+                        x = 0f;
+                        y = 0f;
+                        shootY = 2f;
+                        reload = 15f;
+                        mirror = false;
+                        rotate = true;
+                        rotationLimit = 80;
+                        rotateSpeed = 360f;
+                        autoTarget = true;
+                        predictTarget = false;
+                        controllable = false;
+                        shootCone = 20f;
+                        targetInterval = 0f;
+                        targetSwitchInterval = 0f;
+                        recoilTime = 40f;
+                        bullet = new LaserBulletType(){{
+                            damage = 5f;
+                            length = 16f;
+                            width = 24f;
+                            lengthFalloff = 0.35f;
+                            sideLength = 16f;
+                            sideWidth = 1.5f;
+                            sideAngle = 35f;
+                            colors = new Color[]{Color.valueOf("ea8878"), Color.valueOf("ea8878")};
+                            shootEffect = Fx.none;
+                            smokeEffect = Fx.none;
+                            hitColor = Color.valueOf("ea8878");
+                        }};
                     }}
             );
         }};
