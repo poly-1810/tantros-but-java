@@ -88,6 +88,7 @@ public class Distribution {
             knockback = 2;
             shake = 0.5f;
             shootEffect = Fx.none;
+            transferEffect = TFx.launcherFx;
             smokeEffect = new ParticleEffect(){{
                 colorFrom = Color.valueOf("efe3ff");
                 colorTo = Color.valueOf("efe3ff");

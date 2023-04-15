@@ -55,9 +55,11 @@ public class PolyTantros extends Mod {
 
     @Override
     public void loadContent() {
+        TFx.load();
         TItems.load();
         TStatuses.load();
         TUnitTypes.load();
+        TWeathers.load();
 
         // loading blocks
         Crafting.load();
@@ -72,7 +74,5 @@ public class PolyTantros extends Mod {
         Resources.load();
         Turret.load();
         Units.load();
-
-        TWeathers.load();
     }
 }
