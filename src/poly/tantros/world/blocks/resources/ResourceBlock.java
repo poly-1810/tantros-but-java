@@ -22,7 +22,6 @@ public class ResourceBlock extends Wall {
         public void placed() {
             super.placed();
             if (!breakOnPlace) return;
-            if (Vars.net.client()) return;
             kill();
         }
     }
