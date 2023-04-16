@@ -15,7 +15,7 @@ public class Production {
         siftDrill = new SiftDrill("sift-drill"){{
             requirements(Category.production, with(TItems.tCopper, 20));
 
-            envEnabled = Env.terrestrial | Env.underwater;
+            envEnabled |= Env.underwater;
             scaledHealth = 65f;
             size = 3;
             squareSprite = false;
