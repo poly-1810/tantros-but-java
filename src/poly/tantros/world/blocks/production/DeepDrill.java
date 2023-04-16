@@ -1,18 +1,20 @@
 package poly.tantros.world.blocks.production;
 
-import arc.*;
-import arc.graphics.*;
+import arc.Core;
+import arc.graphics.Color;
 import arc.graphics.g2d.*;
-import arc.util.*;
+import arc.util.Eachable;
+import arc.util.Log;
+import arc.util.Scaling;
+import mindustry.entities.units.BuildPlan;
+import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.ui.*;
-import mindustry.world.Block;
 import mindustry.world.blocks.payloads.*;
 import mindustry.world.meta.*;
 import poly.tantros.content.Blocks.*;
-import poly.tantros.content.*;
 
-public class DeepDrill extends BlockProducer {
+public class DeepDrill extends PayloadBlock {
     public DeepDrill(String name) {
         super(name);
         update = true;
@@ -46,13 +48,24 @@ public class DeepDrill extends BlockProducer {
         });
     }
 
-    public class DeepDrillBuild extends BlockProducer.BlockProducerBuild {
+    @Override
+    public TextureRegion[] icons() {
+        return new TextureRegion[]{region, outRegion, topRegion};
+    }
+
+    @Override
+    public void drawPlanRegion(BuildPlan plan, Eachable<BuildPlan> list) {
+        Draw.rect(region, plan.drawx(), plan.drawy());
+        Draw.rect(outRegion, plan.drawx(), plan.drawy(), plan.rotation * 90);
+        Draw.rect(topRegion, plan.drawx(), plan.drawy());
+    }
+
+    public class DeepDrillBuild extends PayloadBlock.PayloadBlockBuild<Payload> {
         public float drillTime = 0f;
 
-        @Nullable
         @Override
-        public Block recipe(){
-            return Resources.rubedoBlock;
+        public boolean acceptPayload(Building source, Payload payload) {
+            return false;
         }
 
         @Override
@@ -60,12 +73,15 @@ public class DeepDrill extends BlockProducer {
             super.updateTile();
             if (canConsume()) {
                 consume();
-                drillTime += this.power.status >= 1f ? 1f : this.power.status;
+                drillTime += buildOn().power.status >= 1f ? 1f : buildOn().power.status;
+                Log.info(drillTime);
             }
-            if (drillTime > 0) items.set(TItems.rubedo, Math.round(drillTime / 150));
             if (drillTime >= 3600f) {
+                payload = new BuildPayload(Resources.rubedoBlock, team);
+                payVector.setZero();
+                payRotation = rotdeg();
+                dumpPayload(payload);
                 drillTime = 0;
-                items.clear();
             }
         }
 
