@@ -3,7 +3,10 @@ package poly.tantros.world.blocks.production;
 import arc.Core;
 import arc.graphics.Color;
 import arc.graphics.g2d.*;
+import arc.util.Eachable;
+import arc.util.Log;
 import arc.util.Scaling;
+import mindustry.entities.units.BuildPlan;
 import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.ui.*;
@@ -16,6 +19,7 @@ public class DeepDrill extends PayloadBlock {
         super(name);
         update = true;
         outputsPayload = true;
+        rotate = true;
     }
 
     @Override
@@ -44,8 +48,20 @@ public class DeepDrill extends PayloadBlock {
         });
     }
 
+    @Override
+    public TextureRegion[] icons() {
+        return new TextureRegion[]{region, outRegion, topRegion};
+    }
+
+    @Override
+    public void drawPlanRegion(BuildPlan plan, Eachable<BuildPlan> list) {
+        Draw.rect(region, plan.drawx(), plan.drawy());
+        Draw.rect(outRegion, plan.drawx(), plan.drawy(), plan.rotation * 90);
+        Draw.rect(topRegion, plan.drawx(), plan.drawy());
+    }
+
     public class DeepDrillBuild extends PayloadBlock.PayloadBlockBuild<Payload> {
-        public float drillTime;
+        public float drillTime = 0f;
 
         @Override
         public boolean acceptPayload(Building source, Payload payload) {
@@ -55,11 +71,13 @@ public class DeepDrill extends PayloadBlock {
         @Override
         public void updateTile() {
             super.updateTile();
-            payload = new BuildPayload(Resources.rubedoBlock, team);
             if (canConsume()) {
-                drillTime += 1;
+                consume();
+                drillTime += buildOn().power.status >= 1f ? 1f : buildOn().power.status;
+                Log.info(drillTime);
             }
-            if (drillTime >= 3600) {
+            if (drillTime >= 3600f) {
+                payload = new BuildPayload(Resources.rubedoBlock, team);
                 payVector.setZero();
                 payRotation = rotdeg();
                 dumpPayload(payload);
@@ -69,10 +87,11 @@ public class DeepDrill extends PayloadBlock {
 
         @Override
         public void draw() {
-            Draw.rect(region, x, y);
+            Draw.rect(region, x, y, 0);
             Draw.rect(outRegion, x, y, rotdeg());
             Draw.rect(topRegion, x, y);
             drawPayload();
+            Draw.z(Layer.blockBuilding + 1.1f);
             Draw.reset();
         }
     }
