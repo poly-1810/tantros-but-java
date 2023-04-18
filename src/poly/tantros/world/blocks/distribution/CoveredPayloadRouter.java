@@ -1,4 +1,4 @@
-package poly.tantros.world.blocks.payloads;
+package poly.tantros.world.blocks.distribution;
 
 import arc.*;
 import arc.graphics.g2d.*;
@@ -7,10 +7,10 @@ import mindustry.entities.units.*;
 import mindustry.graphics.*;
 import mindustry.world.blocks.payloads.*;
 
-public class CoveredPayloadConveyor extends PayloadConveyor {
+public class CoveredPayloadRouter extends PayloadRouter {
     public TextureRegion iconRegion, coverRegion;
 
-    public CoveredPayloadConveyor(String name) {
+    public CoveredPayloadRouter(String name) {
         super(name);
         size = 2;
     }
@@ -34,9 +34,9 @@ public class CoveredPayloadConveyor extends PayloadConveyor {
         Draw.rect(coverRegion, plan.drawx(), plan.drawy());
     }
 
-    public class CoveredPayloadConveyorBuild extends PayloadConveyorBuild {
+    public class CoveredPayloadRouterBuild extends PayloadRouterBuild {
         @Override
-        public void draw() {
+        public void draw(){
             super.draw();
             Draw.z(Layer.blockOver + 0.01f);
             Draw.rect(coverRegion, x, y);

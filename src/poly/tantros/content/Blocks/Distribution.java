@@ -9,7 +9,7 @@ import mindustry.world.*;
 import mindustry.world.blocks.payloads.*;
 import mindustry.world.meta.*;
 import poly.tantros.content.*;
-import poly.tantros.world.blocks.payloads.*;
+import poly.tantros.world.blocks.distribution.*;
 
 import static mindustry.type.ItemStack.*;
 
@@ -76,17 +76,18 @@ public class Distribution {
 
             envEnabled |= Env.underwater;
             regionSuffix = "-dark";
+            scaledHealth = 50f;
             size = 2;
+            range = 56f;
+            maxPayloadSize = 1;
             reload = 4f;
             chargeTime = 20f;
-            maxPayloadSize = 1f;
-            range = 56f;
+            shake = 0.5f;
+            knockback = 2f;
+            rotateSpeed = 3.5f;
             grabWidth = 3f;
             grabHeight = 1.6f;
             length = 5.75f;
-            rotateSpeed = 3.5f;
-            knockback = 2;
-            shake = 0.5f;
             shootEffect = Fx.none;
             smokeEffect = new ParticleEffect(){{
                 colorFrom = Color.valueOf("efe3ff");
