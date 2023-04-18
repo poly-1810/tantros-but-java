@@ -1,15 +1,20 @@
 package poly.tantros;
 
 import arc.*;
+import arc.graphics.g2d.*;
 import mindustry.*;
 import mindustry.content.*;
 import mindustry.game.*;
+import mindustry.game.EventType.*;
+import mindustry.graphics.*;
 import mindustry.mod.*;
 import mindustry.mod.Mods.*;
 import poly.tantros.content.Blocks.*;
 import poly.tantros.content.*;
+import poly.tantros.graphics.*;
 import poly.tantros.maps.planet.*;
 import poly.tantros.ui.dialogs.*;
+import poly.tantros.world.blocks.environment.*;
 
 import static arc.Core.*;
 import static mindustry.Vars.*;

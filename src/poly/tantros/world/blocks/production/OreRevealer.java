@@ -7,6 +7,7 @@ import arc.util.*;
 import mindustry.entities.units.*;
 import mindustry.game.EventType.*;
 import mindustry.gen.*;
+import mindustry.graphics.*;
 import mindustry.world.*;
 import mindustry.world.draw.*;
 import mindustry.world.meta.*;
@@ -24,6 +25,7 @@ public class OreRevealer extends Block{
         super(name);
         update = true;
         solid = true;
+        rebuildable = false;
         group = BlockGroup.drills;
         envEnabled |= Env.underwater;
         flags = EnumSet.of(BlockFlag.drill);
@@ -45,6 +47,11 @@ public class OreRevealer extends Block{
     @Override
     public void drawPlanRegion(BuildPlan plan, Eachable<BuildPlan> list){
         drawer.drawPlan(this, plan, list);
+    }
+
+    @Override
+    public void drawOverlay(float x, float y, int rotation){
+        Drawf.dashCircle(x, y, revealRange * tilesize, Pal.placing);
     }
 
     @Override
@@ -70,13 +77,13 @@ public class OreRevealer extends Block{
         }
 
         /** Reveal ores within range. Called by subclasses. */
-        public void reveal(){
+        public void revealOres(){
             boolean oreRevealed = false;
             for(int x = tile.x - revealRange - 2; x <= tile.x + revealRange + 2; x++){
                 for(int y = tile.y - revealRange - 2; y <= tile.y + revealRange + 2; y++){
                     Tile t = world.tile(x, y);
                     if(t != null && t.overlay() instanceof HiddenOreBlock h && h.oreRevealType == revealType){
-                        t.setOverlayQuiet(h.revealReplacement);
+                        revealed(t, h);
                         oreRevealed = true;
                     }
                 }
@@ -84,6 +91,10 @@ public class OreRevealer extends Block{
 
             //If an ore was revealed, fire a world load event to index the newly revealed ore.
             if(oreRevealed) Events.fire(new WorldLoadEvent());
+        }
+
+        public void revealed(Tile t, HiddenOreBlock ore){
+            t.setOverlayQuiet(ore.revealReplacement);
         }
     }
 }

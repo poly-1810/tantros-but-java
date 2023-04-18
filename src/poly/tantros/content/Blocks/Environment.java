@@ -4,6 +4,7 @@ import mindustry.world.*;
 import mindustry.world.blocks.environment.*;
 import mindustry.world.meta.*;
 import poly.tantros.content.*;
+import poly.tantros.world.blocks.environment.*;
 
 public class Environment {
     public static Block
@@ -11,7 +12,7 @@ public class Environment {
     // floor & walls
     calciteFloor, calciteGrains, calciteHill, copperMat,
     // ores
-    oreCobalt, oreNickel, oreCopper, oreZinc,
+    oreCobalt, oreNickel, oreCopper, oreZinc, oreRubedo, oreRubedoHidden,
     // underwater
     purbushBig, yellowCoralBig
 
@@ -20,55 +21,43 @@ public class Environment {
     public static void load() {
         // floor & walls
         calciteFloor = new Floor("calcite-floor"){{
-            envEnabled |= Env.underwater;
-            variants = 3;
-            size = 1;
             itemDrop = TItems.calcite;
             playerUnmineable = true;
             wall = calciteHill;
         }};
+
         calciteGrains = new Floor("calcite-grains"){{
-            envEnabled |= Env.underwater;
-            variants = 3;
-            size = 1;
             itemDrop = TItems.calcite;
             playerUnmineable = false;
         }};
+
         calciteHill = new StaticWall("calcite-hill"){{
-            envEnabled |= Env.underwater;
             variants = 3;
-            size = 1;
         }};
+
         copperMat = new Floor("copper-mat"){{
-            envEnabled |= Env.underwater;
             variants = 4;
-            size = 1;
         }};
 
         // ores
         oreCobalt = new OreBlock("ore-cobalt", TItems.cobalt){{
-            envEnabled |= Env.underwater;
-            variants = 3;
-            size = 1;
             wallOre = true;
         }};
+
         oreNickel = new OreBlock("ore-nickel", TItems.nickel){{
-            envEnabled |= Env.underwater;
             variants = 5;
-            size = 1;
-            itemDrop = TItems.nickel;
         }};
-        oreCopper = new OreBlock("ore-tantros-copper", TItems.tCopper){{
-            envEnabled |= Env.underwater;
-            variants = 3;
-            size = 1;
-            itemDrop = TItems.tCopper;
-        }};
+
+        oreCopper = new OreBlock("ore-tantros-copper", TItems.tCopper);
+
         oreZinc = new OreBlock("ore-zinc", TItems.zinc){{
-            envEnabled |= Env.underwater;
             variants = 5;
-            size = 1;
-            itemDrop = TItems.zinc;
+        }};
+
+        oreRubedo = new RevealedOre("ore-rubedo", TItems.rubedo);
+
+        oreRubedoHidden = new HiddenOreBlock("ore-rubedo-hidden"){{
+            revealReplacement = (OverlayFloor)oreRubedo;
         }};
 
         // underwater
@@ -80,6 +69,7 @@ public class Environment {
             timeRange = 55f;
             spread = 10f;
         }};
+
         yellowCoralBig = new SeaBush("yellow-coral-big"){{
             lobesMin = 3;
             lobesMax = 5;

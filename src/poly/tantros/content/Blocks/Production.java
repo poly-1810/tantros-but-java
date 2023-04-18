@@ -9,9 +9,19 @@ import poly.tantros.world.blocks.production.*;
 import static mindustry.type.ItemStack.*;
 
 public class Production {
-    public static Block siftDrill;
+    public static Block
+    oreScanner, siftDrill;
 
     public static void load() {
+        oreScanner = new OreScanner("ore-scanner"){{
+            requirements(Category.production, BuildVisibility.sandboxOnly, with()); //Placeholder
+
+            envEnabled |= Env.underwater;
+            size = 3;
+
+            consumePower(1f);
+        }};
+
         siftDrill = new SiftDrill("sift-drill"){{
             requirements(Category.production, with(TItems.tCopper, 20));
 

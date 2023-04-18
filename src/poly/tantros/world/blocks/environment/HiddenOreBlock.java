@@ -10,6 +10,7 @@ public class HiddenOreBlock extends OverlayFloor{
 
     public HiddenOreBlock(String name){
         super(name);
+        variants = 0;
     }
 
     @Override
