@@ -16,9 +16,11 @@ import poly.tantros.world.blocks.environment.HiddenOreBlock.*;
 
 import static mindustry.Vars.*;
 
-public class OreRevealer extends Block{
+/** Base block for any {@link HiddenOreBlock} revealer. Its building does nothing on its own, subclasses need to call {@link OreRevealerBuild#revealOres()}. */
+public abstract class OreRevealer extends Block{
     public OreRevealType revealType = OreRevealType.scanner;
     public int revealRange = 10;
+    public boolean squareArea = false;
     public DrawBlock drawer = new DrawDefault();
 
     public OreRevealer(String name){
@@ -51,7 +53,11 @@ public class OreRevealer extends Block{
 
     @Override
     public void drawOverlay(float x, float y, int rotation){
-        Drawf.dashCircle(x, y, revealRange * tilesize, Pal.placing);
+        if(squareArea){
+            Drawf.square(x, y, revealRange * tilesize, Pal.placing);
+        }else{
+            Drawf.dashCircle(x, y, revealRange * tilesize, Pal.placing);
+        }
     }
 
     @Override
@@ -80,9 +86,9 @@ public class OreRevealer extends Block{
         public void revealOres(){
             boolean oreRevealed = false;
             for(int x = tile.x - revealRange - 2; x <= tile.x + revealRange + 2; x++){
-                for(int y = tile.y - revealRange - 2; y <= tile.y + revealRange + 2; y++){
+                for(int y = tile.y + revealRange - 2; y >= tile.y - revealRange + 2; y--){
                     Tile t = world.tile(x, y);
-                    if(t != null && t.overlay() instanceof HiddenOreBlock h && h.oreRevealType == revealType){
+                    if(t != null && (squareArea || t.within(this, revealRange * tilesize)) && t.overlay() instanceof HiddenOreBlock h && h.oreRevealType == revealType){
                         revealed(t, h);
                         oreRevealed = true;
                     }

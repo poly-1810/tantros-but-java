@@ -3,11 +3,11 @@ package poly.tantros.world.blocks.production;
 import arc.graphics.g2d.*;
 import arc.math.*;
 import arc.util.*;
-import mindustry.content.*;
 import mindustry.entities.*;
 import mindustry.graphics.*;
 import mindustry.ui.*;
 import mindustry.world.*;
+import poly.tantros.content.*;
 import poly.tantros.graphics.*;
 import poly.tantros.world.blocks.environment.*;
 
@@ -16,7 +16,7 @@ import static mindustry.Vars.*;
 public class OreScanner extends OreRevealer{
     public float revealTime = 5f * 60f;
     public float warmupSpeed = 0.019f;
-    public Effect revealEffect = Fx.none;
+    public Effect revealEffect = TFx.oreReveal;
 
     public int scanPulses = 3, radarRevolutions = 3, radarTrailLength = 6;
     public float pulseStroke = 2f, ringStroke = 2f;
@@ -98,7 +98,7 @@ public class OreScanner extends OreRevealer{
         @Override
         public void revealed(Tile t, HiddenOreBlock ore){
             super.revealed(t, ore);
-            revealEffect.at(t.worldx(), t.worldy());
+            revealEffect.at(t.worldx(), t.worldy(), 0f, ore.revealReplacement.itemDrop);
         }
 
         @Override
