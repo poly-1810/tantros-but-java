@@ -28,8 +28,9 @@ public class Production {
             envEnabled |= Env.underwater;
             int useAmount = 5;
             itemCapacity = useAmount; //Don't hold extras when destroying yourself.
-            size = 5;
-            revealRange = 20;
+            size = 12;
+            fillsTile = false;
+            //customShadow = true; //Commented for visiblity. Uncomment when an actual sprite is added.
 
             consumeItem(TItems.rubedo, useAmount); //Placeholder
         }};

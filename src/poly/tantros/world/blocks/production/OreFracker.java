@@ -44,14 +44,17 @@ public class OreFracker extends OreRevealer{
     public OreFracker(String name){
         super(name);
         revealType = OreRevealType.fracker;
+        revealRange = -1;
+        squareArea = true;
     }
 
     @Override
     public void init(){
         super.init();
+        if(revealRange < 0) revealRange = size - 2;
         updateClipRadius(revealRange * tilesize);
 
-        if(maxCrackDist < 0) maxCrackDist = revealRange * tilesize * 0.9f;
+        if(maxCrackDist < 0) maxCrackDist = revealRange * tilesize * 1.1f;
         if(minCrackDst < 0) minCrackDst = maxCrackDist * 0.75f;
     }
 
@@ -101,7 +104,7 @@ public class OreFracker extends OreRevealer{
         @Override
         public void updateTile(){
             if(efficiency > 0 && reloadCounter < 1){
-                reloadCounter += 1f / reloadTime;
+                reloadCounter += getProgressIncrease(reloadTime);
                 warmup = Mathf.approachDelta(warmup, 1f, warmupSpeed);
             }else{
                 warmup = Mathf.approachDelta(warmup, 0f, warmupSpeed);

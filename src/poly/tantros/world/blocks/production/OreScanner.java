@@ -68,7 +68,7 @@ public class OreScanner extends OreRevealer{
         @Override
         public void updateTile(){
             if(efficiency > 0 && progress < 1){
-                progress += 1f / revealTime;
+                progress += getProgressIncrease(revealTime);
                 warmup = Mathf.approachDelta(warmup, 1f, warmupSpeed);
             }else{
                 warmup = Mathf.approachDelta(warmup, 0f, warmupSpeed);

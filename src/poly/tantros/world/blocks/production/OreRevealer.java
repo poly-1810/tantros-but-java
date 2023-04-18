@@ -4,7 +4,6 @@ import arc.*;
 import arc.graphics.g2d.*;
 import arc.struct.*;
 import arc.util.*;
-import mindustry.entities.*;
 import mindustry.entities.units.*;
 import mindustry.game.EventType.*;
 import mindustry.gen.*;
@@ -12,7 +11,6 @@ import mindustry.graphics.*;
 import mindustry.world.*;
 import mindustry.world.draw.*;
 import mindustry.world.meta.*;
-import poly.tantros.content.*;
 import poly.tantros.world.blocks.environment.*;
 import poly.tantros.world.blocks.environment.HiddenOreBlock.*;
 
@@ -23,7 +21,6 @@ public abstract class OreRevealer extends Block{
     public OreRevealType revealType = OreRevealType.scanner;
     public int revealRange = 10;
     public boolean squareArea = false;
-    public Effect revealEffect = TFx.oreReveal;
     public DrawBlock drawer = new DrawDefault();
 
     public OreRevealer(String name){
@@ -57,7 +54,7 @@ public abstract class OreRevealer extends Block{
     @Override
     public void drawOverlay(float x, float y, int rotation){
         if(squareArea){
-            Drawf.square(x, y, revealRange * tilesize, Pal.placing);
+            Drawf.dashSquare(Pal.placing, x, y, revealRange * tilesize);
         }else{
             Drawf.dashCircle(x, y, revealRange * tilesize, Pal.placing);
         }
@@ -88,8 +85,9 @@ public abstract class OreRevealer extends Block{
         /** Reveal ores within range. Called by subclasses. */
         public void revealOres(){
             boolean oreRevealed = false;
-            for(int x = tile.x - revealRange - 2; x <= tile.x + revealRange + 2; x++){
-                for(int y = tile.y + revealRange - 2; y >= tile.y - revealRange + 2; y--){
+            int evenOffset = size % 2 == 0 ? 1 : 0; //On an even-sized block, the center tile is the bottom-left of the 4 center tiles.
+            for(int x = tile.x - revealRange / 2 + 1; x <= tile.x + revealRange / 2 - 1 + evenOffset; x++){
+                for(int y = tile.y + revealRange / 2 - 1 + evenOffset; y >= tile.y - revealRange / 2 + 1; y--){
                     Tile t = world.tile(x, y);
                     if(t != null && (squareArea || t.within(this, revealRange * tilesize)) && t.overlay() instanceof HiddenOreBlock h && h.oreRevealType == revealType){
                         revealed(t, h);
@@ -104,7 +102,7 @@ public abstract class OreRevealer extends Block{
 
         public void revealed(Tile t, HiddenOreBlock ore){
             t.setOverlayQuiet(ore.revealReplacement);
-            revealEffect.at(t.worldx(), t.worldy(), 0f, ore.revealReplacement.itemDrop);
+            ore.revealEffect.at(t.worldx(), t.worldy(), 0f, ore.revealReplacement.itemDrop);
         }
     }
 }

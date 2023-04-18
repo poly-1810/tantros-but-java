@@ -59,7 +59,7 @@ public class GroundCrack{
         Draw.color(color);
 
         float[] items = points.items;
-        int drawnPoints = (int)(length * scl);
+        int drawnPoints = (int)Math.ceil(length * scl);
         float width = this.width * scl;
         float size = width / drawnPoints;
         float lastAngle = 0f;

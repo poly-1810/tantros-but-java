@@ -1,14 +1,17 @@
 package poly.tantros.world.blocks.environment;
 
 import mindustry.*;
+import mindustry.entities.*;
 import mindustry.world.*;
 import mindustry.world.blocks.environment.*;
+import poly.tantros.content.*;
 
 public class HiddenOreBlock extends OverlayFloor{
     /** Whether this should draw even when not in the editor. */
     public boolean drawGame = false;
     public OverlayFloor revealReplacement;
     public OreRevealType oreRevealType = OreRevealType.scanner;
+    public Effect revealEffect = TFx.oreReveal;
 
     public HiddenOreBlock(String name){
         super(name);
