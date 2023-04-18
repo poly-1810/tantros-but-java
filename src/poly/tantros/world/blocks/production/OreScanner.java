@@ -3,7 +3,9 @@ package poly.tantros.world.blocks.production;
 import arc.graphics.g2d.*;
 import arc.math.*;
 import arc.util.*;
+import mindustry.gen.*;
 import mindustry.graphics.*;
+import mindustry.type.*;
 import mindustry.ui.*;
 import poly.tantros.graphics.*;
 
@@ -67,7 +69,7 @@ public class OreScanner extends OreRevealer{
 
         @Override
         public void updateTile(){
-            if(efficiency > 0 && progress < 1){
+            if(efficiency > 0){
                 progress += getProgressIncrease(revealTime);
                 warmup = Mathf.approachDelta(warmup, 1f, warmupSpeed);
             }else{
@@ -85,8 +87,23 @@ public class OreScanner extends OreRevealer{
             //Reveal ores then self-destruct because there's no reason to keep this around after it's completed its task.
             if(progress >= 1){
                 revealOres();
-                kill();
+                scheduleBreak();
             }
+        }
+
+        @Override
+        public boolean shouldConsume(){
+            return progress < 1f;
+        }
+
+        @Override
+        public boolean acceptItem(Building source, Item item){
+            return super.acceptItem(source, item) && shouldConsume();
+        }
+
+        @Override
+        public boolean acceptLiquid(Building source, Liquid liquid){
+            return super.acceptLiquid(source, liquid) && shouldConsume();
         }
 
         @Override

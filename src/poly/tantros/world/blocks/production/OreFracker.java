@@ -10,6 +10,7 @@ import mindustry.entities.*;
 import mindustry.entities.effect.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
+import mindustry.type.*;
 import mindustry.ui.*;
 import poly.tantros.content.*;
 import poly.tantros.graphics.*;
@@ -51,7 +52,7 @@ public class OreFracker extends OreRevealer{
     @Override
     public void init(){
         super.init();
-        if(revealRange < 0) revealRange = size - 2;
+        if(revealRange < 0) revealRange = size / 2 - 1;
         updateClipRadius(revealRange * tilesize);
 
         if(maxCrackDist < 0) maxCrackDist = revealRange * tilesize * 1.1f;
@@ -80,7 +81,7 @@ public class OreFracker extends OreRevealer{
 
             Draw.z(Layer.scorch - 1f);
 
-            if(blastCounter < 0) return;
+            if(blastCounter < 1 || blastCounter >= blasts) return;
 
             if(groundCracks == null){
                 groundCracks = new GroundCrack[cracks];
@@ -122,9 +123,25 @@ public class OreFracker extends OreRevealer{
 
                 if(blastCounter >= blasts){
                     revealOres();
-                    kill();
+                    scheduleBreak();
+                    fadeCracks();
                 }
             }
+        }
+
+        @Override
+        public boolean shouldConsume(){
+            return blastCounter < blasts;
+        }
+
+        @Override
+        public boolean acceptItem(Building source, Item item){
+            return super.acceptItem(source, item) && shouldConsume();
+        }
+
+        @Override
+        public boolean acceptLiquid(Building source, Liquid liquid){
+            return super.acceptLiquid(source, liquid) && shouldConsume();
         }
 
         @Override
@@ -148,6 +165,8 @@ public class OreFracker extends OreRevealer{
             for(GroundCrack crack : groundCracks){
                 TFx.groundCrackFade.at(x, y, blastf, crackColor, crack.copy());
             }
+
+            groundCracks = null;
         }
     }
 }
