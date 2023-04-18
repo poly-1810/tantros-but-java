@@ -7,8 +7,10 @@ import mindustry.*;
 import mindustry.entities.*;
 import mindustry.graphics.*;
 import mindustry.type.*;
+import poly.tantros.graphics.*;
 
 import static arc.graphics.g2d.Draw.color;
+import static mindustry.Vars.state;
 
 public class TFx{
     //only search once
@@ -59,5 +61,12 @@ public class TFx{
         for(int i = 0; i < 4; i++){
             Drawf.tri(x, y, e.fslope() * scl, 2f * e.fslope() * scl, i * 90);
         }
-    });
+    }),
+
+    groundCrackFade = new Effect(400f, 500f, e -> {
+        if(!(e.data instanceof GroundCrack crack)) return;
+        e.lifetime = 240f * e.rotation;
+
+        crack.draw(e.x, e.y, e.color, e.rotation * e.fout());
+    }).layer(Layer.scorch - 1f);
 }

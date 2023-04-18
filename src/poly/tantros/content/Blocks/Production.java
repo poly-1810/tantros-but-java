@@ -10,16 +10,28 @@ import static mindustry.type.ItemStack.*;
 
 public class Production {
     public static Block
-    oreScanner, siftDrill;
+    oreScanner, oreFracker, siftDrill;
 
     public static void load() {
         oreScanner = new OreScanner("ore-scanner"){{
-            requirements(Category.production, BuildVisibility.sandboxOnly, with()); //Placeholder
+            requirements(Category.production, BuildVisibility.sandboxOnly, with()); //TODO Placeholder, no cost yet
 
             envEnabled |= Env.underwater;
             size = 3;
 
-            consumePower(1f);
+            consumePower(1f); //Placeholder
+        }};
+
+        oreFracker = new OreFracker("ore-fracker"){{
+            requirements(Category.production, BuildVisibility.sandboxOnly, with()); //TODO Placeholder, no cost yet
+
+            envEnabled |= Env.underwater;
+            int useAmount = 5;
+            itemCapacity = useAmount; //Don't hold extras when destroying yourself.
+            size = 5;
+            revealRange = 20;
+
+            consumeItem(TItems.rubedo, useAmount); //Placeholder
         }};
 
         siftDrill = new SiftDrill("sift-drill"){{

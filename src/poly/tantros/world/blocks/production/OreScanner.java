@@ -3,20 +3,15 @@ package poly.tantros.world.blocks.production;
 import arc.graphics.g2d.*;
 import arc.math.*;
 import arc.util.*;
-import mindustry.entities.*;
 import mindustry.graphics.*;
 import mindustry.ui.*;
-import mindustry.world.*;
-import poly.tantros.content.*;
 import poly.tantros.graphics.*;
-import poly.tantros.world.blocks.environment.*;
 
 import static mindustry.Vars.*;
 
 public class OreScanner extends OreRevealer{
     public float revealTime = 5f * 60f;
     public float warmupSpeed = 0.019f;
-    public Effect revealEffect = TFx.oreReveal;
 
     public int scanPulses = 3, radarRevolutions = 3, radarTrailLength = 6;
     public float pulseStroke = 2f, ringStroke = 2f;
@@ -46,7 +41,7 @@ public class OreScanner extends OreRevealer{
 
     public class OreScannerBuild extends OreRevealerBuild{
         public float progress, totalProgress, warmup;
-        public ScanTrail trail;
+        public ScanWave trail;
 
         @Override
         public void draw(){
@@ -59,7 +54,7 @@ public class OreScanner extends OreRevealer{
             Lines.stroke(warmup * ringStroke);
             Lines.circle(x, y, rad);
 
-            if(warmup > 0.001f){
+            if(warmup > 0.001f && trail != null){
                 Draw.color();
                 trail.draw(x, y, team.color, rad, warmup);
                 Draw.color(team.color);
@@ -80,7 +75,7 @@ public class OreScanner extends OreRevealer{
             }
 
             if(radarTrailLength > 0){
-                if(trail == null) trail = new ScanTrail(radarTrailLength);
+                if(trail == null) trail = new ScanWave(radarTrailLength);
                 float a = radarInterp.apply(progress() * radarRevolutions % 1f) * 360f + 90f;
                 trail.update(a);
             }
@@ -89,16 +84,9 @@ public class OreScanner extends OreRevealer{
 
             //Reveal ores then self-destruct because there's no reason to keep this around after it's completed its task.
             if(progress >= 1){
-                progress = 1;
                 revealOres();
                 kill();
             }
-        }
-
-        @Override
-        public void revealed(Tile t, HiddenOreBlock ore){
-            super.revealed(t, ore);
-            revealEffect.at(t.worldx(), t.worldy(), 0f, ore.revealReplacement.itemDrop);
         }
 
         @Override

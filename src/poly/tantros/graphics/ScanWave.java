@@ -6,13 +6,13 @@ import arc.math.*;
 import arc.struct.*;
 import arc.util.*;
 
-public class ScanTrail{
+public class ScanWave{
     public int length;
 
     protected FloatSeq points;
     protected float counter = 0f, lastAngle = -1f, lastRadScl = -1f;
 
-    public ScanTrail(int length){
+    public ScanWave(int length){
         this.length = length;
         points = new FloatSeq(length * 2);
     }

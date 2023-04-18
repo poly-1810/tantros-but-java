@@ -4,6 +4,7 @@ import arc.*;
 import arc.graphics.g2d.*;
 import arc.struct.*;
 import arc.util.*;
+import mindustry.entities.*;
 import mindustry.entities.units.*;
 import mindustry.game.EventType.*;
 import mindustry.gen.*;
@@ -11,6 +12,7 @@ import mindustry.graphics.*;
 import mindustry.world.*;
 import mindustry.world.draw.*;
 import mindustry.world.meta.*;
+import poly.tantros.content.*;
 import poly.tantros.world.blocks.environment.*;
 import poly.tantros.world.blocks.environment.HiddenOreBlock.*;
 
@@ -21,6 +23,7 @@ public abstract class OreRevealer extends Block{
     public OreRevealType revealType = OreRevealType.scanner;
     public int revealRange = 10;
     public boolean squareArea = false;
+    public Effect revealEffect = TFx.oreReveal;
     public DrawBlock drawer = new DrawDefault();
 
     public OreRevealer(String name){
@@ -101,6 +104,7 @@ public abstract class OreRevealer extends Block{
 
         public void revealed(Tile t, HiddenOreBlock ore){
             t.setOverlayQuiet(ore.revealReplacement);
+            revealEffect.at(t.worldx(), t.worldy(), 0f, ore.revealReplacement.itemDrop);
         }
     }
 }
