@@ -21,6 +21,7 @@ public abstract class OreRevealer extends Block{
     public OreRevealType revealType = OreRevealType.scanner;
     public int revealRange = 10;
     public boolean squareArea = false;
+    public int tier = 1;
     public DrawBlock drawer = new DrawDefault();
 
     public OreRevealer(String name){
@@ -89,7 +90,7 @@ public abstract class OreRevealer extends Block{
             for(int x = tile.x - revealRange + 2; x <= tile.x + revealRange - 2 + evenOffset; x++){
                 for(int y = tile.y + revealRange - 2 + evenOffset; y >= tile.y - revealRange + 2; y--){
                     Tile t = world.tile(x, y);
-                    if(t != null && (squareArea || t.within(this, revealRange * tilesize + 1)) && t.overlay() instanceof HiddenOreBlock h && h.oreRevealType == revealType){
+                    if(t != null && (squareArea || t.within(this, revealRange * tilesize + 1)) && t.overlay() instanceof HiddenOreBlock h && h.oreRevealType == revealType && tier >= h.tier){
                         revealed(t, h);
                         oreRevealed = true;
                     }

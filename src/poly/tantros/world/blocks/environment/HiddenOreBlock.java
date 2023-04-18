@@ -11,6 +11,7 @@ public class HiddenOreBlock extends OverlayFloor{
     public boolean drawGame = false;
     public OverlayFloor revealReplacement;
     public OreRevealType oreRevealType = OreRevealType.scanner;
+    public int tier = 1;
     public Effect revealEffect = TFx.oreReveal;
 
     public HiddenOreBlock(String name){
