@@ -51,7 +51,7 @@ public class OreScanner extends OreRevealer{
 
             Draw.z(Layer.effect);
             Draw.color(team.color);
-            float rad = revealRange * tilesize;
+            float rad = revealRange * tilesize - (size % 2 == 0 ? 0f : 4f);
 
             Lines.stroke(warmup * ringStroke);
             Lines.circle(x, y, rad);

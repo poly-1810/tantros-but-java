@@ -14,7 +14,7 @@ import static mindustry.Vars.state;
 
 public class TFx{
     //only search once
-    private static TextureRegion pointer, pointerIn;
+    private static TextureRegion pointer, pointerIn, pointerUnkown;
 
     public static final Effect
 
@@ -36,6 +36,7 @@ public class TFx{
         if(pointer == null){
             pointer = Core.atlas.find("poly-tantros-ore-reveal-pointer");
             pointerIn = Core.atlas.find("poly-tantros-ore-reveal-pointer-center");
+            pointerUnkown = Core.atlas.find("poly-tantros-ore-reveal-pointer-unkown");
         }
 
         float dScl = height / (pointer.height / 2f * Draw.scl);
@@ -49,9 +50,15 @@ public class TFx{
         Draw.rect(pointerIn, e.x, e.y);
         Draw.color();
 
-        TextureRegion item = ((Item)e.data).fullIcon;
-        Draw.scl((7f * dScl) / (item.height * Draw.scl));
-        Draw.rect(item, e.x, e.y + 12f * dScl);
+        Item ictem = (Item)e.data;
+        TextureRegion icon;
+        if(ictem != null){
+            icon = ictem.fullIcon;
+            Draw.scl((7f * dScl) / (icon.height * Draw.scl));
+        }else{
+            icon = pointerUnkown;
+        }
+        Draw.rect(icon, e.x, e.y + 12f * dScl);
     }).layer(Layer.overlayUI - 0.1f),
 
     oreSparkle = new Effect(90f, e -> {

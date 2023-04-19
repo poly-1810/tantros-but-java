@@ -52,7 +52,7 @@ public class OreFracker extends OreRevealer{
     @Override
     public void init(){
         super.init();
-        if(revealRange < 0) revealRange = size / 2 - 1;
+        if(revealRange < 0) revealRange = size / 2 - 1 + size % 2;
         updateClipRadius(revealRange * tilesize);
 
         if(maxCrackDist < 0) maxCrackDist = revealRange * tilesize * 1.1f;

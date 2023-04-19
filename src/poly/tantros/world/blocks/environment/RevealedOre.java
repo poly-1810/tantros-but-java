@@ -16,6 +16,10 @@ public class RevealedOre extends OreBlock{
         super(name, ore);
     }
 
+    public RevealedOre(Item ore){
+        super(ore);
+    }
+
     /*
     Waiting for my PR to be merged so that the ore can be solely effects
 
