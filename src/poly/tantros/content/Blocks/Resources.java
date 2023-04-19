@@ -20,7 +20,7 @@ public class Resources {
         tCopperBlock = new ResourceBlock("tcopper-block"){{
             requirements(Category.distribution, with(TItems.tCopper, 24));
 
-            envEnabled = Env.terrestrial | Env.underwater;
+            envEnabled |= Env.underwater;
             scaledHealth = 10;
             armor = 0;
             size = 1;
@@ -47,7 +47,7 @@ public class Resources {
         brassBlock = new ResourceBlock("brass-block"){{
             requirements(Category.distribution, with(TItems.brass, 24));
 
-            envEnabled = Env.terrestrial | Env.underwater;
+            envEnabled |= Env.underwater;
             scaledHealth = 10;
             armor = 4;
             size = 1;
@@ -75,7 +75,7 @@ public class Resources {
         rubedoBlock = new ResourceBlock("rubedo-block"){{
             requirements(Category.distribution, with(TItems.rubedo, 24));
 
-            envEnabled = Env.terrestrial | Env.underwater;
+            envEnabled |= Env.underwater;
             scaledHealth = 10;
             breakOnPlace = true;
             armor = 1;
@@ -103,7 +103,7 @@ public class Resources {
         cobaltBlock = new ResourceBlock("cobalt-block"){{
             requirements(Category.distribution, with(TItems.cobalt, 24));
 
-            envEnabled = Env.terrestrial | Env.underwater;
+            envEnabled |= Env.underwater;
             scaledHealth = 10;
             armor = 4;
             size = 1;
@@ -147,7 +147,7 @@ public class Resources {
         nickelBlock = new ResourceBlock("nickel-block"){{
             requirements(Category.distribution, with(TItems.nickel, 12));
 
-            envEnabled = Env.terrestrial | Env.underwater;
+            envEnabled |= Env.underwater;
             scaledHealth = 10;
             armor = 3;
             size = 1;
