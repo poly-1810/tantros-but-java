@@ -20,7 +20,7 @@ public class Distribution {
         defabricator = new PayloadDeconstructor("defabricator"){{
             requirements(Category.units, with(TItems.nickel, 12));
 
-            envEnabled = Env.terrestrial | Env.underwater;
+            envEnabled |= Env.underwater;
             regionSuffix = "-dark";
             scaledHealth = 90;
             researchCostMultiplier = 0.25f;
@@ -34,7 +34,7 @@ public class Distribution {
         fabricator = new Constructor("fabricator"){{
             requirements(Category.units, with(TItems.nickel, 12));
 
-            envEnabled = Env.terrestrial | Env.underwater;
+            envEnabled |= Env.underwater;
             regionSuffix = "-dark";
             scaledHealth = 90;
             hasPower = false;
@@ -47,7 +47,7 @@ public class Distribution {
         payloadBelt = new CoveredPayloadConveyor("payload-belt"){{
             requirements(Category.units, with(TItems.nickel, 2));
 
-            envEnabled = Env.terrestrial | Env.underwater;
+            envEnabled |= Env.underwater;
             canOverdrive = false;
             scaledHealth = 50;
             moveTime = 24;
@@ -61,7 +61,7 @@ public class Distribution {
         payloadDistributor = new CoveredPayloadRouter("payload-distributor"){{
             requirements(Category.units, with(TItems.tCopper, 2, TItems.nickel, 4));
 
-            envEnabled = Env.terrestrial | Env.underwater;
+            envEnabled |= Env.underwater;
             canOverdrive = false;
             scaledHealth = 50;
             moveTime = 24;
@@ -74,7 +74,7 @@ public class Distribution {
         payloadLauncher = new PayloadMassDriver("payload-launcher"){{
             requirements(Category.distribution, with(TItems.nickel, 8, TItems.tCopper, 8, TItems.calcite, 4, TItems.zinc, 4));
 
-            envEnabled = Env.terrestrial | Env.underwater;
+            envEnabled |= Env.underwater;
             regionSuffix = "-dark";
             scaledHealth = 50f;
             size = 2;
