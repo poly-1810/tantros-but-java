@@ -18,6 +18,9 @@ import static mindustry.Vars.*;
 
 /** Base block for any {@link HiddenOreBlock} revealer. Its building does nothing on its own, subclasses need to call {@link OreRevealerBuild#revealOres()}. */
 public abstract class OreRevealer extends Block{
+    protected static final TileChangeEvent tileChange = new TileChangeEvent();
+    protected static final TilePreChangeEvent preChange = new TilePreChangeEvent();
+
     public OreRevealType revealType = OreRevealType.scanner;
     public int revealRange = 10;
     public boolean squareArea = false;
@@ -100,11 +103,13 @@ public abstract class OreRevealer extends Block{
             }
 
             //If an ore was revealed, fire a world load event to index the newly revealed ore.
-            if(oreRevealed) Events.fire(new WorldLoadEvent());
+            if(oreRevealed) renderer.blocks.floor.clearTiles();
         }
 
         public void revealed(Tile t, HiddenOreBlock ore){
+            Events.fire(preChange.set(t));
             t.setOverlayQuiet(ore.revealReplacement);
+            Events.fire(tileChange.set(t));
             ore.displayRevealEffect(t);
         }
 
