@@ -5,6 +5,7 @@ import mindustry.world.*;
 import mindustry.world.meta.*;
 import poly.tantros.content.*;
 import poly.tantros.world.blocks.production.*;
+import poly.tantros.world.blocks.resources.ResourceBlock;
 
 import static mindustry.type.ItemStack.*;
 

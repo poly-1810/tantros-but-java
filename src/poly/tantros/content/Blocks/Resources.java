@@ -6,7 +6,6 @@ import mindustry.content.*;
 import mindustry.entities.bullet.*;
 import mindustry.entities.effect.*;
 import mindustry.type.*;
-import mindustry.world.*;
 import mindustry.world.meta.*;
 import poly.tantros.content.*;
 import poly.tantros.world.blocks.resources.*;
@@ -14,7 +13,7 @@ import poly.tantros.world.blocks.resources.*;
 import static mindustry.type.ItemStack.*;
 
 public class Resources {
-    public static Block brassBlock, calciteBlock, cobaltBlock, nickelBlock, rubedoBlock, tCopperBlock, zincBlock;
+    public static ResourceBlock brassBlock, calciteBlock, cobaltBlock, nickelBlock, rubedoBlock, tCopperBlock, zincBlock;
 
     public static void load() {
         tCopperBlock = new ResourceBlock("tcopper-block"){{

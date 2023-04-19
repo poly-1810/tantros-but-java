@@ -14,10 +14,10 @@ public class TPlacement {
     private static final Seq<BuildPlan> plans1 = new Seq<>();
 
     /** Copy of {@link Placement#calculateBridges(Seq, DirectionBridge, boolean, Boolf)} adapted to work for PowerConduits and BeamNodes */
-    public static void calculateBridges(Seq<BuildPlan> plans, DirectionalBeamNode bridge, Boolf<Block> same){
-        if(Placement.isSidePlace(plans)) return;
+    public static void calculateBridges(Seq<BuildPlan> plans, DirectionalBeamNode bridge, Boolf<Block> same) {
+        if (Placement.isSidePlace(plans)) return;
 
-        //check for orthogonal placement + unlocked state
+        // check for orthogonal placement + unlocked state
         if (!(plans.first().x == plans.peek().x || plans.first().y == plans.peek().y) || !bridge.unlockedNow()) {
             return;
         }
@@ -26,7 +26,7 @@ public class TPlacement {
 
         Boolf<BuildPlan> placeable = plan ->
             (plan.placeable(player.team()) ||
-            (plan.tile() != null && same.get(plan.tile().block()))); //don't count the same block as inaccessible
+            (plan.tile() != null && same.get(plan.tile().block()))); // don't count the same block as inaccessible
 
         var result = plans1.clear();
 
@@ -35,23 +35,23 @@ public class TPlacement {
             var cur = plans.get(i);
             result.add(cur);
 
-            //gap found
+            // gap found
             if (i < plans.size - 1 && placeable.get(cur) && (!placeable.get(plans.get(i + 1)))) {
 
-                //find the closest valid position within range
+                // find the closest valid position within range
                 for (int j = i + 2; j < plans.size; j++) {
                     var other = plans.get(j);
 
-                    //out of range now, set to current position and keep scanning forward for next occurrence
-                    if(!bridge.positionsValid(cur.x, cur.y, other.x, other.y)){
-                        //add 'missed' conveyors
-                        for(int k = i + 1; k < j; k++){
+                    // out of range now, set to current position and keep scanning forward for next occurrence
+                    if (!bridge.positionsValid(cur.x, cur.y, other.x, other.y)) {
+                        // add 'missed' conveyors
+                        for (int k = i + 1; k < j; k++) {
                             result.add(plans.get(k));
                         }
                         i = j;
                         continue outer;
-                    } else if(placeable.get(other)) {
-                        //found a link, assign bridges
+                    } else if (placeable.get(other)) {
+                        // found a link, assign bridges
                         cur.block = bridge;
                         other.block = bridge;
 
@@ -60,13 +60,13 @@ public class TPlacement {
                     }
                 }
 
-                //if it got here, that means nothing was found. this likely means there's a bunch of stuff at the end; add it and bail out
+                // if it got here, that means nothing was found. this likely means there's a bunch of stuff at the end; add it and bail out
                 for (int j = i + 1; j < plans.size; j++) {
                     result.add(plans.get(j));
                 }
                 break;
             } else {
-                i ++;
+                i++;
             }
         }
 

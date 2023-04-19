@@ -24,7 +24,7 @@ public class Power {
 
     ;
 
-    public static void load(){
+    public static void load() {
         powerConduit = new PowerConduit("power-conduit"){{
             requirements(Category.power, with(TItems.nickel, 5, TItems.tCopper, 10));
 

@@ -65,6 +65,9 @@ public class PolyTantros extends Mod {
         TUnitTypes.load();
         TWeathers.load();
 
+        // special category
+        Resources.load();
+
         // loading blocks
         Crafting.load();
         Defense.load();
@@ -75,7 +78,6 @@ public class PolyTantros extends Mod {
         Logic.load();
         Power.load();
         Production.load();
-        Resources.load();
         Turret.load();
         Units.load();
     }

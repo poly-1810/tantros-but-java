@@ -1,6 +1,6 @@
 package poly.tantros.world.blocks.resources;
 
-import mindustry.*;
+import mindustry.type.*;
 import mindustry.world.blocks.defense.*;
 
 public class ResourceBlock extends Wall {

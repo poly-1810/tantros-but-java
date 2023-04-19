@@ -1,13 +1,17 @@
 package poly.tantros.world.blocks.power;
 
+import arc.*;
+import arc.func.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
 import arc.math.geom.*;
 import arc.struct.*;
 import arc.util.*;
+import mindustry.core.*;
 import mindustry.entities.units.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
+import mindustry.ui.Bar;
 import mindustry.world.*;
 import mindustry.world.blocks.power.*;
 import poly.tantros.content.Blocks.*;
@@ -34,7 +38,7 @@ public class PowerConduit extends PowerBlock {
     public void init() {
         super.init();
 
-        if(bridgeReplacement == null || !(bridgeReplacement instanceof DirectionalBeamNode)) bridgeReplacement = Power.powerPipe;
+        if (bridgeReplacement == null || !(bridgeReplacement instanceof DirectionalBeamNode)) bridgeReplacement = Power.powerPipe;
     }
 
     @Override
@@ -55,11 +59,18 @@ public class PowerConduit extends PowerBlock {
     }
 
     @Override
+    public void setBars() {
+        super.setBars();
+        addBar("power", PowerNode.makePowerBalance());
+        addBar("batteries", PowerNode.makeBatteryBalance());
+    }
+
+    @Override
     public void drawPlanRegion(BuildPlan plan, Eachable<BuildPlan> list) {
         Draw.rect(baseRegion, plan.drawx(), plan.drawy());
 
         boolean[] connections = new boolean[4];
-        //Copied from Autotiler
+        // copied from Autotiler
         list.each(other -> {
             if (other.breaking || other == plan) return;
 
@@ -117,7 +128,7 @@ public class PowerConduit extends PowerBlock {
 
                         Draw.scl(scale);
                         Draw.rect(laserEnds[1], x, y, rot);
-                        if(!node) Draw.rect(laserEnds[0], x + px, y + py, rot + 180);
+                        if (!node) Draw.rect(laserEnds[0], x + px, y + py, rot + 180);
                         Draw.reset();
 
                         Lines.stroke(12f * scale);

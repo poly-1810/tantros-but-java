@@ -40,7 +40,7 @@ public class SiftDrill extends Drill {
     public class SiftDrillBuild extends DrillBuild {
         @Override
         public void updateTile() {
-            //Copy over Drill code just so I can mess with the update effect.
+            // copy over Drill code just so I can mess with the update effect.
             if (timer(timerDump, dumpTime)) {
                 dump(dominantItem != null && items.has(dominantItem) ? dominantItem : null);
             }
@@ -108,7 +108,7 @@ public class SiftDrill extends Drill {
             Draw.z(Layer.blockAfterCracks + 0.1f);
             Draw.rect(topRegion, x, y);
 
-            if (dominantItem != null && drawMineItem){
+            if (dominantItem != null && drawMineItem) {
                 Draw.color(dominantItem.color);
                 Draw.rect(itemRegion, x, y);
                 Draw.color();

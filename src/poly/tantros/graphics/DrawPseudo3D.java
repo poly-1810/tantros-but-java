@@ -7,12 +7,12 @@ import static arc.math.Mathf.*;
 
 public class DrawPseudo3D {
     public static float xHeight(float x, float height) {
-        if(height <= 0) return x;
+        if (height <= 0) return x;
         return x + xOffset(x, height);
     }
 
     public static float yHeight(float y, float height) {
-        if(height <= 0) return y;
+        if (height <= 0) return y;
         return y + yOffset(y, height);
     }
 
