@@ -10,17 +10,20 @@ import mindustry.entities.units.*;
 import mindustry.game.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
+import mindustry.type.*;
 import mindustry.ui.*;
 import mindustry.world.*;
 import mindustry.world.blocks.payloads.*;
 import mindustry.world.meta.*;
-import poly.tantros.content.Blocks.*;
-import poly.tantros.content.*;
 import poly.tantros.world.blocks.resources.*;
 import poly.tantros.world.meta.*;
 
 public class DeepDrill extends PayloadBlock {
-    private int drawTiles = 0; // only for drawPlace
+    protected @Nullable Item returnItem;
+    protected int returnCount;
+    protected final ObjectIntMap<Item> oreCount = new ObjectIntMap<>();
+    protected final Seq<Item> itemArray = new Seq<>();
+
     public Seq<ResourceBlock> allowedBlocks = new Seq<>();
 
     public DeepDrill(String name) {
@@ -32,7 +35,7 @@ public class DeepDrill extends PayloadBlock {
     @Override
     public void setBars() {
         super.setBars();
-        addBar("progress", (DeepDrillBuild e) -> new Bar("bar.loadprogress", Pal.accent, () -> e.drillTime / 3600f));
+        addBar("progress", (DeepDrillBuild e) -> new Bar("bar.loadprogress", Pal.accent, () -> e.drillTime / (e.blockB.drillTime * 60f)));
     }
 
     @Override
@@ -44,17 +47,16 @@ public class DeepDrill extends PayloadBlock {
 
     @Override
     public boolean canPlaceOn(Tile tile, Team team, int rotation) {
-        drawTiles = 0;
-
         if (isMultiblock()) {
             for (Tile other : tile.getLinkedTilesAs(this, tempTiles)) {
-                if (other.drop() == TItems.tCopper) drawTiles++;
+                if (canMine(other)) {
+                    return true;
+                }
             }
+            return false;
         } else {
-            if (tile.drop() == TItems.tCopper) drawTiles = 1;
+            return canMine(tile);
         }
-
-        return drawTiles >= 1;
     }
 
     @Override
@@ -64,25 +66,64 @@ public class DeepDrill extends PayloadBlock {
         Tile tile = Vars.world.tile(x, y);
         if (tile == null) return;
 
-        boolean ore = false;
+        countOre(tile);
 
-        if (isMultiblock()) {
-            for (Tile other : tile.getLinkedTilesAs(this, tempTiles)) {
-                if (other.drop() == TItems.tCopper) ore = true;
-                if (ore) break;
-            }
-        } else {
-            if (tile.drop() == TItems.tCopper) ore = true;
-        }
-
-        if (ore) {
-            float width = drawPlaceText(Core.bundle.formatFloat("bar.efficiency", ((float) drawTiles / (size * size)) * 100f, 2), x, y, valid);
+        if (returnItem != null) {
+            float width = drawPlaceText(Core.bundle.formatFloat("bar.efficiency", ((float) returnCount / (size * size)) * 100f, 2), x, y, valid);
             float dx = x * Vars.tilesize + offset - width / 2f - 4f, dy = y * Vars.tilesize + offset + size * Vars.tilesize / 2f + 5, s = Vars.iconSmall / 4f;
             Draw.mixcol(Color.darkGray, 1f);
-            Draw.rect(Resources.tCopperBlock.fullIcon, dx, dy - 1, s, s);
+            Draw.rect(blockByItem(returnItem).fullIcon, dx, dy - 1, s, s);
             Draw.reset();
-            Draw.rect(Resources.tCopperBlock.fullIcon, dx, dy, s, s);
+            Draw.rect(blockByItem(returnItem).fullIcon, dx, dy, s, s);
         }
+    }
+
+    public boolean canMine(Tile tile) {
+        if (tile == null || tile.block().isStatic()) return false;
+        for (ResourceBlock block : allowedBlocks) {
+            if (tile.drop() == block.item) return true;
+        }
+        return false;
+    }
+
+    public ResourceBlock blockByItem(Item item) {
+        for (ResourceBlock block : allowedBlocks) {
+            if (block.item == item) return block;
+        }
+        return null;
+    }
+
+    protected void countOre(Tile tile) {
+        returnItem = null;
+        returnCount = 0;
+
+        oreCount.clear();
+        itemArray.clear();
+
+        for (Tile other : tile.getLinkedTilesAs(this, tempTiles)) {
+            if (canMine(other)) {
+                oreCount.increment(other.drop(), 0, 1);
+            }
+        }
+
+        for (Item item : oreCount.keys()) {
+            itemArray.add(item);
+        }
+
+        itemArray.sort((item1, item2) -> {
+            int type = Boolean.compare(!item1.lowPriority, !item2.lowPriority);
+            if (type != 0) return type;
+            int amounts = Integer.compare(oreCount.get(item1, 0), oreCount.get(item2, 0));
+            if (amounts != 0) return amounts;
+            return Integer.compare(item1.id, item2.id);
+        });
+
+        if (itemArray.size == 0) {
+            return;
+        }
+
+        returnItem = itemArray.peek();
+        returnCount = oreCount.get(itemArray.peek(), 0);
     }
 
     @Override
@@ -99,7 +140,44 @@ public class DeepDrill extends PayloadBlock {
 
     public class DeepDrillBuild extends PayloadBlock.PayloadBlockBuild<Payload> {
         public float drillTime = 0f;
-        public int tiles = 0;
+        public ResourceBlock blockB;
+        protected @Nullable Item returnItemB;
+        protected int returnCountB;
+        protected final ObjectIntMap<Item> oreCountB = new ObjectIntMap<>();
+        protected final Seq<Item> itemArrayB = new Seq<>();
+
+        protected void countOreB(Tile tile) {
+            returnItemB = null;
+            returnCountB = 0;
+
+            oreCountB.clear();
+            itemArrayB.clear();
+
+            for (Tile other : tile.getLinkedTilesAs(this.block, tempTiles)) {
+                if (canMine(other)) {
+                    oreCountB.increment(other.drop(), 0, 1);
+                }
+            }
+
+            for (Item item : oreCountB.keys()) {
+                itemArrayB.add(item);
+            }
+
+            itemArrayB.sort((item1, item2) -> {
+                int type = Boolean.compare(!item1.lowPriority, !item2.lowPriority);
+                if (type != 0) return type;
+                int amounts = Integer.compare(oreCountB.get(item1, 0), oreCountB.get(item2, 0));
+                if (amounts != 0) return amounts;
+                return Integer.compare(item1.id, item2.id);
+            });
+
+            if (itemArrayB.size == 0) {
+                return;
+            }
+
+            returnItemB = itemArrayB.peek();
+            returnCountB = oreCountB.get(itemArrayB.peek(), 0);
+        }
 
         @Override
         public boolean acceptPayload(Building source, Payload payload) {
@@ -110,13 +188,8 @@ public class DeepDrill extends PayloadBlock {
         public void placed() {
             super.placed();
 
-            if (isMultiblock()) {
-                for (Tile other : tile.getLinkedTilesAs(this.block, tempTiles)) {
-                    if (other.drop() == TItems.tCopper) tiles++;
-                }
-            } else {
-                if (tile.drop() == TItems.tCopper) tiles = 1;
-            }
+            countOreB(this.tile);
+            blockB = blockByItem(returnItemB);
         }
 
         @Override
@@ -125,10 +198,10 @@ public class DeepDrill extends PayloadBlock {
 
             if (canConsume()) {
                 consume();
-                drillTime += buildOn().power.status * ((float) tiles / (size * size));
+                drillTime += buildOn().power.status * ((float) returnCountB / (size * size));
             }
-            if (drillTime >= 3600f) {
-                payload = new BuildPayload(Resources.tCopperBlock, team);
+            if (drillTime >= blockB.drillTime * 60) {
+                payload = new BuildPayload(blockB, team);
                 payVector.setZero();
                 payRotation = rotdeg();
                 drillTime = 0;
