@@ -218,7 +218,7 @@ public class Turret {
             }};
         }};
         swipe = new ItemTurret("swipe"){{
-            requirements(Category.turret, with(TItems.carbon, 1));
+            requirements(Category.turret, with(TItems.tCopper, 20, TItems.cobalt, 40, TItems.nickel, 30));
 
             envEnabled |= Env.underwater;
             scaledHealth = 130f;

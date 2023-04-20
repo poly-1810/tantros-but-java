@@ -72,7 +72,7 @@ public class Power {
             envEnabled |= Env.underwater;
             scaledHealth = 90f;
             size = 2;
-            powerProduction = 0.5f;
+            powerProduction = 0.48f;
             itemDuration = 450f;
             drawer = new DrawMulti(
                     new DrawRegion("-bottom"),
