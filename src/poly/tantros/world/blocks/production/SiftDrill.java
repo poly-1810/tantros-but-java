@@ -6,6 +6,7 @@ import arc.math.*;
 import arc.util.*;
 import mindustry.content.*;
 import mindustry.graphics.*;
+import mindustry.world.*;
 import mindustry.world.blocks.production.*;
 import poly.tantros.content.*;
 
@@ -14,7 +15,8 @@ import static mindustry.Vars.*;
 public class SiftDrill extends Drill {
     public float siftScl = 5f, siftMag = Float.MIN_VALUE;
     public float siftEffectTime = Float.MIN_VALUE, siftEffectMinDist = 0f, siftEffectMaxDist = -1f;
-    public float updateEffects = 5f;
+    public int updateEffects = 7;
+    public float oreColorChance = 0.6f, oreColorScl = 0.5f;
 
     public SiftDrill(String name) {
         super(name);
@@ -64,8 +66,16 @@ public class SiftDrill extends Drill {
                 for (int i = 0; i < updateEffects; i++) {
                     if (Mathf.chanceDelta(updateEffectChance * warmup * posChance)) {
                         float ex = x + pos, ey = y + Mathf.range(siftEffectMinDist, siftEffectMaxDist);
+                        Tile t = world.tileWorld(ex, ey);
+                        float rad = posChance * warmup;
+                        if(t.drop() == dominantItem && Mathf.chance(oreColorChance)){
+                            Tmp.c1.set(dominantItem.color);
+                            rad *= oreColorScl;
+                        }else{
+                            Tmp.c1.set(world.tileWorld(ex, ey).floor().mapColor);
+                        }
 
-                        updateEffect.at(ex, ey, posChance * warmup, Tmp.c1.set(world.tileWorld(ex, ey).floor().mapColor).mul(1.5f + Mathf.range(0.15f)));
+                        updateEffect.at(ex, ey, rad, Tmp.c1.mul(1.5f + Mathf.range(0.15f)));
                     }
                 }
             } else {
