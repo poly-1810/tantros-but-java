@@ -16,7 +16,7 @@ import poly.tantros.content.*;
 import poly.tantros.graphics.*;
 import poly.tantros.world.blocks.environment.HiddenOreBlock.*;
 
-import static mindustry.Vars.tilesize;
+import mindustry.Vars;
 
 public class OreFracker extends OreRevealer {
     protected static final Rand crackRand = new Rand();
@@ -53,9 +53,9 @@ public class OreFracker extends OreRevealer {
     public void init() {
         super.init();
         if (revealRange < 0) revealRange = size / 2 - 1 + size % 2;
-        updateClipRadius(revealRange * tilesize);
+        updateClipRadius(revealRange * Vars.tilesize);
 
-        if (maxCrackDist < 0) maxCrackDist = revealRange * tilesize * 1.1f;
+        if (maxCrackDist < 0) maxCrackDist = revealRange * Vars.tilesize * 1.1f;
         if (minCrackDst < 0) minCrackDst = maxCrackDist * 0.75f;
     }
 

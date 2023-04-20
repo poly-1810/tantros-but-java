@@ -3,6 +3,7 @@ package poly.tantros.world.blocks.production;
 import arc.*;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
+import arc.struct.*;
 import arc.util.*;
 import mindustry.*;
 import mindustry.entities.units.*;
@@ -15,9 +16,12 @@ import mindustry.world.blocks.payloads.*;
 import mindustry.world.meta.*;
 import poly.tantros.content.Blocks.*;
 import poly.tantros.content.*;
+import poly.tantros.world.blocks.resources.*;
+import poly.tantros.world.meta.*;
 
 public class DeepDrill extends PayloadBlock {
     private int drawTiles = 0; // only for drawPlace
+    public Seq<ResourceBlock> allowedBlocks = new Seq<>();
 
     public DeepDrill(String name) {
         super(name);
@@ -35,20 +39,7 @@ public class DeepDrill extends PayloadBlock {
     public void setStats() {
         super.setStats();
 
-        stats.add(Stat.output, table -> {
-            table.row();
-
-            table.table(Styles.grayPanel, t -> {
-                t.left();
-                t.image(Resources.tCopperBlock.uiIcon).scaling(Scaling.fit).size(32).pad(14).left();
-                t.table(info -> {
-                    info.defaults().left();
-                    info.add(Resources.tCopperBlock.localizedName);
-                    info.row();
-                    info.add("60 " + Core.bundle.get("unit.seconds")).color(Color.lightGray);
-                });
-            }).growX().pad(5);
-        });
+        stats.add(Stat.output, TStatValues.blockList(allowedBlocks));
     }
 
     @Override

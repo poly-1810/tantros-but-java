@@ -1,17 +1,13 @@
 package poly.tantros.world.blocks.power;
 
-import arc.*;
-import arc.func.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
 import arc.math.geom.*;
 import arc.struct.*;
 import arc.util.*;
-import mindustry.core.*;
 import mindustry.entities.units.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
-import mindustry.ui.Bar;
 import mindustry.world.*;
 import mindustry.world.blocks.power.*;
 import poly.tantros.content.Blocks.*;

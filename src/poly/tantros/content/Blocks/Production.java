@@ -57,8 +57,12 @@ public class Production {
         deepDrill = new DeepDrill("deep-drill"){{
             requirements(Category.production, with(TItems.carbon, 1));
 
-            envEnabled = Env.terrestrial | Env.underwater;
+            envEnabled |= Env.underwater;
             scaledHealth = 65f;
+            allowedBlocks.addAll(
+                    Resources.rubedoBlock,
+                    Resources.tCopperBlock
+            );
             size = 4;
 
             consumePower(20f);

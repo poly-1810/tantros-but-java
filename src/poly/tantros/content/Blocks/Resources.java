@@ -21,6 +21,8 @@ public class Resources {
 
             envEnabled |= Env.underwater;
             scaledHealth = 10;
+            item = TItems.tCopper;
+            drillTime = 10;
             armor = 0;
             size = 1;
             buildCostMultiplier = 0.0f;
@@ -48,6 +50,7 @@ public class Resources {
 
             envEnabled |= Env.underwater;
             scaledHealth = 10;
+            item = TItems.brass;
             armor = 4;
             size = 1;
             buildCostMultiplier = 0.0f;
@@ -76,6 +79,8 @@ public class Resources {
 
             envEnabled |= Env.underwater;
             scaledHealth = 10;
+            item = TItems.rubedo;
+            drillTime = 60;
             breakOnPlace = true;
             armor = 1;
             size = 1;
@@ -104,6 +109,7 @@ public class Resources {
 
             envEnabled |= Env.underwater;
             scaledHealth = 10;
+            item = TItems.cobalt;
             armor = 4;
             size = 1;
             buildCostMultiplier = 0.0f;
@@ -148,6 +154,7 @@ public class Resources {
 
             envEnabled |= Env.underwater;
             scaledHealth = 10;
+            item = TItems.nickel;
             armor = 3;
             size = 1;
             researchCostMultiplier = 0.25f;
