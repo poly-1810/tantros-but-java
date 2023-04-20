@@ -89,6 +89,7 @@ public class Distribution {
             grabHeight = 1.6f;
             length = 5.75f;
             shootEffect = Fx.none;
+            researchCostMultiplier = 0.5f;
             smokeEffect = new ParticleEffect(){{
                 colorFrom = Color.valueOf("efe3ff");
                 colorTo = Color.valueOf("efe3ff");

@@ -308,6 +308,7 @@ public class Turret {
             range = 180f;
             shootY = 0.75f;
             velocityRnd = 0f;
+            researchCostMultiplier = 0.25f;
 
             consumePower(0.5f);
 
