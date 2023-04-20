@@ -4,11 +4,13 @@ import arc.*;
 import mindustry.*;
 import mindustry.content.*;
 import mindustry.game.*;
+import mindustry.graphics.LoadRenderer;
 import mindustry.mod.*;
 import mindustry.mod.Mods.*;
 import poly.tantros.content.Blocks.*;
 import poly.tantros.content.*;
 import poly.tantros.maps.planet.*;
+import poly.tantros.tools.*;
 import poly.tantros.ui.dialogs.*;
 
 import static arc.Core.*;
@@ -30,7 +32,7 @@ public class PolyTantros extends Mod {
         Planets.tantros.accessible = true;
         Planets.tantros.alwaysUnlocked = true;
         Planets.tantros.defaultCore = Effect.corePod;
-        Planets.tantros.hiddenItems.addAll(Items.serpuloItems).addAll(Items.erekirItems).removeAll(TItems.tantrosItems);
+        Planets.tantros.hiddenItems = CheckSeq.check(TItems.tantrosItems);
         Planets.tantros.unlockedOnLand.add(Effect.corePod);
 
         if (!headless) {
