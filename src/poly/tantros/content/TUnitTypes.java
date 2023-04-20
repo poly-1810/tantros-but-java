@@ -137,8 +137,6 @@ public class TUnitTypes {
         assemblySub = new UnitType("assembly-sub"){{
             constructor = BuildingTetherPayloadUnit::create;
 
-            EntityMapping.nameMap.put(name, constructor);
-
             envEnabled |= Env.underwater;
             aiController = AssemblerAI::new;
             createWreck = false;
@@ -228,8 +226,6 @@ public class TUnitTypes {
 
         requiem = new UnitType("requiem"){{
             constructor = UnitEntity::create;
-
-            EntityMapping.nameMap.put(name, constructor);
 
             envEnabled |= Env.underwater;
             health = 350f;
@@ -334,8 +330,6 @@ public class TUnitTypes {
         chasm = new TankUnitType("chasm"){{
             constructor = TankUnit::create;
 
-            EntityMapping.nameMap.put(name, constructor);
-
             envEnabled |= Env.underwater;
             health = 270f;
             speed = 2.2f;
@@ -384,8 +378,6 @@ public class TUnitTypes {
         tendril = new UnitType("tendril"){{
             constructor = CrawlUnit::create;
 
-            EntityMapping.nameMap.put(name, constructor);
-
             envEnabled |= Env.underwater;
             health = 450f;
             speed = 0.8f;
@@ -409,8 +401,6 @@ public class TUnitTypes {
         chain = new UnitType("chain"){{
             constructor = LegsUnit::create;
 
-            EntityMapping.nameMap.put(name, constructor);
-
             envEnabled |= Env.underwater;
             groundLayer = 75f;
             health = 270f;
@@ -420,12 +410,6 @@ public class TUnitTypes {
             hitSize = 9f;
             buildRange = 96f;
             fogRadius = 8f;
-            ammoCapacity = 20;
-            ammoType = new ItemAmmoType(){{
-                range = 32f;
-                ammoPerItem = 5;
-                item = TItems.cobalt;
-            }};
             rotateSpeed = 5f;
             lockLegBase = true;
             legContinuousMove = true;
@@ -499,8 +483,6 @@ public class TUnitTypes {
         }};
         chainDrone = new UnitType("chain-drone"){{
             constructor = UnitEntity::create;
-
-            EntityMapping.nameMap.put(name, constructor);
 
             envEnabled |= Env.underwater;
             aiController = DefenderAI::new;

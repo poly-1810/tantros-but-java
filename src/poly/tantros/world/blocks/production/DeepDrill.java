@@ -3,7 +3,6 @@ package poly.tantros.world.blocks.production;
 import arc.*;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
-import arc.struct.Seq;
 import arc.util.*;
 import mindustry.*;
 import mindustry.entities.units.*;
@@ -14,9 +13,8 @@ import mindustry.ui.*;
 import mindustry.world.*;
 import mindustry.world.blocks.payloads.*;
 import mindustry.world.meta.*;
-import poly.tantros.content.Blocks.Resources;
-import poly.tantros.content.TItems;
-import poly.tantros.world.blocks.resources.*;
+import poly.tantros.content.Blocks.*;
+import poly.tantros.content.*;
 
 public class DeepDrill extends PayloadBlock {
     private int drawTiles = 0; // only for drawPlace

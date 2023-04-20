@@ -8,15 +8,15 @@ import mindustry.world.*;
 import mindustry.world.blocks.environment.*;
 import poly.tantros.content.*;
 
-public class RevealedOre extends OreBlock{
+public class RevealedOre extends OreBlock {
     public Effect sparkleEffect = TFx.oreSparkle;
     public float effectChance = 0.01f;
 
-    public RevealedOre(String name, Item ore){
+    public RevealedOre(String name, Item ore) {
         super(name, ore);
     }
 
-    public RevealedOre(Item ore){
+    public RevealedOre(Item ore) {
         super(ore);
     }
 
@@ -24,19 +24,19 @@ public class RevealedOre extends OreBlock{
     Waiting for my PR to be merged so that the ore can be solely effects
 
     @Override
-    public void drawBase(Tile tile){
-        if(!Vars.state.isEditor()) return; //Only make visible in the editor.
+    public void drawBase(Tile tile) {
+        if (!Vars.state.isEditor()) return; //Only make visible in the editor.
         super.drawBase(tile);
     }*/
 
     @Override
-    public boolean updateRender(Tile tile){
+    public boolean updateRender(Tile tile) {
         return sparkleEffect != Fx.none;
     }
 
     @Override
-    public void renderUpdate(UpdateRenderState state){
-        if(state.tile.block() == Blocks.air && Mathf.chanceDelta(effectChance)){
+    public void renderUpdate(UpdateRenderState state) {
+        if (state.tile.block() == Blocks.air && Mathf.chanceDelta(effectChance)) {
             sparkleEffect.at(state.tile.worldx(), state.tile.worldy(), itemDrop.color);
         }
     }

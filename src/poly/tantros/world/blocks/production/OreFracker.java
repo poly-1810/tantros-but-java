@@ -18,7 +18,7 @@ import poly.tantros.world.blocks.environment.HiddenOreBlock.*;
 
 import static mindustry.Vars.tilesize;
 
-public class OreFracker extends OreRevealer{
+public class OreFracker extends OreRevealer {
     protected static final Rand crackRand = new Rand();
 
     public float reloadTime = 4f * 60f;
@@ -42,7 +42,7 @@ public class OreFracker extends OreRevealer{
     );
     public float blastSoundVolume = 1f, blastSoundPitchRand = 0.1f;
 
-    public OreFracker(String name){
+    public OreFracker(String name) {
         super(name);
         revealType = OreRevealType.fracker;
         revealRange = -1;
@@ -50,17 +50,17 @@ public class OreFracker extends OreRevealer{
     }
 
     @Override
-    public void init(){
+    public void init() {
         super.init();
-        if(revealRange < 0) revealRange = size / 2 - 1 + size % 2;
+        if (revealRange < 0) revealRange = size / 2 - 1 + size % 2;
         updateClipRadius(revealRange * tilesize);
 
-        if(maxCrackDist < 0) maxCrackDist = revealRange * tilesize * 1.1f;
-        if(minCrackDst < 0) minCrackDst = maxCrackDist * 0.75f;
+        if (maxCrackDist < 0) maxCrackDist = revealRange * tilesize * 1.1f;
+        if (minCrackDst < 0) minCrackDst = maxCrackDist * 0.75f;
     }
 
     @Override
-    public void setBars(){
+    public void setBars() {
         super.setBars();
 
         addBar("progress", (OreFrackerBuild entity) -> new Bar(
@@ -70,23 +70,23 @@ public class OreFracker extends OreRevealer{
         ));
     }
 
-    public class OreFrackerBuild extends OreRevealerBuild{
+    public class OreFrackerBuild extends OreRevealerBuild {
         public float reloadCounter, totalProgress, warmup;
         public int blastCounter;
         public GroundCrack[] groundCracks;
 
         @Override
-        public void draw(){
+        public void draw() {
             super.draw();
 
             Draw.z(Layer.scorch - 1f);
 
-            if(blastCounter < 1 || blastCounter >= blasts) return;
+            if (blastCounter < 1 || blastCounter >= blasts) return;
 
-            if(groundCracks == null){
+            if (groundCracks == null) {
                 groundCracks = new GroundCrack[cracks];
                 crackRand.setSeed(id + tile.pos());
-                for(int i = 0; i < cracks; i++){
+                for (int i = 0; i < cracks; i++) {
                     float dst = crackRand.random(minCrackDst, maxCrackDist),
                         ang = ((float)i / cracks) * 360f + crackRand.range(crackAngRnd / 2f),
                         range = crackRand.random(minCrackSegRange, maxCrackSegRange),
@@ -97,23 +97,23 @@ public class OreFracker extends OreRevealer{
             }
 
             float blastf = (float)blastCounter / blasts;
-            for(GroundCrack crack : groundCracks){
+            for (GroundCrack crack : groundCracks) {
                 crack.draw(x, y, crackColor, blastf);
             }
         }
 
         @Override
-        public void updateTile(){
-            if(efficiency > 0 && reloadCounter < 1){
+        public void updateTile() {
+            if (efficiency > 0 && reloadCounter < 1) {
                 reloadCounter += getProgressIncrease(reloadTime);
                 warmup = Mathf.approachDelta(warmup, 1f, warmupSpeed);
-            }else{
+            } else {
                 warmup = Mathf.approachDelta(warmup, 0f, warmupSpeed);
             }
 
             totalProgress += warmup * Time.delta;
 
-            if(reloadCounter >= 1f){
+            if (reloadCounter >= 1f) {
                 reloadCounter %= 1f;
                 blastCounter++;
                 consume();
@@ -121,7 +121,7 @@ public class OreFracker extends OreRevealer{
                 blastSound.at(x, y, 1f + Mathf.range(blastSoundPitchRand), blastSoundVolume);
                 blastEffect.at(x, y);
 
-                if(blastCounter >= blasts){
+                if (blastCounter >= blasts) {
                     revealOres();
                     scheduleBreak();
                     fadeCracks();
@@ -130,39 +130,39 @@ public class OreFracker extends OreRevealer{
         }
 
         @Override
-        public boolean shouldConsume(){
+        public boolean shouldConsume() {
             return blastCounter < blasts;
         }
 
         @Override
-        public boolean acceptItem(Building source, Item item){
+        public boolean acceptItem(Building source, Item item) {
             return super.acceptItem(source, item) && shouldConsume();
         }
 
         @Override
-        public boolean acceptLiquid(Building source, Liquid liquid){
+        public boolean acceptLiquid(Building source, Liquid liquid) {
             return super.acceptLiquid(source, liquid) && shouldConsume();
         }
 
         @Override
-        public void onRemoved(){
+        public void onRemoved() {
             super.onRemoved();
             fadeCracks();
         }
 
         @Override
-        public void afterPickedUp(){
+        public void afterPickedUp() {
             super.afterPickedUp();
             groundCracks = null;
             blastCounter = 0;
             reloadCounter = 0;
         }
 
-        public void fadeCracks(){
-            if(groundCracks == null) return;
+        public void fadeCracks() {
+            if (groundCracks == null) return;
 
             float blastf = (float)blastCounter / blasts;
-            for(GroundCrack crack : groundCracks){
+            for (GroundCrack crack : groundCracks) {
                 TFx.groundCrackFade.at(x, y, blastf, crackColor, crack.copy());
             }
 

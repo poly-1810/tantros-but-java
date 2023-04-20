@@ -2,7 +2,6 @@ package poly.tantros.content.Blocks;
 
 import mindustry.world.*;
 import mindustry.world.blocks.environment.*;
-import mindustry.world.meta.*;
 import poly.tantros.content.*;
 import poly.tantros.world.blocks.environment.*;
 
@@ -11,10 +10,12 @@ public class Environment {
 
     // floor & walls
     calciteFloor, calciteGrains, calciteHill, copperMat,
+
     // ores
     oreCobalt, oreNickel, oreCopper, oreZinc,
     oreRubedo, oreRubedoHidden,
     oreCarbon, oreCarbonDeep, oreCarbonHidden,
+
     // underwater
     purbushBig, yellowCoralBig
 
@@ -57,11 +58,11 @@ public class Environment {
         }};
 
         oreRubedo = new RevealedOre("ore-rubedo", TItems.rubedo);
-        oreRubedoHidden = new HiddenOreBlock("ore-rubedo-hidden", (OverlayFloor)oreRubedo);
+        oreRubedoHidden = new HiddenOreBlock("ore-rubedo-hidden", (OverlayFloor) oreRubedo);
 
         oreCarbon = new OreBlock("ore-carbon", TItems.carbon);
-        oreCarbonDeep = new HiddenOreBlock("ore-carbon-deep", (OverlayFloor)oreCarbon, TItems.carbon);
-        oreCarbonHidden = new HiddenOreBlock("ore-carbon-hidden", (OverlayFloor)oreCarbonDeep){{
+        oreCarbonDeep = new HiddenOreBlock("ore-carbon-deep", (OverlayFloor) oreCarbon, TItems.carbon);
+        oreCarbonHidden = new HiddenOreBlock("ore-carbon-hidden", (OverlayFloor) oreCarbonDeep){{
             drawGame = true;
             variants = 2;
         }};
