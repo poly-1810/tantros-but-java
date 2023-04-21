@@ -15,7 +15,7 @@ public class Logic {
         processor = new LogicBlock("tantros-processor"){{
             requirements(Category.logic, with(TItems.nickel, 40, TItems.tCopper, 20, TItems.zinc, 20));
 
-            envEnabled |= Env.underwater;
+            envEnabled = Env.underwater;
             scaledHealth = 65f;
             size = 2;
         }};
