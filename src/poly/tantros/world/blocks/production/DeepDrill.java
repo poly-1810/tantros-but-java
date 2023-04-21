@@ -214,10 +214,8 @@ public class DeepDrill extends PayloadBlock {
         public void draw() {
             Draw.rect(region, x, y, 0);
             Draw.rect(outRegion, x, y, rotdeg());
-            Draw.rect(topRegion, x, y);
             drawPayload();
-            Draw.z(Layer.blockBuilding + 1.1f);
-            Draw.reset();
+            Draw.rect(topRegion, x, y);
         }
     }
 }
