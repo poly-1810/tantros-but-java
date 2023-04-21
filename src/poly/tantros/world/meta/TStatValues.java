@@ -14,7 +14,7 @@ public class TStatValues {
             table.row();
             table.table(c -> {
                 int i = 0;
-                for(ResourceBlock block : blocks){
+                for (ResourceBlock block : blocks) {
                     c.table(Styles.grayPanel, b -> {
                         b.image(block.uiIcon).scaling(Scaling.fit).size(32).pad(14).left();
                         b.table(info -> {

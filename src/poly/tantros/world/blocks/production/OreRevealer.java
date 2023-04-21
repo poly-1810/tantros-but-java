@@ -92,8 +92,8 @@ public abstract class OreRevealer extends Block {
             boolean oreRevealed = false;
             boolean even = size % 2 == 0;
             int evenOffset = even ? 1 : 0; //On an even-sized block, the center tile is the bottom-left of the 4 center tiles.
-            for(int x = tile.x - revealRange + 1; x <= tile.x + revealRange - 1 + evenOffset; x++) {
-                for(int y = tile.y + revealRange - 1 + evenOffset; y >= tile.y - revealRange + 1; y--) {
+            for (int x = tile.x - revealRange + 1; x <= tile.x + revealRange - 1 + evenOffset; x++) {
+                for (int y = tile.y + revealRange - 1 + evenOffset; y >= tile.y - revealRange + 1; y--) {
                     Tile t = world.tile(x, y);
                     if (t != null && (squareArea || within(t.worldx(), t.worldy(), revealRange * tilesize - (even ? 0f : 4f))) && t.overlay() instanceof HiddenOreBlock h && h.oreRevealType == revealType && tier >= h.tier) {
                         revealed(t, h);
