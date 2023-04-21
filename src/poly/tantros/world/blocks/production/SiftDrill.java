@@ -69,10 +69,10 @@ public class SiftDrill extends Drill {
                         float ex = x + pos, ey = y + Mathf.range(siftEffectMinDist, siftEffectMaxDist);
                         Tile t = world.tileWorld(ex, ey);
                         float rad = posChance * warmup;
-                        if(t.drop() == dominantItem && Mathf.chance(oreColorChance)){
+                        if (t.drop() == dominantItem && Mathf.chance(oreColorChance)) {
                             Tmp.c1.set(dominantItem.color);
                             rad *= oreColorScl;
-                        }else{
+                        } else {
                             Tmp.c1.set(world.tileWorld(ex, ey).floor().mapColor);
                         }
 
