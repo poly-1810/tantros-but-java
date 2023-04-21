@@ -36,7 +36,7 @@ public class CoveredPayloadRouter extends PayloadRouter {
 
     public class CoveredPayloadRouterBuild extends PayloadRouterBuild {
         @Override
-        public void draw(){
+        public void draw() {
             super.draw();
             Draw.z(Layer.blockOver + 0.01f);
             Draw.rect(coverRegion, x, y);

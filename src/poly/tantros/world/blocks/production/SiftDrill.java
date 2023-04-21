@@ -23,6 +23,7 @@ public class SiftDrill extends Drill {
         drillEffect = Fx.none;
         updateEffect = TFx.siftDust;
         updateEffectChance = 0.25f;
+        hasLiquids = false;
     }
 
     @Override
@@ -41,7 +42,7 @@ public class SiftDrill extends Drill {
     public class SiftDrillBuild extends DrillBuild {
         @Override
         public void updateTile() {
-            //Copy over Drill code just so I can mess with the update effect.
+            // copy over Drill code just so I can mess with the update effect.
             if (timer(timerDump, dumpTime)) {
                 dump(dominantItem != null && items.has(dominantItem) ? dominantItem : null);
             }
@@ -68,10 +69,10 @@ public class SiftDrill extends Drill {
                         float ex = x + pos, ey = y + Mathf.range(siftEffectMinDist, siftEffectMaxDist);
                         Tile t = world.tileWorld(ex, ey);
                         float rad = posChance * warmup;
-                        if(t.drop() == dominantItem && Mathf.chance(oreColorChance)){
+                        if (t.drop() == dominantItem && Mathf.chance(oreColorChance)) {
                             Tmp.c1.set(dominantItem.color);
                             rad *= oreColorScl;
-                        }else{
+                        } else {
                             Tmp.c1.set(world.tileWorld(ex, ey).floor().mapColor);
                         }
 
@@ -117,7 +118,7 @@ public class SiftDrill extends Drill {
             Draw.z(Layer.blockAfterCracks + 0.1f);
             Draw.rect(topRegion, x, y);
 
-            if (dominantItem != null && drawMineItem){
+            if (dominantItem != null && drawMineItem) {
                 Draw.color(dominantItem.color);
                 Draw.rect(itemRegion, x, y);
                 Draw.color();

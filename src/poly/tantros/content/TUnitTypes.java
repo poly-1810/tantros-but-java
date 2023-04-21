@@ -50,7 +50,7 @@ public class TUnitTypes {
 
             EntityMapping.nameMap.put(name, constructor);
 
-            envEnabled |= Env.underwater;
+            envEnabled = Env.underwater;
             health = 400f;
             flying = true;
             speed = 2.75f;
@@ -137,9 +137,7 @@ public class TUnitTypes {
         assemblySub = new UnitType("assembly-sub"){{
             constructor = BuildingTetherPayloadUnit::create;
 
-            EntityMapping.nameMap.put(name, constructor);
-
-            envEnabled |= Env.underwater;
+            envEnabled = Env.underwater;
             aiController = AssemblerAI::new;
             createWreck = false;
             createScorch = false;
@@ -229,9 +227,7 @@ public class TUnitTypes {
         requiem = new UnitType("requiem"){{
             constructor = UnitEntity::create;
 
-            EntityMapping.nameMap.put(name, constructor);
-
-            envEnabled |= Env.underwater;
+            envEnabled = Env.underwater;
             health = 350f;
             flying = true;
             speed = 1.1f;
@@ -334,9 +330,7 @@ public class TUnitTypes {
         chasm = new TankUnitType("chasm"){{
             constructor = TankUnit::create;
 
-            EntityMapping.nameMap.put(name, constructor);
-
-            envEnabled |= Env.underwater;
+            envEnabled = Env.underwater;
             health = 270f;
             speed = 2.2f;
             accel = 0.045f;
@@ -384,9 +378,7 @@ public class TUnitTypes {
         tendril = new UnitType("tendril"){{
             constructor = CrawlUnit::create;
 
-            EntityMapping.nameMap.put(name, constructor);
-
-            envEnabled |= Env.underwater;
+            envEnabled = Env.underwater;
             health = 450f;
             speed = 0.8f;
             omniMovement = false;
@@ -409,9 +401,7 @@ public class TUnitTypes {
         chain = new UnitType("chain"){{
             constructor = LegsUnit::create;
 
-            EntityMapping.nameMap.put(name, constructor);
-
-            envEnabled |= Env.underwater;
+            envEnabled = Env.underwater;
             groundLayer = 75f;
             health = 270f;
             armor = 6f;
@@ -420,12 +410,6 @@ public class TUnitTypes {
             hitSize = 9f;
             buildRange = 96f;
             fogRadius = 8f;
-            ammoCapacity = 20;
-            ammoType = new ItemAmmoType(){{
-                range = 32f;
-                ammoPerItem = 5;
-                item = TItems.cobalt;
-            }};
             rotateSpeed = 5f;
             lockLegBase = true;
             legContinuousMove = true;
@@ -500,9 +484,7 @@ public class TUnitTypes {
         chainDrone = new UnitType("chain-drone"){{
             constructor = UnitEntity::create;
 
-            EntityMapping.nameMap.put(name, constructor);
-
-            envEnabled |= Env.underwater;
+            envEnabled = Env.underwater;
             aiController = DefenderAI::new;
             defaultCommand = UnitCommand.rebuildCommand;
             isEnemy = false;
@@ -528,7 +510,7 @@ public class TUnitTypes {
         }};
 
         snapPiranha = new MissileUnitType("snap-piranha"){{
-            envEnabled |= Env.underwater;
+            envEnabled = Env.underwater;
             createWreck = false;
             createScorch = false;
             aiController = MissileAI::new;

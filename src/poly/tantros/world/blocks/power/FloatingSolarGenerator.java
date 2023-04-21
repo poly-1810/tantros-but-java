@@ -29,7 +29,7 @@ public class FloatingSolarGenerator extends SolarGenerator {
             super.updateTile();
 
             rise += riseSpeed * Time.delta;
-            if(rise > 1f) rise = 1f;
+            if (rise > 1f) rise = 1f;
         }
 
         @Override

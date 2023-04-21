@@ -24,11 +24,11 @@ public class Power {
 
     ;
 
-    public static void load(){
+    public static void load() {
         powerConduit = new PowerConduit("power-conduit"){{
             requirements(Category.power, with(TItems.nickel, 5, TItems.tCopper, 10));
 
-            envEnabled |= Env.underwater;
+            envEnabled = Env.underwater;
             scaledHealth = 25f;
             size = 1;
         }};
@@ -36,7 +36,7 @@ public class Power {
         powerPipe = new DirectionalBeamNode("power-pipe"){{
             requirements(Category.power, with(TItems.nickel, 2, TItems.tCopper, 2, TItems.zinc, 2));
 
-            envEnabled |= Env.underwater;
+            envEnabled = Env.underwater;
             scaledHealth = 25f;
             size = 1;
             range = 4;
@@ -48,7 +48,7 @@ public class Power {
         powerCable = new PowerNode("power-cable"){{
             requirements(Category.power, with(TItems.nickel, 5, TItems.tCopper, 15, TItems.zinc, 5));
 
-            envEnabled |= Env.underwater;
+            envEnabled = Env.underwater;
             scaledHealth = 30f;
             size = 2;
             laserRange = 16f;
@@ -61,7 +61,7 @@ public class Power {
         surfaceSolarGenerator = new FloatingSolarGenerator("floating-solar-panel"){{
             requirements(Category.power, with(TItems.nickel, 10));
 
-            envEnabled |= Env.underwater;
+            envEnabled = Env.underwater;
             scaledHealth = 5f; // very fragile
             powerProduction = 0.12f;
         }};
@@ -69,10 +69,10 @@ public class Power {
         hydraulicGenerator = new ConsumeGenerator("hydraulic-generator"){{
             requirements(Category.power, with(TItems.nickel, 30));
 
-            envEnabled |= Env.underwater;
+            envEnabled = Env.underwater;
             scaledHealth = 90f;
             size = 2;
-            powerProduction = 0.5f;
+            powerProduction = 0.48f;
             itemDuration = 450f;
             drawer = new DrawMulti(
                     new DrawRegion("-bottom"),
@@ -93,15 +93,14 @@ public class Power {
             );
         }};
 
-        steamGenerator = new VariableReactor("steam-generator"){{
+        steamGenerator = new SteamGenerator("steam-generator"){{
             requirements(Category.power, with(TItems.tCopper, 30, TItems.nickel, 20, TItems.calcite, 20));
 
-            envEnabled |= Env.underwater;
+            envEnabled = Env.underwater;
             scaledHealth = 90f;
             size = 3;
             powerProduction = 7.5f;
             maxHeat = 15f;
-            unstableSpeed = -0f;
             effect = new ParticleEffect(){{
                 layer = 50f;
                 colorFrom = Color.valueOf("d4f0ff00");

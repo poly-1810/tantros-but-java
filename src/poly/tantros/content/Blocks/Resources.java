@@ -6,7 +6,6 @@ import mindustry.content.*;
 import mindustry.entities.bullet.*;
 import mindustry.entities.effect.*;
 import mindustry.type.*;
-import mindustry.world.*;
 import mindustry.world.meta.*;
 import poly.tantros.content.*;
 import poly.tantros.world.blocks.resources.*;
@@ -14,14 +13,16 @@ import poly.tantros.world.blocks.resources.*;
 import static mindustry.type.ItemStack.*;
 
 public class Resources {
-    public static Block brassBlock, calciteBlock, cobaltBlock, nickelBlock, rubedoBlock, tCopperBlock, zincBlock;
+    public static ResourceBlock brassBlock, calciteBlock, cobaltBlock, nickelBlock, rubedoBlock, tCopperBlock, zincBlock;
 
     public static void load() {
         tCopperBlock = new ResourceBlock("tcopper-block"){{
             requirements(Category.distribution, with(TItems.tCopper, 24));
 
-            envEnabled |= Env.underwater;
+            envEnabled = Env.underwater;
             scaledHealth = 10;
+            item = TItems.tCopper;
+            drillTime = 10;
             armor = 0;
             size = 1;
             buildCostMultiplier = 0.0f;
@@ -47,8 +48,9 @@ public class Resources {
         brassBlock = new ResourceBlock("brass-block"){{
             requirements(Category.distribution, with(TItems.brass, 24));
 
-            envEnabled |= Env.underwater;
+            envEnabled = Env.underwater;
             scaledHealth = 10;
+            item = TItems.brass;
             armor = 4;
             size = 1;
             buildCostMultiplier = 0.0f;
@@ -75,8 +77,10 @@ public class Resources {
         rubedoBlock = new ResourceBlock("rubedo-block"){{
             requirements(Category.distribution, with(TItems.rubedo, 24));
 
-            envEnabled |= Env.underwater;
+            envEnabled = Env.underwater;
             scaledHealth = 10;
+            item = TItems.rubedo;
+            drillTime = 60;
             breakOnPlace = true;
             armor = 1;
             size = 1;
@@ -103,8 +107,9 @@ public class Resources {
         cobaltBlock = new ResourceBlock("cobalt-block"){{
             requirements(Category.distribution, with(TItems.cobalt, 24));
 
-            envEnabled |= Env.underwater;
+            envEnabled = Env.underwater;
             scaledHealth = 10;
+            item = TItems.cobalt;
             armor = 4;
             size = 1;
             buildCostMultiplier = 0.0f;
@@ -147,8 +152,9 @@ public class Resources {
         nickelBlock = new ResourceBlock("nickel-block"){{
             requirements(Category.distribution, with(TItems.nickel, 12));
 
-            envEnabled |= Env.underwater;
+            envEnabled = Env.underwater;
             scaledHealth = 10;
+            item = TItems.nickel;
             armor = 3;
             size = 1;
             researchCostMultiplier = 0.25f;

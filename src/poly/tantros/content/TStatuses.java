@@ -12,6 +12,7 @@ public class TStatuses {
             healthMultiplier = 0.9f;
             speedMultiplier = 0.0f;
             dragMultiplier = 0.3f;
+            disarm = true;
         }};
     };
 }

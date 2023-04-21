@@ -24,7 +24,7 @@ public class Turret {
         remnant = new ItemTurret("remnant"){{
             requirements(Category.turret, with(TItems.tCopper, 10, TItems.calcite, 15, TItems.nickel, 5));
 
-            envEnabled |= Env.underwater;
+            envEnabled = Env.underwater;
             scaledHealth = 120f;
             size = 1;
             reload = 50f;
@@ -79,9 +79,9 @@ public class Turret {
             researchCostMultiplier = 0.5f;
         }};
         snap = new ItemTurret("snap"){{
-            requirements(Category.turret, with(TItems.tCopper, 50, TItems.calcite, 20, TItems.nickel, 20));
+            requirements(Category.turret, with(TItems.tCopper, 50, TItems.calcite, 20, TItems.nickel, 20, TItems.carbon, 15));
 
-            envEnabled |= Env.underwater;
+            envEnabled = Env.underwater;
             scaledHealth = 120f;
             size = 2;
             reload = 90f;
@@ -123,7 +123,7 @@ public class Turret {
         spark = new PowerTurret("spark"){{
             requirements(Category.turret, with(TItems.tCopper, 10, TItems.calcite, 10, TItems.zinc, 5, TItems.nickel, 5));
 
-            envEnabled |= Env.underwater;
+            envEnabled = Env.underwater;
             scaledHealth = 140f;
             size = 1;
             reload = 150f;
@@ -166,9 +166,9 @@ public class Turret {
             }};
         }};
         splice = new PowerTurret("splice"){{
-            requirements(Category.turret, with(TItems.tCopper, 80, TItems.brass, 120, TItems.calcite, 60, TItems.zinc, 60));
+            requirements(Category.turret, with(TItems.tCopper, 80, TItems.brass, 120, TItems.calcite, 60, TItems.zinc, 60, TItems.carbon, 40));
 
-            envEnabled |= Env.underwater;
+            envEnabled = Env.underwater;
             scaledHealth = 120f;
             size = 3;
             reload = 90f;
@@ -218,9 +218,9 @@ public class Turret {
             }};
         }};
         swipe = new ItemTurret("swipe"){{
-            requirements(Category.turret, with(TItems.carbon, 1));
+            requirements(Category.turret, with(TItems.tCopper, 20, TItems.cobalt, 40, TItems.nickel, 50, TItems.carbon, 15));
 
-            envEnabled = Env.terrestrial | Env.underwater;
+            envEnabled = Env.underwater;
             scaledHealth = 130f;
             size = 2;
             reload = 60f;
@@ -298,9 +298,9 @@ public class Turret {
             drawer = new DrawTurret("plated-");
         }};
         wail = new PowerTurret("wail"){{
-            requirements(Category.turret, with(TItems.tCopper, 15, TItems.zinc, 10));
+            requirements(Category.turret, with(TItems.tCopper, 15, TItems.zinc, 10, TItems.carbon, 5));
 
-            envEnabled |= Env.underwater;
+            envEnabled = Env.underwater;
             scaledHealth = 140f;
             size = 1;
             reload = 50f;
@@ -308,6 +308,7 @@ public class Turret {
             range = 180f;
             shootY = 0.75f;
             velocityRnd = 0f;
+            researchCostMultiplier = 0.25f;
 
             consumePower(0.5f);
 

@@ -20,7 +20,7 @@ import mindustry.world.meta.*;
 
 import static mindustry.Vars.*;
 
-public class DirectionalBeamNode extends PowerBlock{
+public class DirectionalBeamNode extends PowerBlock {
     public int range = 5;
     public Color laserColor1 = Color.white;
     public Color laserColor2 = Color.valueOf("ffd9c2");
@@ -127,11 +127,11 @@ public class DirectionalBeamNode extends PowerBlock{
     }
 
     public boolean positionsValid(int x1, int y1, int x2, int y2) {
-        if(x1 == x2){
+        if (x1 == x2) {
             return Math.abs(y1 - y2) <= range;
-        }else if(y1 == y2){
+        } else if (y1 == y2) {
             return Math.abs(x1 - x2) <= range;
-        }else{
+        } else {
             return false;
         }
     }
@@ -157,8 +157,8 @@ public class DirectionalBeamNode extends PowerBlock{
 
         @Override
         public BlockStatus status() {
-            if(Mathf.equal(power.status, 0f, 0.001f)) return BlockStatus.noInput;
-            if(Mathf.equal(power.status, 1f, 0.001f)) return BlockStatus.active;
+            if (Mathf.equal(power.status, 0f, 0.001f)) return BlockStatus.noInput;
+            if (Mathf.equal(power.status, 1f, 0.001f)) return BlockStatus.active;
             return BlockStatus.noOutput;
         }
 
@@ -170,7 +170,7 @@ public class DirectionalBeamNode extends PowerBlock{
             if (Mathf.zero(Renderer.laserOpacity)) return;
             if (dest != null && link.wasVisible && (!(link.block instanceof BeamNode node) ||
                 (link.tileX() != tileX() && link.tileY() != tileY()) ||
-                (link.id > id && range >= node.range) || range > node.range)){
+                (link.id > id && range >= node.range) || range > node.range)) {
 
                 Draw.z(Layer.power);
                 Draw.color(laserColor1, laserColor2, (1f - power.graph.getSatisfaction()) * 0.86f + Mathf.absin(3f, 0.1f));
@@ -241,7 +241,7 @@ public class DirectionalBeamNode extends PowerBlock{
                 }
 
                 // linked to a new one, connect graphs
-                if(next != null){
+                if (next != null) {
                     power.links.addUnique(next.pos());
                     next.power.links.addUnique(pos());
 
