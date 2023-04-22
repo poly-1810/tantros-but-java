@@ -125,8 +125,24 @@ public class OreFracker extends OreRevealer {
                     revealOres();
                     scheduleBreak();
                     fadeCracks();
+                    reloadCounter = 0f;
                 }
             }
+        }
+
+        @Override
+        public float warmup(){
+            return warmup;
+        }
+
+        @Override
+        public float progress(){
+            return reloadCounter;
+        }
+
+        @Override
+        public float totalProgress(){
+            return totalProgress;
         }
 
         @Override

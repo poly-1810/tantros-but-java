@@ -2,9 +2,11 @@ package poly.tantros.content.Blocks;
 
 import mindustry.type.*;
 import mindustry.world.*;
+import mindustry.world.draw.*;
 import mindustry.world.meta.*;
 import poly.tantros.content.*;
 import poly.tantros.world.blocks.production.*;
+import poly.tantros.world.draw.*;
 
 import static mindustry.type.ItemStack.*;
 
@@ -29,7 +31,13 @@ public class Production {
             itemCapacity = useAmount; //Don't hold extras when destroying yourself.
             size = 12;
             fillsTile = false;
-            //customShadow = true; //Commented for visiblity. Uncomment when an actual sprite is added.
+            customShadow = true;
+
+            drawer = new DrawMulti(
+                new DrawDefault(),
+                new DrawSlammers(58f / 4f),
+                new DrawRegion("-top")
+            );
 
             consumeItem(TItems.rubedo, useAmount); //Placeholder
         }};
