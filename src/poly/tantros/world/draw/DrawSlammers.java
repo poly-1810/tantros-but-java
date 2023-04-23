@@ -14,6 +14,8 @@ public class DrawSlammers extends DrawBlock{
     public float angleOffset, maxOffset;
     public int sides = 4;
     public Interp offsetInterp = Interp.smooth2;
+    /** Any number <=0 disables layer changes. */
+    public float layer = -1;
     public boolean drawPlan = true;
     public String suffix = "-slammer";
     public TextureRegion region1, region2, regiont, regionPrev;
@@ -29,6 +31,8 @@ public class DrawSlammers extends DrawBlock{
 
     @Override
     public void draw(Building build){
+        float z = Draw.z();
+        if(layer > 0) Draw.z(layer);
         float len = offsetInterp.apply(build.progress()) * maxOffset;
         for(int i = 0; i < sides; i++){
             float angle = angleOffset + i * 360f / sides;
@@ -44,6 +48,7 @@ public class DrawSlammers extends DrawBlock{
 
             Draw.yscl = 1f;
         }
+        Draw.z(z);
     }
 
     @Override

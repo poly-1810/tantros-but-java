@@ -1,5 +1,6 @@
 package poly.tantros.content.Blocks;
 
+import mindustry.graphics.*;
 import mindustry.type.*;
 import mindustry.world.*;
 import mindustry.world.draw.*;
@@ -28,15 +29,22 @@ public class Production {
 
             envEnabled = Env.underwater;
             int useAmount = 5;
-            itemCapacity = useAmount; //Don't hold extras when destroying yourself.
+            itemCapacity = useAmount;
             size = 12;
             fillsTile = false;
             customShadow = true;
 
             drawer = new DrawMulti(
                 new DrawDefault(),
-                new DrawSlammers(58f / 4f),
-                new DrawRegion("-top")
+                new DrawSlammers(58f / 4f){{
+                    layer = Layer.blockOver;
+                }},
+                new DrawRegion("-top"){{
+                    layer = Layer.blockOver + 0.1f;
+                }},
+                new DrawRegion("-shine"){{
+                    layer = Layer.blockOver + 0.1f;
+                }}
             );
 
             consumeItem(TItems.rubedo, useAmount); //Placeholder
