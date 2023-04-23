@@ -33,6 +33,7 @@ public class Production {
             size = 12;
             fillsTile = false;
             customShadow = true;
+            drawCracks = false;
 
             drawer = new DrawMulti(
                 new DrawDefault(),
