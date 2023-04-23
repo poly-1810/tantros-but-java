@@ -37,7 +37,7 @@ public class Production {
 
             drawer = new DrawMulti(
                 new DrawDefault(),
-                new DrawSlammers(58f / 4f){{
+                new DrawSlammers(74f / 4f){{
                     layer = Layer.blockOver;
                 }},
                 new DrawRegion("-top"){{
