@@ -40,7 +40,7 @@ public class DrawSlammers extends DrawBlock{
                 regiont.found() && (Mathf.equal(angle, 315) || Mathf.equal(angle, 135)) ? regiont :
                 angle >= 135 && angle < 315 ? region2 : region1;
 
-            if(Mathf.equal(angle, 315)){
+            if(Mathf.equal(angle, 315) || (angle % 180 > 45 && angle % 180 < 135)){
                 Draw.yscl = -1f;
             }
 
