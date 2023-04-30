@@ -12,6 +12,7 @@ import mindustry.entities.effect.*;
 import mindustry.entities.part.*;
 import mindustry.entities.pattern.*;
 import mindustry.gen.*;
+import mindustry.graphics.*;
 import mindustry.type.*;
 import mindustry.type.ammo.*;
 import mindustry.type.unit.*;
@@ -57,7 +58,6 @@ public class TUnitTypes {
             accel = 0.1f;
             drag = 0.05f;
             hitSize = 17f;
-            lowAltitude = true;
             ammoCapacity = 50;
             ammoType = new ItemAmmoType(){{
                 range = 32f;
@@ -79,16 +79,10 @@ public class TUnitTypes {
             engineSize = 0f;
             armor = 6f;
             parts.addAll(new RegionPart("-glow"){{
-                color = Color.valueOf("4a4b5300");
-                colorTo = Color.valueOf("4a4b5366");
-                layer = -1;
+                color = Color.valueOf("4a4b5366");
                 outline = false;
                 blending = Blending.additive;
-            }}, new RegionPart("-armor"){{
-                color = Color.valueOf("ffd37f00");
-                colorTo = Color.valueOf("ffd37f66");
-                layer = 110;
-                outline = false;
+                layerOffset = 0.1f; //Draw above the armor
             }});
             weapons.add(new Weapon(){{
                 reload = 12f;
@@ -127,10 +121,10 @@ public class TUnitTypes {
                 interval = 3f;
                 teamColor = true;
                 effect = Fx.disperseTrail;
-                parentizeEffects = false;
             }}, new ArmorPlateAbility(){{
                 healthMultiplier = 0.5f;
-                color = Color.valueOf("FFBA367F");
+                color = Pal.accent;
+                z = -1;
             }});
         }};
 
