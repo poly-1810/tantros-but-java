@@ -15,7 +15,7 @@ public class Production {
         oreScanner = new OreScanner("ore-scanner"){{
             requirements(Category.production, BuildVisibility.sandboxOnly, with()); //TODO Placeholder, no cost yet
 
-            envEnabled = Env.underwater;
+            envEnabled |= Env.underwater;
             size = 3;
 
             consumePower(1f); //Placeholder
@@ -24,7 +24,7 @@ public class Production {
         oreFracker = new OreFracker("ore-fracker"){{
             requirements(Category.production, BuildVisibility.sandboxOnly, with()); //TODO Placeholder, no cost yet
 
-            envEnabled = Env.underwater;
+            envEnabled |= Env.underwater;
             int useAmount = 5;
             itemCapacity = useAmount; //Don't hold extras when destroying yourself.
             size = 12;
@@ -37,7 +37,7 @@ public class Production {
         siftDrill = new SiftDrill("sift-drill"){{
             requirements(Category.production, with(TItems.tCopper, 20));
 
-            envEnabled = Env.underwater;
+            envEnabled |= Env.underwater;
             scaledHealth = 65f;
             size = 3;
             squareSprite = false;
@@ -57,7 +57,7 @@ public class Production {
         deepDrill = new DeepDrill("deep-drill"){{
             requirements(Category.production, with(TItems.carbon, 1));
 
-            envEnabled = Env.underwater;
+            envEnabled |= Env.underwater;
             scaledHealth = 65f;
             allowedBlocks.addAll(
                     Resources.rubedoBlock,
