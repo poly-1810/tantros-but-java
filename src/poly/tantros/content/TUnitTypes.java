@@ -17,6 +17,7 @@ import mindustry.type.*;
 import mindustry.type.ammo.*;
 import mindustry.type.unit.*;
 import mindustry.world.meta.*;
+import poly.tantros.entity.abilities.*;
 
 public class TUnitTypes {
     public static UnitType
@@ -65,6 +66,7 @@ public class TUnitTypes {
                 item = TItems.zinc;
             }};
             rotateSpeed = 8f;
+            faceTarget = false;
             mineWalls = true;
             mineFloor = true;
             mineHardnessScaling = true;
@@ -78,8 +80,9 @@ public class TUnitTypes {
             engineOffset = 0f;
             engineSize = 0f;
             armor = 6f;
-            parts.addAll(new RegionPart("-glow"){{
-                color = Color.valueOf("4a4b5366");
+            parts.add(new RegionPart("-glow"){{
+                colorTo = Color.valueOf("ffd37f").a(0.5f);
+                color = colorTo.cpy().a(0);
                 outline = false;
                 blending = Blending.additive;
                 layerOffset = 0.1f; //Draw above the armor
@@ -95,6 +98,7 @@ public class TUnitTypes {
                 velocityRnd = 0.5f;
                 x = 0;
                 y = 0;
+                shootSound = Sounds.none;
                 shoot = new ShootPattern(){{
                    shots = 5;
                    shotDelay = 0f;
@@ -107,20 +111,17 @@ public class TUnitTypes {
                    splashDamage = 17.5f;
                    splashDamageRadius = 24f;
                    ammoMultiplier = 1f;
-                   shootEffect = Fx.none;
-                   backColor = Color.valueOf("ffd37f");
-                   frontColor = Color.valueOf("ffffff");
-                   hitColor = Color.valueOf("ffd37f");
+                   shootEffect = smokeEffect = Fx.none;
                    rangeOverride = 48f;
                 }};
             }});
-            abilities.addAll(new MoveEffectAbility(){{
+            abilities.addAll(new ScaledMoveEffectAbility(){{
                 x = 0;
                 y = -5f;
                 rotateEffect = true;
                 interval = 3f;
                 teamColor = true;
-                effect = Fx.disperseTrail;
+                effect = TFx.tridentTrail;
             }}, new ArmorPlateAbility(){{
                 healthMultiplier = 0.5f;
                 color = Pal.accent;

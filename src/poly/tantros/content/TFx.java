@@ -1,6 +1,7 @@
 package poly.tantros.content;
 
 import arc.*;
+import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
 import mindustry.entities.*;
@@ -8,7 +9,9 @@ import mindustry.graphics.*;
 import mindustry.type.*;
 import poly.tantros.graphics.*;
 
-import static arc.graphics.g2d.Draw.color;
+import static arc.graphics.g2d.Draw.*;
+import static arc.graphics.g2d.Lines.*;
+import static mindustry.content.Fx.*;
 
 public class TFx {
     private static TextureRegion pointer, pointerIn, pointerUnknown;
@@ -72,5 +75,18 @@ public class TFx {
         e.lifetime = 240f * e.rotation;
 
         crack.draw(e.x, e.y, e.color, e.rotation * e.fout());
-    }).layer(Layer.scorch - 1f);
+    }).layer(Layer.scorch - 1f),
+
+    tridentTrail = new Effect(13, e -> {
+        color(Color.white, e.color, e.fin());
+        stroke(0.6f + e.fout() * 1.7f);
+        rand.setSeed(e.id);
+        float scl = (float)e.data;
+
+        for(int i = 0; i < 2; i++){
+            float rot = e.rotation + rand.range(15f) + 180f;
+            v.trns(rot, rand.random(e.fin() * 27f) * scl);
+            lineAngle(e.x + v.x, e.y + v.y, rot, (e.fout() * rand.random(2f, 7f) + 1.5f) * scl);
+        }
+    });
 }
