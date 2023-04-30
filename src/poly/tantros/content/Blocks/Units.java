@@ -15,7 +15,7 @@ public class Units {
         quadAssembler = new UnitAssembler("quad-assembler"){{
             requirements(Category.units, with(TItems.cobalt, 50, TItems.nickel, 70, TItems.tCopper, 60));
 
-            envEnabled = Env.underwater;
+            envEnabled |= Env.underwater;
             size = 4;
             configurable = false;
             areaSize = 6;
@@ -32,7 +32,7 @@ public class Units {
         submarineAssembler = new UnitAssembler("submarine-assembler"){{
             requirements(Category.units, with(TItems.cobalt, 40, TItems.nickel, 80, TItems.tCopper, 80));
 
-            envEnabled = Env.underwater;
+            envEnabled |= Env.underwater;
             size = 4;
             configurable = false;
             areaSize = 6;
