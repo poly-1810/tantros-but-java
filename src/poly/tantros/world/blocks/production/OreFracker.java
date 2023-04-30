@@ -34,9 +34,7 @@ public class OreFracker extends OreRevealer {
 
     public float shake = 4f;
     public Sound blastSound = Sounds.drillImpact;
-    public Effect blastEffect = new MultiEffect( //TODO placeholder-this is just a copy of eruption drill's mine effect
-        Fx.mineImpact,
-        Fx.drillSteam,
+    public Effect blastEffect = new MultiEffect(
         Fx.dynamicSpikes.wrap(Pal.bulletYellowBack, 30f),
         Fx.mineImpactWave.wrap(Pal.bulletYellowBack, 45f)
     );

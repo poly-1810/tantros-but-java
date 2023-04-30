@@ -1,11 +1,14 @@
 package poly.tantros.content.Blocks;
 
+import mindustry.content.*;
+import mindustry.entities.effect.*;
 import mindustry.graphics.*;
 import mindustry.type.*;
 import mindustry.world.*;
 import mindustry.world.draw.*;
 import mindustry.world.meta.*;
 import poly.tantros.content.*;
+import poly.tantros.graphics.*;
 import poly.tantros.world.blocks.production.*;
 import poly.tantros.world.draw.*;
 
@@ -28,16 +31,22 @@ public class Production {
             requirements(Category.production, BuildVisibility.sandboxOnly, with()); //TODO Placeholder, no cost yet
 
             envEnabled |= Env.underwater;
-            int useAmount = 5;
+            int useAmount = 10;
             itemCapacity = useAmount;
             size = 12;
             fillsTile = false;
             customShadow = true;
             drawCracks = false;
 
+            blastEffect = new MultiEffect(
+                Fx.dynamicSpikes.wrap(TPal.rubedoLight, 30f),
+                Fx.mineImpactWave.wrap(TPal.rubedoLight, 45f),
+                TFx.frackFlame
+            );
+
             drawer = new DrawMulti(
                 new DrawDefault(),
-                new DrawSlammers(74f / 4f){{
+                new DrawSlammers(70f / 4f){{
                     layer = Layer.blockOver;
                 }},
                 new DrawRegion("-top"){{
