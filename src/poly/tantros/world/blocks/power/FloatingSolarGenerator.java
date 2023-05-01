@@ -1,10 +1,13 @@
 package poly.tantros.world.blocks.power;
 
 import arc.math.*;
+import arc.math.geom.*;
+import arc.struct.*;
 import arc.util.*;
 import arc.util.io.*;
 import mindustry.game.*;
 import mindustry.graphics.*;
+import mindustry.input.*;
 import mindustry.world.*;
 import mindustry.world.blocks.power.*;
 import mindustry.world.draw.*;
@@ -30,14 +33,14 @@ public class FloatingSolarGenerator extends SolarGenerator{
 
     @Override
     public void drawOverlay(float x, float y, int rotation){
-        Drawf.dashSquare(Pal.placing, x, y, ((spacing + size / 2f) * tilesize) * 2f);
+        Drawf.square(x, y, (spacing + size / 2f + 2) * tilesize, 0f, Pal.remove);
     }
 
     @Override
     public boolean canPlaceOn(Tile tile, Team team, int rotation){
-        int hS = size / 2, off = 1 - size % 2;
-        for(int x = tile.x - spacing - hS + off; x <= tile.x + spacing + hS; x++){
-            for(int y = tile.y - spacing - hS + off; y <= tile.y + spacing + hS; y++){
+        int off = 1 - size % 2;
+        for(int x = tile.x - spacing + off; x <= tile.x + spacing ; x++){
+            for(int y = tile.y - spacing + off; y <= tile.y + spacing; y++){
                 Tile t = world.tile(x, y);
                 if(t != null && t.block() instanceof FloatingSolarGenerator s && (s == this || s.intersectsSpacing(t.build.tile, tile))) return false;
             }
@@ -45,10 +48,19 @@ public class FloatingSolarGenerator extends SolarGenerator{
         return true;
     }
 
+    public boolean intersectsSpacing(int sx, int sy, int ox, int oy, int ext){ //TODO untested with panels larger than 1x1
+        int off = 1 - size % 2;
+        return ox >= sx - spacing + off - ext && ox <= sx + spacing + ext &&
+            oy >= sy - spacing + off - ext && oy <= sy + spacing + ext;
+    }
+
     public boolean intersectsSpacing(Tile self, Tile other){
-        int sHS = size/2, off = 1 - size % 2;
-        return other.x >= self.x - spacing - sHS + off && other.x <= self.x + spacing + sHS &&
-            other.y >= self.y - spacing - sHS + off && other.y <= self.y + spacing + sHS;
+        return intersectsSpacing(self.x, self.y, other.x, other.y, 0);
+    }
+
+    @Override
+    public void changePlacementPath(Seq<Point2> points, int rotation){
+        Placement.calculateNodes(points, this, rotation, (point, other) -> intersectsSpacing(point.x, point.y, other.x, other.y, 1));
     }
 
     public class FloatingSolarGeneratorBuild extends SolarGeneratorBuild{
