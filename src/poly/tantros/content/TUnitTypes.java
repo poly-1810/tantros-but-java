@@ -12,7 +12,6 @@ import mindustry.entities.effect.*;
 import mindustry.entities.part.*;
 import mindustry.entities.pattern.*;
 import mindustry.gen.*;
-import mindustry.graphics.*;
 import mindustry.type.*;
 import mindustry.type.ammo.*;
 import mindustry.type.unit.*;
@@ -81,11 +80,11 @@ public class TUnitTypes {
             engineSize = 0f;
             armor = 6f;
             parts.add(new RegionPart("-glow"){{
-                colorTo = Color.valueOf("ffd37f").a(0.5f);
+                colorTo = Color.valueOf("ffd37f").a(0.25f);
                 color = colorTo.cpy().a(0);
                 outline = false;
                 blending = Blending.additive;
-                layerOffset = 0.1f; //Draw above the armor
+                layerOffset = 0.1f; //Draw over armor
             }});
             weapons.add(new Weapon(){{
                 reload = 12f;
@@ -122,9 +121,9 @@ public class TUnitTypes {
                 interval = 3f;
                 teamColor = true;
                 effect = TFx.tridentTrail;
-            }}, new ArmorPlateAbility(){{
+            }}, new TArmorPlateAbility(){{
                 healthMultiplier = 0.5f;
-                color = Pal.accent;
+                color = Color.valueOf("ffba36").a(0.75f);
                 z = -1;
             }});
         }};
