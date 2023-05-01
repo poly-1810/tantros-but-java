@@ -15,7 +15,7 @@ public class ScaledMoveEffectAbility extends MoveEffectAbility{
         if(len >= minVelocity && (counter >= interval) && !unit.inFogTo(Vars.player.team())){
             Tmp.v1.trns(unit.rotation - 90f, x, y);
             counter %= interval;
-            effect.at(Tmp.v1.x + unit.x, Tmp.v1.y + unit.y, (rotateEffect ? unit.rotation : effectParam) + rotation, teamColor ? unit.team.color : color, (len - minVelocity) / unit.type.speed);
+            effect.at(Tmp.v1.x + unit.x, Tmp.v1.y + unit.y, (rotateEffect ? unit.rotation : effectParam) + rotation, teamColor ? unit.team.color : color, (len - minVelocity) / (unit.type.speed - minVelocity));
         }
     }
 }
