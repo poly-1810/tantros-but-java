@@ -1,6 +1,7 @@
 package poly.tantros;
 
 import arc.*;
+import arc.graphics.*;
 import mindustry.*;
 import mindustry.content.*;
 import mindustry.game.*;
@@ -31,6 +32,11 @@ public class PolyTantros extends Mod {
         Planets.tantros.accessible = true;
         Planets.tantros.alwaysUnlocked = true;
         Planets.tantros.defaultCore = Effect.corePod;
+        Planets.tantros.ruleSetter = r -> {
+            r.lighting = true;
+            r.ambientLight = Color.valueOf("020749");
+            r.fog = true;
+        };
 
         // hide all not-tantros items
         Planets.tantros.hiddenItems = CheckSeq.check(TItems.tantrosItems);
