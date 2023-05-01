@@ -6,17 +6,19 @@ import arc.math.*;
 import arc.util.*;
 import mindustry.entities.units.*;
 import mindustry.gen.*;
+import mindustry.graphics.*;
 import mindustry.world.*;
 import mindustry.world.draw.*;
 
 /** Similar to {@link DrawPistons}, slams to the center when the building complete's its progress. */
 public class DrawSlammers extends DrawBlock{
-    public float angleOffset, maxOffset;
+    public float angleOffset, baseOffset, maxOffset;
     public int sides = 4;
     public Interp offsetInterp = Interp.smooth2;
     /** Any number <=0 disables layer changes. */
     public float layer = -1;
     public boolean drawPlan = true;
+    public float shadowOffset = -1f;
     public String suffix = "-slammer";
     public TextureRegion region1, region2, regiont, regionPrev;
 
@@ -33,7 +35,7 @@ public class DrawSlammers extends DrawBlock{
     public void draw(Building build){
         float z = Draw.z();
         if(layer > 0) Draw.z(layer);
-        float len = offsetInterp.apply(build.progress()) * maxOffset;
+        float len = baseOffset + offsetInterp.apply(build.progress()) * maxOffset;
         for(int i = 0; i < sides; i++){
             float angle = angleOffset + i * 360f / sides;
             TextureRegion reg =
@@ -44,6 +46,14 @@ public class DrawSlammers extends DrawBlock{
                 Draw.yscl = -1f;
             }
 
+            if(shadowOffset > 0){
+                float sz = Draw.z();
+                Draw.z(sz - 0.001f);
+                Draw.color(Pal.shadow);
+                Draw.rect(reg, build.x + Angles.trnsx(angle, len) - shadowOffset, build.y + Angles.trnsy(angle, len) - shadowOffset, angle);
+                Draw.color();
+                Draw.z(sz);
+            }
             Draw.rect(reg, build.x + Angles.trnsx(angle, len), build.y + Angles.trnsy(angle, len), angle);
 
             Draw.yscl = 1f;
