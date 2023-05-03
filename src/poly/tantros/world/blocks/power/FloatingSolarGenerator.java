@@ -7,11 +7,11 @@ import arc.util.*;
 import arc.util.io.*;
 import mindustry.game.*;
 import mindustry.graphics.*;
+import mindustry.input.*;
 import mindustry.world.*;
 import mindustry.world.blocks.power.*;
 import mindustry.world.draw.*;
 import mindustry.world.meta.*;
-import poly.tantros.input.*;
 import poly.tantros.world.draw.*;
 
 import static mindustry.Vars.*;
@@ -63,7 +63,7 @@ public class FloatingSolarGenerator extends SolarGenerator{
 
     @Override
     public void changePlacementPath(Seq<Point2> points, int rotation){
-        if(spacing >= 1) TPlacement.calculatePanels(points, this, rotation, (point, other) -> intersectsSpacing(point.x, point.y, other.x, other.y, 1));
+        if(spacing >= 1) Placement.calculateNodes(points, this, rotation, (point, other) -> intersectsSpacing(point.x, point.y, other.x, other.y, 1));
     }
 
     public class FloatingSolarGeneratorBuild extends SolarGeneratorBuild{
