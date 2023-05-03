@@ -63,7 +63,10 @@ public class Power {
 
             envEnabled |= Env.underwater;
             scaledHealth = 5f; // very fragile
-            powerProduction = 0.12f;
+            powerProduction = 90f / 60f;
+            riseSpeed = 1f / (200f * 60f);
+
+            updateClipRadius(5);
         }};
 
         hydraulicGenerator = new ConsumeGenerator("hydraulic-generator"){{

@@ -34,6 +34,7 @@ Mod adds accessible and available **Tantros** with a lot of exclusive stuff! Lik
 - MeiNanziiii#5309 (always helping with random problems and fixes bugs or weird moments)
 - Slotterleet#7897 (helped me figure out how to make a new class)
 - Flin#8261 (I was stupid, he told me where I was stupid)
+- MEEP of Faith#7277 (heHEHhehEHhEhehEHheheHEHEHEHehehHEHEHEhehehHEhehhe)
 
 If you would like to help contribute, we have a discord server!
 https://discord.gg/tm5yU6hpMw

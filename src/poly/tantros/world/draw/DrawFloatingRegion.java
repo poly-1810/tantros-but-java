@@ -14,7 +14,7 @@ import poly.tantros.graphics.*;
 public class DrawFloatingRegion extends DrawBlock {
     public TextureRegion region;
     public String suffix = "";
-    public float camOffset = 0.25f;
+    public float camOffset = 3f;
     public float driftScl = 50, driftMag = 2;
     public float surfaceTime = 0.95f;
     public float layerFrom = Layer.light + 0.25f;
@@ -37,6 +37,7 @@ public class DrawFloatingRegion extends DrawBlock {
         Draw.z(Draw.z() + DrawPseudo3D.layerOffset(x, y));
 
         Draw.scl(DrawPseudo3D.hScale(off));
+        Draw.alpha(DrawPseudo3D.heightFade(off));
         Draw.rect(region, DrawPseudo3D.xHeight(x, off), DrawPseudo3D.yHeight(y, off));
         Draw.scl();
         Draw.z(z);

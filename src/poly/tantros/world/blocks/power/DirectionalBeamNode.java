@@ -45,7 +45,7 @@ public class DirectionalBeamNode extends PowerBlock {
     public void init() {
         super.init();
 
-        updateClipRadius((range + 1) * tilesize);
+        updateClipRadius((range + 1));
     }
 
     @Override

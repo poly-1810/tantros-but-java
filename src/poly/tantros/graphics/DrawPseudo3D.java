@@ -1,5 +1,6 @@
 package poly.tantros.graphics;
 
+import arc.math.*;
 import mindustry.*;
 
 import static arc.Core.*;
@@ -35,5 +36,10 @@ public class DrawPseudo3D {
     public static float layerOffset(float x, float y) {
         float max = Math.max(camera.width, camera.height);
         return -dst(x, y, camera.position.x, camera.position.y) / max / 1000f;
+    }
+
+    public static float heightFade(float height){
+        float scl = hScale(height);
+        return 1f - Mathf.curve(scl, 1.5f, 7f);
     }
 }

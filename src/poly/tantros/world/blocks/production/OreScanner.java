@@ -27,7 +27,7 @@ public class OreScanner extends OreRevealer {
     @Override
     public void init() {
         super.init();
-        updateClipRadius(revealRange * tilesize);
+        updateClipRadius(revealRange);
     }
 
     @Override
