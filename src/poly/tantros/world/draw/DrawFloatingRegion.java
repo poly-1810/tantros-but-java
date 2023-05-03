@@ -37,6 +37,7 @@ public class DrawFloatingRegion extends DrawBlock {
         Draw.z(Draw.z() + DrawPseudo3D.layerOffset(x, y));
 
         Draw.scl(DrawPseudo3D.hScale(off));
+        Draw.alpha(DrawPseudo3D.heightFade(off));
         Draw.rect(region, DrawPseudo3D.xHeight(x, off), DrawPseudo3D.yHeight(y, off));
         Draw.scl();
         Draw.z(z);

@@ -46,19 +46,25 @@ public class DrawFloatingCable extends DrawFloatingRegion {
             float len = Mathf.len(x2 - x1, y2 - y1);
             float diffX = (x2 - x1) / len * hWidth, diffY = (y2 - y1) / len * hWidth;
 
-            Fill.quad(
+            float a1 = Tmp.c1.set(1f, 1f, 1f, DrawPseudo3D.heightFade(off * p1)).toFloatBits(),
+                a2 = Tmp.c1.set(1f, 1f, 1f, DrawPseudo3D.heightFade(off * p2)).toFloatBits();
+            TDrawf.quad(
                 region,
                 x1 - diffY * s1,
                 y1 + diffX * s1,
+                a1,
 
                 x1 + diffY * s1,
                 y1 - diffX * s1,
+                a1,
 
                 x2 + diffY * s2,
                 y2 - diffX * s2,
+                a2,
 
                 x2 - diffY * s2,
-                y2 + diffX * s2
+                y2 + diffX * s2,
+                a2
             );
         }
 
