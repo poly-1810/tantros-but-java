@@ -10,7 +10,7 @@ import mindustry.world.*;
 import poly.tantros.graphics.*;
 
 public class DrawFloatingCable extends DrawFloatingRegion {
-    public int segments = 8;
+    public int segments = 24;
 
     public DrawFloatingCable(String suffix) {
         super(suffix);
@@ -34,29 +34,37 @@ public class DrawFloatingCable extends DrawFloatingRegion {
 
         float hWidth = region.height * Draw.scl * region.scl() * 2, hScl = DrawPseudo3D.hScale(off);
         float ex = DrawPseudo3D.xHeight(x, off), ey = DrawPseudo3D.yHeight(y, off);
-        float xStep = (ex - build.x) / segments, yStep = (ey - build.y) / segments, sStep = (hScl - 1f) / segments;
+        float xDiff = ex - build.x, yDiff = ey - build.y, sDiff = hScl - 1f;
 
         for (int i = 0; i < segments; i++) {
-            float x1 = build.x + xStep * i, y1 = build.y + yStep * i,
-                x2 = build.x + xStep * (i + 1), y2 = build.y + yStep * (i + 1),
-                s1 = 1f + sStep * i, s2 = 1f + sStep * (i + 1);
+            float p1 = ((float)i / segments) * ((float)i / segments),
+                p2 = ((i + 1f) / segments) * ((i + 1f) / segments);
+            float x1 = build.x + xDiff * p1, y1 = build.y + yDiff * p1,
+                x2 = build.x + xDiff * p2, y2 = build.y + yDiff * p2,
+                s1 = 1f + sDiff * p1, s2 = 1f + sDiff * p2;
 
             float len = Mathf.len(x2 - x1, y2 - y1);
             float diffX = (x2 - x1) / len * hWidth, diffY = (y2 - y1) / len * hWidth;
 
-            Fill.quad(
+            float a1 = Tmp.c1.set(1f, 1f, 1f, DrawPseudo3D.heightFade(off * p1)).toFloatBits(),
+                a2 = Tmp.c1.set(1f, 1f, 1f, DrawPseudo3D.heightFade(off * p2)).toFloatBits();
+            TDrawf.quad(
                 region,
                 x1 - diffY * s1,
                 y1 + diffX * s1,
+                a1,
 
                 x1 + diffY * s1,
                 y1 - diffX * s1,
+                a1,
 
                 x2 + diffY * s2,
                 y2 - diffX * s2,
+                a2,
 
                 x2 - diffY * s2,
-                y2 + diffX * s2
+                y2 + diffX * s2,
+                a2
             );
         }
 

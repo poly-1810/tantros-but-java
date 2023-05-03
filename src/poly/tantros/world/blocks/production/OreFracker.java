@@ -51,7 +51,7 @@ public class OreFracker extends OreRevealer {
     public void init() {
         super.init();
         if (revealRange < 0) revealRange = size / 2 - 1 + size % 2;
-        updateClipRadius(revealRange * tilesize);
+        updateClipRadius(revealRange);
 
         if (maxCrackDist < 0) maxCrackDist = revealRange * tilesize * 1.1f;
         if (minCrackDst < 0) minCrackDst = maxCrackDist * 0.75f;
