@@ -7,11 +7,11 @@ import arc.util.*;
 import arc.util.io.*;
 import mindustry.game.*;
 import mindustry.graphics.*;
-import mindustry.input.*;
 import mindustry.world.*;
 import mindustry.world.blocks.power.*;
 import mindustry.world.draw.*;
 import mindustry.world.meta.*;
+import poly.tantros.input.*;
 import poly.tantros.world.draw.*;
 
 import static mindustry.Vars.*;
@@ -33,11 +33,13 @@ public class FloatingSolarGenerator extends SolarGenerator{
 
     @Override
     public void drawOverlay(float x, float y, int rotation){
+        if(spacing < 1) return;
         Drawf.square(x, y, (spacing + size / 2f + 2) * tilesize, 0f, Pal.remove);
     }
 
     @Override
     public boolean canPlaceOn(Tile tile, Team team, int rotation){
+        if(spacing < 1) return true;
         int off = 1 - size % 2;
         for(int x = tile.x - spacing + off; x <= tile.x + spacing ; x++){
             for(int y = tile.y - spacing + off; y <= tile.y + spacing; y++){
@@ -49,6 +51,7 @@ public class FloatingSolarGenerator extends SolarGenerator{
     }
 
     public boolean intersectsSpacing(int sx, int sy, int ox, int oy, int ext){ //TODO untested with panels larger than 1x1
+        if(spacing < 1) return true;
         int off = 1 - size % 2;
         return ox >= sx - spacing + off - ext && ox <= sx + spacing + ext &&
             oy >= sy - spacing + off - ext && oy <= sy + spacing + ext;
@@ -60,7 +63,7 @@ public class FloatingSolarGenerator extends SolarGenerator{
 
     @Override
     public void changePlacementPath(Seq<Point2> points, int rotation){
-        Placement.calculateNodes(points, this, rotation, (point, other) -> intersectsSpacing(point.x, point.y, other.x, other.y, 1));
+        if(spacing >= 1) TPlacement.calculatePanels(points, this, rotation, (point, other) -> intersectsSpacing(point.x, point.y, other.x, other.y, 1));
     }
 
     public class FloatingSolarGeneratorBuild extends SolarGeneratorBuild{
