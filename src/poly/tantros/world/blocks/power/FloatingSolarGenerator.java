@@ -19,11 +19,12 @@ import static mindustry.Vars.*;
 public class FloatingSolarGenerator extends SolarGenerator{
     public int spacing = 4;
     public float riseSpeed = 0.01f;
-    public Interp riseInterp = Interp.smooth;
+    public Interp riseInterp = Interp.sineIn;
 
     public FloatingSolarGenerator(String name){
         super(name);
 
+        replaceable = false;
         drawer = new DrawMulti(
             new DrawDefault(),
             new DrawFloatingCable("-cable"),
