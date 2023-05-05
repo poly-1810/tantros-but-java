@@ -18,7 +18,7 @@ Mod adds accessible and available **Tantros** with a lot of exclusive stuff! Lik
 - 4 new ores
 
   ![](assets/sprites/blocks/environment/ore-cobalt1.png) ![](assets/sprites/blocks/environment/ore-nickel1.png) ![](assets/sprites/blocks/environment/ore-tantros-copper1.png) ![](assets/sprites/blocks/environment/ore-zinc1.png)
-- exclusive item transportation system
+- exclusive item transportation system, utilizing payloads rather than regular item belts
 
   ![](assets/sprites/blocks/distribution/payload-launcher/payload-launcher.png)
 - and more content!
