@@ -53,9 +53,6 @@ public class Production {
                 }},
                 new DrawRegion("-top"){{
                     layer = Layer.blockOver + 0.1f;
-                }},
-                new DrawRegion("-shine"){{
-                    layer = Layer.blockOver + 0.1f;
                 }}
             );
 
