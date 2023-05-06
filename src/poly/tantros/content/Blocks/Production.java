@@ -34,7 +34,7 @@ public class Production {
             int useAmount = 10;
             itemCapacity = useAmount;
             size = 12;
-            revealRange = 4;
+            revealRange = 5;
             fillsTile = false;
             customShadow = true;
             drawCracks = false;
