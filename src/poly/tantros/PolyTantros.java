@@ -5,6 +5,7 @@ import arc.graphics.*;
 import mindustry.*;
 import mindustry.content.*;
 import mindustry.game.*;
+import mindustry.game.EventType.*;
 import mindustry.mod.*;
 import mindustry.mod.Mods.*;
 import poly.tantros.content.Blocks.*;
@@ -12,11 +13,14 @@ import poly.tantros.content.*;
 import poly.tantros.maps.planet.*;
 import poly.tantros.tools.*;
 import poly.tantros.ui.dialogs.*;
+import poly.tantros.util.*;
 
 import static arc.Core.*;
 import static mindustry.Vars.*;
 
 public class PolyTantros extends Mod {
+    public TUnderwaterFilter tUnderwaterFilter;
+
     public PolyTantros() {
         Events.on(EventType.ClientLoadEvent.class, ignored -> {
             app.post(() -> {
@@ -64,6 +68,9 @@ public class PolyTantros extends Mod {
                     Explore the depths of planet Tantros with new mind-blowing additions!
                     """
             ;
+
+            tUnderwaterFilter = new TUnderwaterFilter();
+            Events.run(Trigger.update, tUnderwaterFilter::update);
         }
     }
 
