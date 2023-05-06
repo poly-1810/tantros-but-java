@@ -34,6 +34,7 @@ public class Production {
             int useAmount = 10;
             itemCapacity = useAmount;
             size = 12;
+            revealRange = 4;
             fillsTile = false;
             customShadow = true;
             drawCracks = false;
@@ -46,8 +47,8 @@ public class Production {
 
             drawer = new DrawMulti(
                 new DrawDefault(),
-                new DrawSlammers(70f / 4f){{
-                    shadowOffset = 4f;
+                new DrawSlammers(53f / 4f){{
+                    shadowOffset = 3f;
                     baseOffset = 80f / 4f;
                     layer = Layer.blockOver;
                 }},
