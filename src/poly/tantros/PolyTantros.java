@@ -69,6 +69,8 @@ public class PolyTantros extends Mod {
                     """
             ;
 
+            loadSettings();
+
             tUnderwaterFilter = new TUnderwaterFilter();
             Events.run(Trigger.update, tUnderwaterFilter::update);
         }
@@ -96,5 +98,11 @@ public class PolyTantros extends Mod {
         Production.load();
         Turret.load();
         Units.load();
+    }
+
+    private void loadSettings(){
+        ui.settings.addCategory(bundle.get("setting.pt-title"), "poly-tantros-settings-icon", t -> {
+            t.sliderPref("pt-filter-intensity", 60, 0, 100, 5, s -> s + "%");
+        });
     }
 }
