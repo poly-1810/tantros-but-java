@@ -2,6 +2,7 @@ package poly.tantros.world.blocks.core.expansions;
 
 import mindustry.*;
 import mindustry.gen.*;
+import mindustry.graphics.*;
 import mindustry.type.*;
 
 public class CoreInput extends CoreExpansion{
@@ -14,6 +15,7 @@ public class CoreInput extends CoreExpansion{
         super(name);
         hasItems = true;
         acceptsItems = true;
+        selectionColor = Pal.lancerLaser;
     }
 
     public class CoreInputBuild extends CoreExpansionBuild{

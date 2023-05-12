@@ -1,5 +1,6 @@
 package poly.tantros.content.Blocks;
 
+import mindustry.graphics.*;
 import mindustry.type.*;
 import mindustry.world.*;
 import mindustry.world.blocks.defense.*;
@@ -70,6 +71,7 @@ public class Effect {
             size = 2;
             linkedUnitCapModifier = 5;
             linkAdjacent = false;
+            selectionColor = Pal.command;
         }};
 
         partNozzle = new Wall("part-nozzle"){{

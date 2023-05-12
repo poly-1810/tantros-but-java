@@ -11,6 +11,7 @@ import poly.tantros.graphics.*;
 
 import static arc.graphics.g2d.Draw.*;
 import static arc.graphics.g2d.Lines.*;
+import static arc.math.Angles.*;
 import static mindustry.content.Fx.*;
 
 public class TFx {
@@ -88,5 +89,16 @@ public class TFx {
             v.trns(rot, rand.random(e.fin() * 27f) * scl);
             lineAngle(e.x + v.x, e.y + v.y, rot, (e.fout() * rand.random(2f, 7f) + 1.5f) * scl);
         }
-    });
+    }),
+
+    bundleBurst = new Effect(20, e -> {
+        if(!(e.data instanceof Item item)) return;
+        float length = 20f * e.finpow();
+        float size = 7f * e.fout();
+        int amount = Mathf.ceil(Mathf.sqrt(e.rotation));
+
+        randLenVectors(e.id, amount, length, (x, y) -> {
+            rect(item.fullIcon, e.x + x, e.y + y, size, size);
+        });
+    }).layer(Layer.blockOver);
 }

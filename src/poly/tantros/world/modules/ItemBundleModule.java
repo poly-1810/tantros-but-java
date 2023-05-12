@@ -12,6 +12,7 @@ import mindustry.graphics.*;
 import mindustry.io.*;
 import mindustry.type.*;
 import mindustry.world.modules.*;
+import poly.tantros.content.*;
 import poly.tantros.world.blocks.core.*;
 
 import static mindustry.Vars.*;
@@ -22,7 +23,8 @@ public class ItemBundleModule extends BlockModule{
 
     protected final Seq<ItemBundle> itemBundles = new Seq<>();
 
-    public void update(Building building, float speed){
+    public void update(ItemBundleMover mover, float speed){
+        Building building = mover.building();
         for(int i = 0; i < itemBundles.size; i++){
             ItemBundle bundle = itemBundles.get(i);
             mVec.set(bundle.x, bundle.y);
@@ -35,14 +37,14 @@ public class ItemBundleModule extends BlockModule{
                     bundle.entering = false;
 
                     if(atDest){
-                        building.handleStack(bundle.stack.item, bundle.stack.amount, building);
+                        mover.bundleArrived(bundle);
                         bundle.scale = 0;
                         itemBundles.remove(bundle);
                         i--;
                     }
                 }
 
-                if(atDest && bundle.scale > 0){
+                if(atDest && bundle.scale > 0 && mover.arriveShrink()){
                     float ang = building.angleTo(mVec);
                     float calc = 1f + (1f - Mathf.sinDeg(Mathf.mod(ang + 45f, 90f) * 2)) * (Mathf.sqrt2 - 1f);
                     Vec2 from = Tmp.v1.trns(ang, building.block.size * tilesize / 2f * calc).add(building);
@@ -50,6 +52,13 @@ public class ItemBundleModule extends BlockModule{
                 }
             }else{ //Move out
                 Building next = world.build(bundle.path.last());
+                if(!(next instanceof ItemBundleMover)){
+                    itemBundles.remove(bundle);
+                    bundle.destroyed();
+                    i--;
+                    continue;
+                }
+
                 float ang = building.angleTo(next);
                 float calc = 1f + (1f - Mathf.sinDeg(Mathf.mod(ang + 45f, 90f) * 2)) * (Mathf.sqrt2 - 1f);
                 Vec2 dest = Tmp.v1.trns(ang, building.block.size * tilesize / 2f * calc).add(building);
@@ -62,10 +71,8 @@ public class ItemBundleModule extends BlockModule{
                     itemBundles.remove(bundle);
                     i--;
 
-                    if(next instanceof ItemBundleMover m){
-                        m.itemBundleModule().itemBundles.add(bundle);
-                        bundle.scale = 1f;
-                    }
+                    ((ItemBundleMover)next).itemBundleModule().itemBundles.add(bundle);
+                    bundle.scale = 1f;
                 }
 
                 if(bundle.scale < 1){
@@ -82,6 +89,7 @@ public class ItemBundleModule extends BlockModule{
     }
 
     public void clear(){
+        itemBundles.each(ItemBundle::destroyed);
         itemBundles.clear();
     }
 
@@ -152,6 +160,10 @@ public class ItemBundleModule extends BlockModule{
             size = ((3f + Mathf.absin(Time.time, 5f, 1f)) + 0.5f) * 2 * scale;
             Draw.color(Pal.accent);
             Draw.rect(itemCircleRegion, x, y, size, size);
+        }
+
+        public void destroyed(){
+            TFx.bundleBurst.at(x, y, stack.amount, stack.item);
         }
 
         public void write(Writes write){

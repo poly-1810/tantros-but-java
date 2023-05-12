@@ -13,11 +13,12 @@ import poly.tantros.world.blocks.core.expansions.*;
 import poly.tantros.world.blocks.core.expansions.CoreExpansion.*;
 import poly.tantros.world.blocks.core.expansions.CoreStorage.*;
 import poly.tantros.world.modules.*;
+import poly.tantros.world.modules.ItemBundleModule.*;
 
 import static mindustry.Vars.*;
 
 public class RootCore extends CoreBlock{
-    protected final static Queue<Building> expansionQueue = new Queue<>();
+    protected final static Queue<Building> expansionQueue = new Queue<>(), expansionQueue2 = new Queue<>();
     protected static int itemCount = 0;
 
     public float bundleMoveSpeed = 0.5f;
@@ -52,15 +53,43 @@ public class RootCore extends CoreBlock{
 
         /** Note: Does not properly calculate storage capacity if multiple cores exist on the map. */
         public void updateChained(){
-            chained.each(c -> c.rootCore = null);
+            chained.each(c -> {
+                c.rootCore = null;
+                if(c instanceof CoreStorageBuild s) s.storageLinked = false;
+            });
             storageCapacity = itemCapacity;
             Seq<CoreExpansionBuild> pre = chained;
             chained = new Seq<>();
             expansionQueue.clear();
             expansionQueue.add(this);
+            expansionQueue2.add(this);
 
+            //1st round: Add storages
             while(!expansionQueue.isEmpty()){
                 Building next = expansionQueue.removeLast();
+                if(next instanceof CoreStorageBuild e){
+                    chained.add(e);
+                    pre.remove(e, true);
+
+                    if(!((CoreExpansion)e.block).linkAdjacent) continue;
+                }
+
+                for(Building b : next.proximity){
+                    if(b instanceof CoreStorageBuild e && e.rootCore != self()){
+                        e.rootCore = self();
+                        e.nextLink = next;
+                        e.linked();
+                        e.storageLinked = true;
+                        storageCapacity += e.block.itemCapacity;
+                        expansionQueue.addFirst(e);
+                        expansionQueue2.addFirst(e);
+                    }
+                }
+            }
+
+            //2nd round: Expand beyond storages
+            while(!expansionQueue2.isEmpty()){
+                Building next = expansionQueue2.removeLast();
                 if(next instanceof CoreExpansionBuild e){
                     chained.add(e);
                     pre.remove(e, true);
@@ -73,8 +102,8 @@ public class RootCore extends CoreBlock{
                         e.rootCore = self();
                         e.nextLink = next;
                         e.linked();
-                        if(e instanceof CoreStorageBuild) storageCapacity += e.block.itemCapacity;
-                        expansionQueue.addFirst(e);
+                        if(e instanceof CoreStorageBuild s) s.storageLinked = false;
+                        expansionQueue2.addFirst(e);
                     }
                 }
             }
@@ -92,8 +121,8 @@ public class RootCore extends CoreBlock{
             //do not draw a pointless single outline when there's no storage
             if(team.cores().size <= 1 && chained.isEmpty()) return;
 
-            Lines.stroke(1f, Pal.accent);
             Cons<Building> outline = b -> {
+                Draw.color(b instanceof CoreExpansionBuild e ? e.selectionColor() : Pal.accent);
                 for(int i = 0; i < 4; i++){
                     Point2 p = Geometry.d8edge[i];
                     float offset = -Math.max(b.block.size - 1, 0) / 2f * tilesize;
@@ -104,6 +133,21 @@ public class RootCore extends CoreBlock{
             outline.get(self());
             chained.each(outline);
             Draw.reset();
+        }
+
+        @Override
+        public void bundleArrived(ItemBundle bundle){
+            handleStack(bundle.stack.item, bundle.stack.amount, self());
+        }
+
+        @Override
+        public boolean arriveShrink(){
+            return true;
+        }
+
+        @Override
+        public Building building(){
+            return self();
         }
 
         @Override

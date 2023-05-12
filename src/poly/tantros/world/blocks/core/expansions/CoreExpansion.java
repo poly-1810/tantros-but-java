@@ -1,6 +1,7 @@
 package poly.tantros.world.blocks.core.expansions;
 
 import arc.*;
+import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.struct.*;
 import arc.util.io.*;
@@ -16,6 +17,7 @@ import poly.tantros.world.blocks.core.*;
 import poly.tantros.world.blocks.core.RootCore.*;
 import poly.tantros.world.blocks.core.expansions.CoreStorage.*;
 import poly.tantros.world.modules.*;
+import poly.tantros.world.modules.ItemBundleModule.*;
 
 import static mindustry.Vars.*;
 
@@ -23,6 +25,7 @@ public class CoreExpansion extends Block{
     public boolean linkAdjacent = true;
     public int linkedUnitCapModifier = 0;
     public float bundleMoveSpeed = 0.5f;
+    public Color selectionColor = Pal.sap;
 
     public CoreExpansion(String name){
         super(name);
@@ -58,7 +61,7 @@ public class CoreExpansion extends Block{
     public boolean canReplace(Block other){
         if(other.alwaysReplace) return true;
         if(other.privileged) return false;
-        return other.replaceable && size >= other.size && other instanceof CoreExpansion;
+        return other.replaceable && size >= other.size && other != this && other instanceof CoreExpansion;
     }
 
     public class CoreExpansionBuild extends Building implements ItemBundleMover{
@@ -116,7 +119,7 @@ public class CoreExpansion extends Block{
                     path.addFirst(cur.pos());
                 }
 
-                if(cur instanceof CoreStorageBuild){
+                if(cur instanceof CoreStorageBuild s && s.storageLinked){
                     cur = null;
                 }else if(cur instanceof CoreExpansionBuild e){
                     cur = e.nextLink;
@@ -127,9 +130,28 @@ public class CoreExpansion extends Block{
             return path;
         }
 
+        public Color selectionColor(){
+            return selectionColor;
+        }
+
+        @Override
+        public Building building(){
+            return self();
+        }
+
         @Override
         public ItemBundleModule itemBundleModule(){
             return itemBundles;
+        }
+
+        @Override
+        public void bundleArrived(ItemBundle bundle){
+            bundle.destroyed();
+        }
+
+        @Override
+        public void onRemoved(){
+            itemBundles.clear();
         }
 
         @Override
