@@ -14,6 +14,7 @@ import mindustry.world.meta.*;
 import mindustry.world.modules.*;
 import poly.tantros.world.blocks.core.*;
 import poly.tantros.world.blocks.core.RootCore.*;
+import poly.tantros.world.blocks.core.expansions.CoreStorage.*;
 import poly.tantros.world.modules.*;
 
 import static mindustry.Vars.*;
@@ -86,7 +87,6 @@ public class CoreExpansion extends Block{
             rootCore = null;
             nextLink = null;
             if(hasItems) items = new ItemModule();
-            itemBundles.clear();
             team.data().unitCap -= linkedUnitCapModifier;
         }
 
@@ -115,7 +115,10 @@ public class CoreExpansion extends Block{
                 }else{
                     path.addFirst(cur.pos());
                 }
-                if(cur instanceof CoreExpansionBuild e){
+
+                if(cur instanceof CoreStorageBuild){
+                    cur = null;
+                }else if(cur instanceof CoreExpansionBuild e){
                     cur = e.nextLink;
                 }else{
                     cur = null; //Reached core

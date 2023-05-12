@@ -4,6 +4,7 @@ import arc.util.*;
 import mindustry.*;
 import mindustry.game.*;
 import mindustry.gen.*;
+import mindustry.type.*;
 import mindustry.world.*;
 import poly.tantros.world.blocks.core.RootCore.*;
 
@@ -25,5 +26,11 @@ public class CoreStorage extends CoreExpansion{
     }
 
     public class CoreStorageBuild extends CoreExpansionBuild{
+        @Override
+        public void handleStack(Item item, int amount, Teamc source){
+            if(rootCore == null || source != self()) return;
+
+            rootCore.handleStack(item, amount, this);
+        }
     }
 }

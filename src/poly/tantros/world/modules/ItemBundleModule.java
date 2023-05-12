@@ -28,36 +28,48 @@ public class ItemBundleModule extends BlockModule{
             mVec.set(bundle.x, bundle.y);
 
             if(bundle.entering){ //Move in
+                boolean atDest = world.build(bundle.destination) == building;
                 mVec.approachDelta(Tmp.v1.set(building), speed);
 
                 if(mVec.within(building, 0.01f)){
                     bundle.entering = false;
 
-                    if(world.build(bundle.destination) == building){
+                    if(atDest){
                         building.handleStack(bundle.stack.item, bundle.stack.amount, building);
+                        bundle.scale = 0;
                         itemBundles.remove(bundle);
                         i--;
                     }
                 }
+
+                if(atDest && bundle.scale > 0){
+                    float ang = building.angleTo(mVec);
+                    float calc = 1f + (1f - Mathf.sinDeg(Mathf.mod(ang + 45f, 90f) * 2)) * (Mathf.sqrt2 - 1f);
+                    Vec2 from = Tmp.v1.trns(ang, building.block.size * tilesize / 2f * calc).add(building);
+                    bundle.scale = Mathf.clamp(building.dst(mVec) / building.dst(from));
+                }
             }else{ //Move out
                 Building next = world.build(bundle.path.last());
-                if(next instanceof ItemBundleMover m){
-                    float ang = building.angleTo(next);
-                    float calc = 1f + (1f - Mathf.sinDeg(Mathf.mod(ang + 45f, 90f) * 2)) * (Mathf.sqrt2 - 1f);
-                    Vec2 dest = Tmp.v1.trns(ang, (building.block.size * tilesize / Mathf.sqrt2) * calc).add(building);
+                float ang = building.angleTo(next);
+                float calc = 1f + (1f - Mathf.sinDeg(Mathf.mod(ang + 45f, 90f) * 2)) * (Mathf.sqrt2 - 1f);
+                Vec2 dest = Tmp.v1.trns(ang, building.block.size * tilesize / 2f * calc).add(building);
 
-                    mVec.approachDelta(dest, speed);
+                mVec.approachDelta(dest, speed);
 
-                    if(mVec.within(dest, 0.001f)){
-                        m.itemBundleModule().itemBundles.add(bundle);
-                        bundle.entering = true;
-                        bundle.path.removeLast();
-                        itemBundles.remove(bundle);
-                        i--;
-                    }
-                }else{
+                if(mVec.within(dest, 0.001f)){
+                    bundle.entering = true;
+                    bundle.path.removeLast();
                     itemBundles.remove(bundle);
                     i--;
+
+                    if(next instanceof ItemBundleMover m){
+                        m.itemBundleModule().itemBundles.add(bundle);
+                        bundle.scale = 1f;
+                    }
+                }
+
+                if(bundle.scale < 1){
+                    bundle.scale = Mathf.clamp(building.dst(mVec) / building.dst(dest));
                 }
             }
             bundle.x = mVec.x;
@@ -111,7 +123,7 @@ public class ItemBundleModule extends BlockModule{
     public static class ItemBundle{
         protected static TextureRegion itemCircleRegion;
 
-        public float x, y;
+        public float x, y, scale;
         public boolean entering;
         public ItemStack stack;
         public IntQueue path;
@@ -132,12 +144,12 @@ public class ItemBundleModule extends BlockModule{
         public void draw(){
             if(itemCircleRegion == null) itemCircleRegion = Core.atlas.find("ring-item");
 
-            float size = (itemSize + Mathf.absin(Time.time, 5f, 1f));
+            float size = (itemSize + Mathf.absin(Time.time, 5f, 1f)) * scale;
             Draw.mixcol(Pal.accent, Mathf.absin(Time.time, 5f, 0.1f));
             Draw.rect(stack.item.fullIcon, x, y, size, size, 0);
             Draw.mixcol();
 
-            size = ((3f + Mathf.absin(Time.time, 5f, 1f)) + 0.5f) * 2;
+            size = ((3f + Mathf.absin(Time.time, 5f, 1f)) + 0.5f) * 2 * scale;
             Draw.color(Pal.accent);
             Draw.rect(itemCircleRegion, x, y, size, size);
         }
@@ -145,6 +157,7 @@ public class ItemBundleModule extends BlockModule{
         public void write(Writes write){
             write.f(x);
             write.f(y);
+            write.f(scale);
             write.bool(entering);
             TypeIO.writeItems(write, stack);
 
@@ -157,6 +170,7 @@ public class ItemBundleModule extends BlockModule{
         public static ItemBundle read(Reads read){
             float x = read.f();
             float y = read.f();
+            float scale = read.f();
             boolean entering = read.bool();
             ItemStack items = TypeIO.readItems(read);
 
@@ -168,6 +182,7 @@ public class ItemBundleModule extends BlockModule{
 
             ItemBundle out = new ItemBundle(x, y, items, journey);
             out.entering = entering;
+            out.scale = scale;
 
             return out;
         }
