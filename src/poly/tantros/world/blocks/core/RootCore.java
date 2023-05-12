@@ -70,7 +70,6 @@ public class RootCore extends CoreBlock{
                     if(b instanceof CoreExpansionBuild e && e.rootCore != self()){
                         e.rootCore = self();
                         e.nextLink = next;
-                        storageCapacity += e.block.itemCapacity;
                         e.linked();
                         expansionQueue.addFirst(e);
                     }
@@ -105,8 +104,8 @@ public class RootCore extends CoreBlock{
         }
 
         @Override
-        public boolean acceptItem(Building source, Item item){
-            return itemCount(item) < getMaximumAccepted(item);
+        public ItemBundleModule itemBundleModule(){
+            return itemBundles;
         }
 
         public int itemCount(Item item){
@@ -116,11 +115,6 @@ public class RootCore extends CoreBlock{
                 build.itemBundles.getItemBundles().each(b -> b.stack.item == item, b -> itemCount += b.stack.amount);
             }
             return itemCount;
-        }
-
-        @Override
-        public ItemBundleModule itemBundleModule(){
-            return itemBundles;
         }
 
         @Override

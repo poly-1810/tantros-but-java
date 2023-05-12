@@ -12,7 +12,7 @@ import static mindustry.type.ItemStack.*;
 public class Effect {
     public static Block
     //Core
-    corePod, coreBranch, coreStorage, coreCommand,
+    corePod, coreBranch, coreInput, coreCommand,
 
     //Parts
     partNozzle, partProcessor;
@@ -42,7 +42,7 @@ public class Effect {
             bundleMoveSpeed = 3f;
         }};
 
-        coreStorage = new CoreStorage("core-storage"){{
+        coreInput = new CoreInput("core-input"){{
             requirements(Category.effect, with(TItems.tCopper, 400, TItems.calcite, 100, TItems.nickel, 250, TItems.zinc, 250)); //Placeholder build cost
 
             envEnabled |= Env.underwater;

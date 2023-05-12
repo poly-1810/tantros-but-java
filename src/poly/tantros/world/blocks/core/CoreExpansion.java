@@ -32,8 +32,7 @@ public class CoreExpansion extends Block{
         unloadable = false;
         separateItemCapacity = true;
         group = BlockGroup.transportation;
-        flags = EnumSet.of(BlockFlag.storage);
-        allowResupply = true;
+        flags = EnumSet.of(BlockFlag.core, BlockFlag.storage);
         envEnabled = Env.any;
     }
 
@@ -51,6 +50,11 @@ public class CoreExpansion extends Block{
     @Override
     public boolean outputsItems(){
         return false;
+    }
+
+    @Override
+    public boolean canReplace(Block other){
+        return super.canReplace(other) && other instanceof CoreExpansion;
     }
 
     public class CoreExpansionBuild extends Building implements ItemBundleMover{
@@ -100,7 +104,7 @@ public class CoreExpansion extends Block{
         }
 
         public IntQueue path(boolean request){
-            Building cur = self();
+            Building cur = nextLink;
             IntQueue path = new IntQueue();
             while(cur != null){
                 if(request){

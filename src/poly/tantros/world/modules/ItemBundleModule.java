@@ -44,7 +44,7 @@ public class ItemBundleModule extends BlockModule{
                 if(next instanceof ItemBundleMover m){
                     float ang = building.angleTo(next);
                     float calc = 1f + (1f - Mathf.sinDeg(Mathf.mod(ang + 45f, 90f) * 2)) * (Mathf.sqrt2 - 1f);
-                    Vec2 dest = Tmp.v1.trns(ang, calc).add(building);
+                    Vec2 dest = Tmp.v1.trns(ang, (building.block.size * tilesize / Mathf.sqrt2) * calc).add(building);
 
                     mVec.approachDelta(dest, speed);
 
