@@ -1,4 +1,4 @@
-package poly.tantros.world.blocks.core;
+package poly.tantros.world.blocks.core.expansions;
 
 import arc.*;
 import arc.graphics.g2d.*;
@@ -12,6 +12,7 @@ import mindustry.ui.*;
 import mindustry.world.*;
 import mindustry.world.meta.*;
 import mindustry.world.modules.*;
+import poly.tantros.world.blocks.core.*;
 import poly.tantros.world.blocks.core.RootCore.*;
 import poly.tantros.world.modules.*;
 
@@ -54,7 +55,9 @@ public class CoreExpansion extends Block{
 
     @Override
     public boolean canReplace(Block other){
-        return super.canReplace(other) && other instanceof CoreExpansion;
+        if(other.alwaysReplace) return true;
+        if(other.privileged) return false;
+        return other.replaceable && size >= other.size && other instanceof CoreExpansion;
     }
 
     public class CoreExpansionBuild extends Building implements ItemBundleMover{

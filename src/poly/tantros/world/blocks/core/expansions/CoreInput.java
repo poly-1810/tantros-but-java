@@ -1,4 +1,4 @@
-package poly.tantros.world.blocks.core;
+package poly.tantros.world.blocks.core.expansions;
 
 import mindustry.*;
 import mindustry.gen.*;

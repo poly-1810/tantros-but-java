@@ -6,13 +6,14 @@ import mindustry.world.blocks.defense.*;
 import mindustry.world.meta.*;
 import poly.tantros.content.*;
 import poly.tantros.world.blocks.core.*;
+import poly.tantros.world.blocks.core.expansions.*;
 
 import static mindustry.type.ItemStack.*;
 
 public class Effect {
     public static Block
     //Core
-    corePod, coreBranch, coreInput, coreCommand,
+    corePod, coreBranch, coreInput, coreStorage, coreCommand,
 
     //Parts
     partNozzle, partProcessor;
@@ -43,15 +44,22 @@ public class Effect {
         }};
 
         coreInput = new CoreInput("core-input"){{
+            requirements(Category.effect, with(TItems.tCopper, 100, TItems.calcite, 50)); //Placeholder build cost
+
+            envEnabled |= Env.underwater;
+            health = 250;
+            size = 2;
+            itemCapacity = 40;
+            linkAdjacent = false;
+        }};
+
+        coreStorage = new CoreStorage("core-storage"){{
             requirements(Category.effect, with(TItems.tCopper, 400, TItems.calcite, 100, TItems.nickel, 250, TItems.zinc, 250)); //Placeholder build cost
 
             envEnabled |= Env.underwater;
             health = 650;
             size = 2;
             itemCapacity = 50;
-            acceptsItems = true;
-            unloadable = true;
-            linkAdjacent = false;
         }};
 
         coreCommand = new CoreExpansion("core-command"){{

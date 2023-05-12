@@ -9,7 +9,9 @@ import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.type.*;
 import mindustry.world.blocks.storage.*;
-import poly.tantros.world.blocks.core.CoreExpansion.*;
+import poly.tantros.world.blocks.core.expansions.*;
+import poly.tantros.world.blocks.core.expansions.CoreExpansion.*;
+import poly.tantros.world.blocks.core.expansions.CoreStorage.*;
 import poly.tantros.world.modules.*;
 
 import static mindustry.Vars.*;
@@ -71,6 +73,7 @@ public class RootCore extends CoreBlock{
                         e.rootCore = self();
                         e.nextLink = next;
                         e.linked();
+                        if(e instanceof CoreStorageBuild) storageCapacity += e.block.itemCapacity;
                         expansionQueue.addFirst(e);
                     }
                 }
