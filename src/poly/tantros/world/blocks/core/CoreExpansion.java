@@ -1,30 +1,32 @@
 package poly.tantros.world.blocks.core;
 
 import arc.*;
+import arc.graphics.g2d.*;
 import arc.struct.*;
+import arc.util.io.*;
 import mindustry.core.*;
 import mindustry.ctype.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
-import mindustry.type.*;
 import mindustry.ui.*;
 import mindustry.world.*;
-import mindustry.world.blocks.storage.*;
 import mindustry.world.meta.*;
 import mindustry.world.modules.*;
 import poly.tantros.world.blocks.core.RootCore.*;
+import poly.tantros.world.modules.*;
 
 import static mindustry.Vars.*;
 
 public class CoreExpansion extends Block{
     public boolean linkAdjacent = true;
     public int linkedUnitCapModifier = 0;
+    public float bundleMoveSpeed = 0.5f;
 
     public CoreExpansion(String name){
         super(name);
-        hasItems = true;
+        itemCapacity = 0;
         solid = true;
-        update = false;
+        update = true;
         destructible = true;
         acceptsItems = false;
         unloadable = false;
@@ -51,9 +53,23 @@ public class CoreExpansion extends Block{
         return false;
     }
 
-    public class CoreExpansionBuild extends Building{
+    public class CoreExpansionBuild extends Building implements ItemBundleMover{
         public RootCoreBuild rootCore;
         public Building nextLink;
+        public ItemBundleModule itemBundles = new ItemBundleModule();
+
+        @Override
+        public void updateTile(){
+            itemBundles.update(self(), bundleMoveSpeed * timeScale);
+        }
+
+        @Override
+        public void draw(){
+            super.draw();
+
+            Draw.z(Layer.blockOver);
+            itemBundles.draw();
+        }
 
         public void linked(){
             team.data().unitCap += linkedUnitCapModifier;
@@ -63,6 +79,7 @@ public class CoreExpansion extends Block{
             rootCore = null;
             nextLink = null;
             if(hasItems) items = new ItemModule();
+            itemBundles.clear();
             team.data().unitCap -= linkedUnitCapModifier;
         }
 
@@ -73,49 +90,6 @@ public class CoreExpansion extends Block{
         }
 
         @Override
-        public boolean acceptItem(Building source, Item item){
-            return acceptsItems && rootCore != null && rootCore.acceptItem(source, item);
-        }
-
-        @Override
-        public void handleItem(Building source, Item item){
-            if(rootCore != null){
-                if(rootCore.items.get(item) >= rootCore.storageCapacity){
-                    StorageBlock.incinerateEffect(this, source);
-                }
-                rootCore.noEffect = true;
-                rootCore.handleItem(source, item);
-            }
-        }
-
-        @Override
-        public void itemTaken(Item item){
-            if(rootCore != null) rootCore.itemTaken(item);
-        }
-
-        @Override
-        public int removeStack(Item item, int amount){
-            int result = super.removeStack(item, amount);
-
-            if(rootCore != null && team == state.rules.defaultTeam && state.isCampaign()){
-                state.rules.sector.info.handleCoreItem(item, -result);
-            }
-
-            return result;
-        }
-
-        @Override
-        public int getMaximumAccepted(Item item){
-            return rootCore != null ? rootCore.getMaximumAccepted(item) : 0;
-        }
-
-        @Override
-        public int explosionItemCap(){
-            //when linked to a core, containers/vaults are made significantly less explosive.
-            return rootCore != null ? Math.min(itemCapacity/60, 6) : itemCapacity;
-        }
-
-        @Override
         public void drawSelect(){
             if(rootCore != null) rootCore.drawSelect();
         }
@@ -123,6 +97,43 @@ public class CoreExpansion extends Block{
         @Override
         public boolean canPickup(){
             return rootCore == null;
+        }
+
+        public IntQueue path(boolean request){
+            Building cur = self();
+            IntQueue path = new IntQueue();
+            while(cur != null){
+                if(request){
+                    path.addLast(cur.pos());
+                }else{
+                    path.addFirst(cur.pos());
+                }
+                if(cur instanceof CoreExpansionBuild e){
+                    cur = e.nextLink;
+                }else{
+                    cur = null; //Reached core
+                }
+            }
+            return path;
+        }
+
+        @Override
+        public ItemBundleModule itemBundleModule(){
+            return itemBundles;
+        }
+
+        @Override
+        public void write(Writes write){
+            super.write(write);
+
+            itemBundles.write(write);
+        }
+
+        @Override
+        public void read(Reads read, byte revision){
+            super.read(read, revision);
+
+            itemBundles.read(read);
         }
     }
 }

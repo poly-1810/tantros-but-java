@@ -4,23 +4,43 @@ import arc.func.*;
 import arc.graphics.g2d.*;
 import arc.math.geom.*;
 import arc.struct.*;
+import arc.util.io.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.type.*;
 import mindustry.world.blocks.storage.*;
 import poly.tantros.world.blocks.core.CoreExpansion.*;
+import poly.tantros.world.modules.*;
 
 import static mindustry.Vars.*;
 
 public class RootCore extends CoreBlock{
     protected final static Queue<Building> expansionQueue = new Queue<>();
+    protected static int itemCount = 0;
+
+    public float bundleMoveSpeed = 0.5f;
 
     public RootCore(String name){
         super(name);
     }
 
-    public class RootCoreBuild extends CoreBuild{
+    public class RootCoreBuild extends CoreBuild implements ItemBundleMover{
         public Seq<CoreExpansionBuild> chained = new Seq<>();
+        public ItemBundleModule itemBundles = new ItemBundleModule();
+
+        @Override
+        public void updateTile(){
+            super.updateTile();
+            itemBundles.update(self(), bundleMoveSpeed * timeScale);
+        }
+
+        @Override
+        public void draw(){
+            super.draw();
+
+            Draw.z(Layer.blockOver);
+            itemBundles.draw();
+        }
 
         @Override
         public void onProximityUpdate(){
@@ -46,18 +66,11 @@ public class RootCore extends CoreBlock{
                     if(!((CoreExpansion)e.block).linkAdjacent) continue;
                 }
 
-                for(var b : next.proximity){
+                for(Building b : next.proximity){
                     if(b instanceof CoreExpansionBuild e && e.rootCore != self()){
                         e.rootCore = self();
-                        e.nextLink = b;
-                        if(e.block.hasItems){
-                            if(e.items != items){
-                                items.add(e.items);
-                                e.items.clear();
-                            }
-                            e.items = items;
-                            storageCapacity += e.block.itemCapacity;
-                        }
+                        e.nextLink = next;
+                        storageCapacity += e.block.itemCapacity;
                         e.linked();
                         expansionQueue.addFirst(e);
                     }
@@ -66,22 +79,6 @@ public class RootCore extends CoreBlock{
             pre.each(CoreExpansionBuild::unlinked);
 
             if(!world.isGenerating()){
-                for(int i = 0; i < pre.size; i++){
-                    CoreExpansionBuild b = pre.get(i);
-                    if(b.items != null && b.block.itemCapacity > 0){
-                        boolean empty = true;
-                        for(Item item : content.items()){
-                            int amount = Math.min(items.get(item) - storageCapacity, b.block.itemCapacity);
-                            if(amount > 0){
-                                b.items.add(item, amount);
-                                items.remove(item, amount);
-                            }
-                            if(items.get(item) > storageCapacity) empty = false;
-                        }
-                        if(empty) break;
-                    }
-                }
-
                 for(Item item : content.items()){
                     items.set(item, Math.min(items.get(item), storageCapacity));
                 }
@@ -105,6 +102,44 @@ public class RootCore extends CoreBlock{
             outline.get(self());
             chained.each(outline);
             Draw.reset();
+        }
+
+        @Override
+        public boolean acceptItem(Building source, Item item){
+            return itemCount(item) < getMaximumAccepted(item);
+        }
+
+        public int itemCount(Item item){
+            itemCount = items.get(item);
+            for(CoreExpansionBuild build : chained){
+                if(build.block.hasItems) itemCount += build.items.get(item);
+                build.itemBundles.getItemBundles().each(b -> b.stack.item == item, b -> itemCount += b.stack.amount);
+            }
+            return itemCount;
+        }
+
+        @Override
+        public ItemBundleModule itemBundleModule(){
+            return itemBundles;
+        }
+
+        @Override
+        public void write(Writes write){
+            super.write(write);
+
+            itemBundles.write(write);
+        }
+
+        @Override
+        public void read(Reads read, byte revision){
+            super.read(read, revision);
+
+            if(revision >= 1) itemBundles.read(read);
+        }
+
+        @Override
+        public byte version(){
+            return 1;
         }
     }
 }

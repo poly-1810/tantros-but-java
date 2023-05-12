@@ -39,11 +39,10 @@ public class Effect {
             envEnabled |= Env.underwater;
             health = 200;
             size = 2;
-            itemCapacity = 0;
-            acceptsItems = false;
+            bundleMoveSpeed = 3f;
         }};
 
-        coreStorage = new CoreExpansion("core-storage"){{
+        coreStorage = new CoreStorage("core-storage"){{
             requirements(Category.effect, with(TItems.tCopper, 400, TItems.calcite, 100, TItems.nickel, 250, TItems.zinc, 250)); //Placeholder build cost
 
             envEnabled |= Env.underwater;
