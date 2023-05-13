@@ -4,6 +4,7 @@ import arc.*;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
+import mindustry.*;
 import mindustry.entities.*;
 import mindustry.graphics.*;
 import mindustry.type.*;
@@ -94,7 +95,7 @@ public class TFx {
     bundleBurst = new Effect(20, e -> {
         if(!(e.data instanceof Item item)) return;
         float length = 20f * e.finpow();
-        float size = 7f * e.fout();
+        float size = Vars.itemSize * e.fout();
         int amount = Mathf.ceil(Mathf.sqrt(e.rotation));
 
         randLenVectors(e.id, amount, length, (x, y) -> {

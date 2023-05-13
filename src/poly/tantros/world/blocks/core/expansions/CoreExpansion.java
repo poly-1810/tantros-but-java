@@ -66,6 +66,11 @@ public class CoreExpansion extends Block{
         return other.replaceable && size >= other.size && other != this && other instanceof CoreExpansion;
     }
 
+    protected TextureRegion[] icons(){
+        TextureRegion r = variants > 0 ? Core.atlas.find(name + "1") : region;
+        return teamRegion.found() ? new TextureRegion[]{r, teamRegions[Team.sharded.id]} : new TextureRegion[]{r};
+    }
+
     public class CoreExpansionBuild extends Building implements ItemBundleMover{
         public RootCoreBuild rootCore;
         public Building nextLink;

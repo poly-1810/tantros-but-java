@@ -1,10 +1,12 @@
 package poly.tantros.world.blocks.core;
 
+import arc.*;
 import arc.func.*;
 import arc.graphics.g2d.*;
 import arc.math.geom.*;
 import arc.struct.*;
 import arc.util.io.*;
+import mindustry.game.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
 import mindustry.type.*;
@@ -25,6 +27,11 @@ public class RootCore extends CoreBlock{
 
     public RootCore(String name){
         super(name);
+    }
+
+    protected TextureRegion[] icons(){
+        TextureRegion r = variants > 0 ? Core.atlas.find(name + "1") : region;
+        return teamRegion.found() ? new TextureRegion[]{r, teamRegions[Team.sharded.id]} : new TextureRegion[]{r};
     }
 
     public class RootCoreBuild extends CoreBuild implements ItemBundleMover{

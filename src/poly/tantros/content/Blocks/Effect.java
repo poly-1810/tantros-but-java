@@ -1,11 +1,11 @@
 package poly.tantros.content.Blocks;
 
-import mindustry.graphics.*;
 import mindustry.type.*;
 import mindustry.world.*;
 import mindustry.world.blocks.defense.*;
 import mindustry.world.meta.*;
 import poly.tantros.content.*;
+import poly.tantros.graphics.*;
 import poly.tantros.world.blocks.core.*;
 import poly.tantros.world.blocks.core.expansions.*;
 
@@ -55,7 +55,7 @@ public class Effect {
         }};
 
         coreStorage = new CoreStorage("core-storage"){{
-            requirements(Category.effect, with(TItems.tCopper, 400, TItems.calcite, 100, TItems.nickel, 250, TItems.zinc, 250)); //Placeholder build cost
+            requirements(Category.effect, with(TItems.tCopper, 500, TItems.calcite, 450, TItems.nickel, 450, TItems.zinc, 450)); //Placeholder build cost
 
             envEnabled |= Env.underwater;
             health = 650;
@@ -71,7 +71,7 @@ public class Effect {
             size = 2;
             linkedUnitCapModifier = 5;
             linkAdjacent = false;
-            selectionColor = Pal.command;
+            selectionColor = TPal.commandSelect;
         }};
 
         partNozzle = new Wall("part-nozzle"){{
