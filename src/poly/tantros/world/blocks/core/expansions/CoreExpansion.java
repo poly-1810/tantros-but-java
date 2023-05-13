@@ -4,15 +4,17 @@ import arc.*;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.struct.*;
+import arc.util.*;
 import arc.util.io.*;
 import mindustry.core.*;
 import mindustry.ctype.*;
+import mindustry.game.*;
 import mindustry.gen.*;
 import mindustry.graphics.*;
+import mindustry.type.*;
 import mindustry.ui.*;
 import mindustry.world.*;
 import mindustry.world.meta.*;
-import mindustry.world.modules.*;
 import poly.tantros.world.blocks.core.*;
 import poly.tantros.world.blocks.core.RootCore.*;
 import poly.tantros.world.blocks.core.expansions.CoreStorage.*;
@@ -25,7 +27,7 @@ public class CoreExpansion extends Block{
     public boolean linkAdjacent = true;
     public int linkedUnitCapModifier = 0;
     public float bundleMoveSpeed = 0.5f;
-    public Color selectionColor = Pal.sap;
+    public Color selectionColor = Color.lightGray;
 
     public CoreExpansion(String name){
         super(name);
@@ -67,6 +69,7 @@ public class CoreExpansion extends Block{
     public class CoreExpansionBuild extends Building implements ItemBundleMover{
         public RootCoreBuild rootCore;
         public Building nextLink;
+        public boolean alreadyLinked;
         public ItemBundleModule itemBundles = new ItemBundleModule();
 
         @Override
@@ -83,14 +86,39 @@ public class CoreExpansion extends Block{
         }
 
         public void linked(){
-            team.data().unitCap += linkedUnitCapModifier;
+            if(!alreadyLinked) team.data().unitCap += linkedUnitCapModifier;
+            alreadyLinked = true;
         }
 
         public void unlinked(){
+            Log.info(tile);
+
             rootCore = null;
             nextLink = null;
-            if(hasItems) items = new ItemModule();
-            team.data().unitCap -= linkedUnitCapModifier;
+            alreadyLinked = false;
+            if(linkedUnitCapModifier > 0){
+                team.data().unitCap -= linkedUnitCapModifier;
+                if(!state.rules.editor){
+                    int cap = team.data().unitCap;
+                    for(UnitType type : content.units()){
+                        if(!type.useUnitCap) continue;
+
+                        Seq<Unit> units = team.data().getUnits(type);
+                        if(units != null){
+                            Seq<Unit> cull = units.select(u -> !u.spawnedByCore && !u.dead);
+                            if(cull.size <= cap) continue;
+
+                            int killed = 0;
+                            for(int i = cull.size - 1; i >= cap; i--){
+                                Call.unitCapDeath(cull.get(i));
+                                units.remove(cull.get(i));
+                                killed++;
+                            }
+                            team.data().updateCount(type, -killed);
+                        }
+                    }
+                }
+            }
         }
 
         @Override
@@ -120,9 +148,9 @@ public class CoreExpansion extends Block{
                 }
 
                 if(cur instanceof CoreStorageBuild s && s.storageLinked){
-                    cur = null;
+                    cur = null; //Reached a storage
                 }else if(cur instanceof CoreExpansionBuild e){
-                    cur = e.nextLink;
+                    cur = e.nextLink; //Continue
                 }else{
                     cur = null; //Reached core
                 }
@@ -151,6 +179,7 @@ public class CoreExpansion extends Block{
 
         @Override
         public void onRemoved(){
+            unlinked();
             itemBundles.clear();
         }
 
