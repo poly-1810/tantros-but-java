@@ -81,15 +81,16 @@ public class Power {
                     new DrawRegion("-bottom"),
                     new DrawPistons(){{
                         sinMag = 1.5f;
-                        sides = 4;
+                        sides = 2;
+                        sinOffset = 0f;
+                        angleOffset = 90f;
                         lenOffset = 0f;
                     }},
-                    new DrawRegion("-mid"),
                     new DrawPistons(){{
                         sinMag = 1.5f;
                         sides = 2;
                         sinScl = 12f;
-                        sinOffset = 75f;
+                        sinOffset = 0f;
                         lenOffset = 0f;
                     }},
                     new DrawDefault()

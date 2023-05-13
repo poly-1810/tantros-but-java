@@ -6,7 +6,7 @@
   "subtitle": "Explore the depths of planet Tantros!",
   "version": "0.2-b3",
   "main": "poly.tantros.PolyTantros",
-  "minGameVersion": "143.1",
+  "minGameVersion": "144.1",
   "dependencies": [],
   "java": true,
   "hidden": false,
