@@ -27,8 +27,8 @@ public class TUnderwaterFilter{
         //poll every 30 ticks just in case performance is an issue
         if(timer.get(0, 30f)){
             Core.audio.fadeFilterParam(0, filterIndex, Filters.paramWet,
-                playing && (Env.underwater & state.rules.env) == Env.underwater ? Core.settings.getInt("pt-filter-intensity", 100) / 100f : 0f,
-                0.4f
+            playing && (Env.underwater & state.rules.env) == Env.underwater ? Core.settings.getInt("pt-filter-intensity", 100) / 100f : 0f,
+            0.4f
             );
         }
 

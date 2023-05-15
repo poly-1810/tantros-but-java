@@ -5,13 +5,13 @@ import arc.struct.*;
 import mindustry.content.*;
 import mindustry.type.*;
 
-public class TItems {
+public class TItems{
     public static Item cobalt, calcite, brass, carbon, nickel, rubedo, sheetMetal, zinc, tCopper;
 
     public static final Seq<Item> tantrosItems = new Seq<>();
     public static final Seq<Item> onlyTantrosItems = new Seq<>();
 
-    public static void load() {
+    public static void load(){
         cobalt = new Item("cobalt", Color.valueOf("8ca9e8")){{
             hardness = 3;
             cost = 1.8f;

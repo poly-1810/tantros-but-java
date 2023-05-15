@@ -7,8 +7,8 @@ public class ResourceBlock extends Wall{
     public boolean breakOnPlace = false;
     public boolean placeable = true;
 
-    public Item item; // for easy access to item
-    public int drillTime; // in seconds
+    public Item item; //for easy access to item
+    public int drillTime; //in seconds
 
     public ResourceBlock(String name){
         super(name);

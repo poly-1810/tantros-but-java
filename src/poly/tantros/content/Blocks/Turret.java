@@ -17,10 +17,10 @@ import poly.tantros.content.*;
 
 import static mindustry.type.ItemStack.*;
 
-public class Turret {
+public class Turret{
     public static Block remnant, snap, spark, splice, swipe, wail;
 
-    public static void load() {
+    public static void load(){
         remnant = new ItemTurret("remnant"){{
             requirements(Category.turret, with(TItems.tCopper, 10, TItems.calcite, 15, TItems.nickel, 5));
 
@@ -35,11 +35,11 @@ public class Turret {
             outlineColor = Color.valueOf("2d2f39");
             drawer = new DrawTurret("plated-"){{
                 parts.addAll(
-                        new RegionPart("-barrel"){{
-                            mirror = true;
-                            moveX = 1f;
-                            progress = PartProgress.recoil;
-                        }}
+                    new RegionPart("-barrel"){{
+                        mirror = true;
+                        moveX = 1f;
+                        progress = PartProgress.recoil;
+                    }}
                 );
             }};
             shoot = new ShootSummon(0f, 1f, 3f, 0f){{
@@ -50,30 +50,30 @@ public class Turret {
             rotateSpeed = 5f;
 
             ammo(
-                    TItems.calcite, new BasicBulletType(){{
-                        speed = 10f;
-                        lifetime = 20f;
-                        damage = 10.25f;
-                        drag = 0.05f;
-                        width = 12f;
-                        height = 20f;
-                        knockback = 1f;
-                        impact = true;
-                        shootEffect = Fx.shootSmokeSquareSparse;
-                        smokeEffect = Fx.none;
-                        despawnEffect = new MultiEffect(
-                                Fx.shootSmokeSquareSparse,
-                                Fx.shootSmokeSquareSparse
-                        );
-                        hitEffect = Fx.shootSmokeSquareSparse;
-                        hitColor = Color.valueOf("d0d8e7");
-                        backColor = Color.valueOf("d0d8e7");
-                        trailColor = Color.valueOf("d0d8e7");
-                        trailWidth = 3.4f;
-                        trailLength = 3;
-                        frontColor = Color.valueOf("ffffff");
-                        collideTerrain = true;
-                    }}
+                TItems.calcite, new BasicBulletType(){{
+                    speed = 10f;
+                    lifetime = 20f;
+                    damage = 10.25f;
+                    drag = 0.05f;
+                    width = 12f;
+                    height = 20f;
+                    knockback = 1f;
+                    impact = true;
+                    shootEffect = Fx.shootSmokeSquareSparse;
+                    smokeEffect = Fx.none;
+                    despawnEffect = new MultiEffect(
+                        Fx.shootSmokeSquareSparse,
+                        Fx.shootSmokeSquareSparse
+                    );
+                    hitEffect = Fx.shootSmokeSquareSparse;
+                    hitColor = Color.valueOf("d0d8e7");
+                    backColor = Color.valueOf("d0d8e7");
+                    trailColor = Color.valueOf("d0d8e7");
+                    trailWidth = 3.4f;
+                    trailLength = 3;
+                    frontColor = Color.valueOf("ffffff");
+                    collideTerrain = true;
+                }}
             );
 
             researchCostMultiplier = 0.5f;
@@ -92,9 +92,9 @@ public class Turret {
             outlineColor = Color.valueOf("2d2f39");
             drawer = new DrawTurret("plated-"){{
                 parts.addAll(
-                        new RegionPart("-side"){{
-                            mirror = true;
-                        }}
+                    new RegionPart("-side"){{
+                        mirror = true;
+                    }}
                 );
             }};
             shoot = new ShootPattern(){{
@@ -105,19 +105,19 @@ public class Turret {
             rotateSpeed = 2f;
 
             ammo(
-                    TItems.tCopper, new BulletType(){{
-                        speed = 0f;
-                        lifetime = 0f;
-                        damage = 0f;
-                        spawnUnit = TUnitTypes.snapPiranha;
-                        shootEffect = new MultiEffect(
-                                Fx.colorSparkBig
-                        );
-                        smokeEffect = Fx.none;
-                        despawnEffect = Fx.none;
-                        hitEffect = Fx.none;
-                        hitColor = Color.valueOf("ea8878");
-                    }}
+                TItems.tCopper, new BulletType(){{
+                    speed = 0f;
+                    lifetime = 0f;
+                    damage = 0f;
+                    spawnUnit = TUnitTypes.snapPiranha;
+                    shootEffect = new MultiEffect(
+                        Fx.colorSparkBig
+                    );
+                    smokeEffect = Fx.none;
+                    despawnEffect = Fx.none;
+                    hitEffect = Fx.none;
+                    hitColor = Color.valueOf("ea8878");
+                }}
             );
         }};
         spark = new PowerTurret("spark"){{
@@ -185,15 +185,15 @@ public class Turret {
             }};
             drawer = new DrawTurret("plated-"){{
                 parts.addAll(
-                        new RegionPart("-blade") {{
-                            moveX = 2f;
-                            moveY = -1f;
-                            moveRot = -22.5f;
-                            mirror = true;
+                    new RegionPart("-blade"){{
+                        moveX = 2f;
+                        moveY = -1f;
+                        moveRot = -22.5f;
+                        mirror = true;
 
-                            progress = PartProgress.charge;
-                            heatProgress = PartProgress.charge;
-                        }}
+                        progress = PartProgress.charge;
+                        heatProgress = PartProgress.charge;
+                    }}
                 );
             }};
             consumePower(1.5f);
@@ -234,65 +234,65 @@ public class Turret {
             heatColor = Color.valueOf("8ca9e8");
 
             ammo(
-                    TItems.cobalt, new BasicBulletType(7f, 25){{
-                        sprite = "large-orb";
-                        width = 12f;
-                        height = 16f;
-                        hitSize = 8f;
+                TItems.cobalt, new BasicBulletType(7f, 25){{
+                    sprite = "large-orb";
+                    width = 12f;
+                    height = 16f;
+                    hitSize = 8f;
 
-                        shootEffect = new MultiEffect(Fx.shootTitan, Fx.colorSparkBig, new WaveEffect(){{
-                            colorFrom = colorTo = Color.valueOf("8ca9e8");
-                            lifetime = 12f;
-                            sizeTo = 20f;
-                            strokeFrom = 3f;
-                            strokeTo = 0.3f;
-                        }});
-                        smokeEffect = Fx.shootSmokeSmite;
-                        ammoMultiplier = 1;
-                        pierceCap = 4;
-                        pierce = true;
-                        pierceBuilding = true;
-                        hitColor = backColor = trailColor = Color.valueOf("8CA9E8");
-                        frontColor = Color.white;
-                        trailWidth = 2.8f;
-                        trailLength = 9;
-                        hitEffect = Fx.hitBulletColor;
-                        buildingDamageMultiplier = 0.3f;
+                    shootEffect = new MultiEffect(Fx.shootTitan, Fx.colorSparkBig, new WaveEffect(){{
+                        colorFrom = colorTo = Color.valueOf("8ca9e8");
+                        lifetime = 12f;
+                        sizeTo = 20f;
+                        strokeFrom = 3f;
+                        strokeTo = 0.3f;
+                    }});
+                    smokeEffect = Fx.shootSmokeSmite;
+                    ammoMultiplier = 1;
+                    pierceCap = 4;
+                    pierce = true;
+                    pierceBuilding = true;
+                    hitColor = backColor = trailColor = Color.valueOf("8CA9E8");
+                    frontColor = Color.white;
+                    trailWidth = 2.8f;
+                    trailLength = 9;
+                    hitEffect = Fx.hitBulletColor;
+                    buildingDamageMultiplier = 0.3f;
 
-                        despawnEffect = new MultiEffect(Fx.hitBulletColor, new WaveEffect(){{
-                            sizeTo = 30f;
-                            colorFrom = colorTo = Color.valueOf("8ca9e8");
-                            lifetime = 12f;
-                        }});
+                    despawnEffect = new MultiEffect(Fx.hitBulletColor, new WaveEffect(){{
+                        sizeTo = 30f;
+                        colorFrom = colorTo = Color.valueOf("8ca9e8");
+                        lifetime = 12f;
+                    }});
 
-                        trailRotation = true;
-                        trailEffect = Fx.disperseTrail;
-                        trailInterval = 3f;
+                    trailRotation = true;
+                    trailEffect = Fx.disperseTrail;
+                    trailInterval = 3f;
 
-                        intervalBullet = new LightningBulletType(){{
-                            damage = 5;
-                            collidesAir = false;
-                            ammoMultiplier = 1f;
-                            lightningColor = Color.valueOf("8ca9e8");
-                            lightningLength = 5;
-                            lightningLengthRand = 10;
+                    intervalBullet = new LightningBulletType(){{
+                        damage = 5;
+                        collidesAir = false;
+                        ammoMultiplier = 1f;
+                        lightningColor = Color.valueOf("8ca9e8");
+                        lightningLength = 5;
+                        lightningLengthRand = 10;
 
+                        buildingDamageMultiplier = 0.25f;
+
+                        lightningType = new BulletType(0.0001f, 0f){{
+                            lifetime = Fx.lightning.lifetime;
+                            hitEffect = Fx.hitLancer;
+                            despawnEffect = Fx.none;
+                            status = StatusEffects.shocked;
+                            statusDuration = 10f;
+                            hittable = false;
+                            lightColor = Color.white;
                             buildingDamageMultiplier = 0.25f;
-
-                            lightningType = new BulletType(0.0001f, 0f){{
-                                lifetime = Fx.lightning.lifetime;
-                                hitEffect = Fx.hitLancer;
-                                despawnEffect = Fx.none;
-                                status = StatusEffects.shocked;
-                                statusDuration = 10f;
-                                hittable = false;
-                                lightColor = Color.white;
-                                buildingDamageMultiplier = 0.25f;
-                            }};
                         }};
+                    }};
 
-                        bulletInterval = 3f;
-                    }}
+                    bulletInterval = 3f;
+                }}
             );
 
             drawer = new DrawTurret("plated-");
@@ -316,54 +316,54 @@ public class Turret {
             outlineColor = Color.valueOf("2d2f39");
             drawer = new DrawTurret("plated-"){{
                 parts.addAll(
-                        new RegionPart("-barrel"){{
-                            mirror = false;
-                            moveY = -0.75f;
-                            progress = PartProgress.recoil;
-                            heatProgress = PartProgress.warmup;
-                            heatColor = Color.valueOf("8ca9e8");
-                        }},
-                        new RegionPart("-side"){{
-                            mirror = true;
-                            moveY = 0.25f;
-                            moveRot = -15f;
-                            progress = PartProgress.warmup;
-                        }},
-                        new HaloPart(){{
-                            shapes = 1;
-                            tri = true;
-                            mirror = true;
-                            x = 3.5f;
-                            moveY = -2f;
-                            haloRadius = 0f;
-                            haloRadiusTo = 0f;
-                            haloRotation = 210f;
-                            color = Color.valueOf("8ca9e8");
-                            radius = 0f;
-                            radiusTo = 3f;
-                            triLength = 0f;
-                            triLengthTo = 6f;
-                            progress = PartProgress.warmup;
-                            layer = 110f;
-                        }},
-                        new HaloPart(){{
-                            shapes = 1;
-                            tri = true;
-                            mirror = true;
-                            x = 3.5f;
-                            moveY = -2f;
-                            haloRadius = 0f;
-                            haloRadiusTo = 0f;
-                            haloRotation = 210f;
-                            shapeRotation = 180f;
-                            color = Color.valueOf("8ca9e8");
-                            radius = 0f;
-                            radiusTo = 3f;
-                            triLength = 0f;
-                            triLengthTo = 3f;
-                            progress = PartProgress.warmup;
-                            layer = 110f;
-                        }}
+                    new RegionPart("-barrel"){{
+                        mirror = false;
+                        moveY = -0.75f;
+                        progress = PartProgress.recoil;
+                        heatProgress = PartProgress.warmup;
+                        heatColor = Color.valueOf("8ca9e8");
+                    }},
+                    new RegionPart("-side"){{
+                        mirror = true;
+                        moveY = 0.25f;
+                        moveRot = -15f;
+                        progress = PartProgress.warmup;
+                    }},
+                    new HaloPart(){{
+                        shapes = 1;
+                        tri = true;
+                        mirror = true;
+                        x = 3.5f;
+                        moveY = -2f;
+                        haloRadius = 0f;
+                        haloRadiusTo = 0f;
+                        haloRotation = 210f;
+                        color = Color.valueOf("8ca9e8");
+                        radius = 0f;
+                        radiusTo = 3f;
+                        triLength = 0f;
+                        triLengthTo = 6f;
+                        progress = PartProgress.warmup;
+                        layer = 110f;
+                    }},
+                    new HaloPart(){{
+                        shapes = 1;
+                        tri = true;
+                        mirror = true;
+                        x = 3.5f;
+                        moveY = -2f;
+                        haloRadius = 0f;
+                        haloRadiusTo = 0f;
+                        haloRotation = 210f;
+                        shapeRotation = 180f;
+                        color = Color.valueOf("8ca9e8");
+                        radius = 0f;
+                        radiusTo = 3f;
+                        triLength = 0f;
+                        triLengthTo = 3f;
+                        progress = PartProgress.warmup;
+                        layer = 110f;
+                    }}
                 );
                 shoot = new ShootPattern(){{
                     shots = 3;

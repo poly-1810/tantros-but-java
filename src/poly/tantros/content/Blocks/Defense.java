@@ -13,10 +13,10 @@ import poly.tantros.content.*;
 
 import static mindustry.type.ItemStack.*;
 
-public class Defense {
+public class Defense{
     public static Block brassWall, calciteWall, cobaltWall, nickelWall, rubedoWall, tCopperWall, zincWall;
 
-    public static void load() {
+    public static void load(){
         brassWall = new Wall("brass-wall"){{
             requirements(Category.defense, with(TItems.brass, 6));
 

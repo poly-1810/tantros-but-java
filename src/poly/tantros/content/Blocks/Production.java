@@ -8,10 +8,10 @@ import poly.tantros.world.blocks.production.*;
 
 import static mindustry.type.ItemStack.*;
 
-public class Production {
+public class Production{
     public static Block oreScanner, oreFracker, siftDrill, deepDrill;
 
-    public static void load() {
+    public static void load(){
         oreScanner = new OreScanner("ore-scanner"){{
             requirements(Category.production, BuildVisibility.sandboxOnly, with()); //TODO Placeholder, no cost yet
 
@@ -60,8 +60,8 @@ public class Production {
             envEnabled |= Env.underwater;
             scaledHealth = 65f;
             allowedBlocks.addAll(
-                    Resources.rubedoBlock,
-                    Resources.tCopperBlock
+                Resources.rubedoBlock,
+                Resources.tCopperBlock
             );
             size = 4;
 

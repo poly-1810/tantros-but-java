@@ -11,10 +11,10 @@ import poly.tantros.content.*;
 
 import static mindustry.type.ItemStack.*;
 
-public class Crafting {
+public class Crafting{
     public static Block brassSmelter, electricHeater, heatDistributor;
 
-    public static void load() {
+    public static void load(){
         brassSmelter = new HeatCrafter("brass-smelter"){{
             requirements(Category.crafting, with(TItems.tCopper, 30, TItems.zinc, 20, TItems.calcite, 20));
 
@@ -25,28 +25,28 @@ public class Crafting {
             heatRequirement = 6f;
             maxEfficiency = 3f;
             drawer = new DrawMulti(
-                    new DrawRegion("-bottom"),
-                    new DrawGlowRegion("-heat-glow"){{
-                        color = Color.valueOf("ffd37f");
-                        glowScale = 8f;
-                        alpha = 0.6f;
-                    }},
-                    new DrawBubbles(){{
-                        color = Color.valueOf("ffd37f99");
-                        amount = 4;
-                        sides = 6;
-                        spread = 0f;
-                        timeScl = 50f;
-                        recurrence = 8f;
-                        radius = 4f;
-                    }},
-                    new DrawDefault(),
-                    new DrawGlowRegion(){{
-                        color = Color.valueOf("ffd37f");
-                        glowScale = 20f;
-                        alpha = 0.5f;
-                    }},
-                    new DrawHeatInput()
+                new DrawRegion("-bottom"),
+                new DrawGlowRegion("-heat-glow"){{
+                    color = Color.valueOf("ffd37f");
+                    glowScale = 8f;
+                    alpha = 0.6f;
+                }},
+                new DrawBubbles(){{
+                    color = Color.valueOf("ffd37f99");
+                    amount = 4;
+                    sides = 6;
+                    spread = 0f;
+                    timeScl = 50f;
+                    recurrence = 8f;
+                    radius = 4f;
+                }},
+                new DrawDefault(),
+                new DrawGlowRegion(){{
+                    color = Color.valueOf("ffd37f");
+                    glowScale = 20f;
+                    alpha = 0.5f;
+                }},
+                new DrawHeatInput()
             );
 
             consumeItems(with(TItems.tCopper, 3, TItems.zinc, 2));
@@ -65,8 +65,8 @@ public class Crafting {
             consumePower(0.25f);
 
             drawer = new DrawMulti(
-                    new DrawDefault(),
-                    new DrawHeatOutput()
+                new DrawDefault(),
+                new DrawHeatOutput()
             );
         }};
         heatDistributor = new HeatConductor("tantros-heat-distributor"){{
@@ -77,9 +77,9 @@ public class Crafting {
             size = 1;
             visualMaxHeat = 5f;
             drawer = new DrawMulti(
-                    new DrawDefault(),
-                    new DrawHeatOutput(),
-                    new DrawHeatInput()
+                new DrawDefault(),
+                new DrawHeatOutput(),
+                new DrawHeatInput()
             );
         }};
     }
