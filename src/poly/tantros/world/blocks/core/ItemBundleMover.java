@@ -6,7 +6,9 @@ import poly.tantros.world.modules.ItemBundleModule.*;
 
 public interface ItemBundleMover{
     void bundleArrived(ItemBundle bundle);
+
     Building building();
+
     ItemBundleModule itemBundleModule();
 
     default boolean arriveShrink(){

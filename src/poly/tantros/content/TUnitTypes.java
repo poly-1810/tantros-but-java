@@ -18,34 +18,32 @@ import mindustry.type.unit.*;
 import mindustry.world.meta.*;
 import poly.tantros.entity.abilities.*;
 
-public class TUnitTypes {
+public class TUnitTypes{
     public static UnitType
 
-    // core
+    //core
     trident,
 
-    // assembler
+    //assembler
     assemblySub,
 
-    // submarine
+    //submarine
     requiem,
 
-    // quad
+    //quad
     chasm,
 
-    // isopod
+    //isopod
     tendril,
 
-    // crustacean (maybe)
+    //crustacean (maybe)
     chain,
     chainDrone,
 
-    // bullet
-    snapPiranha
+    //bullet
+    snapPiranha;
 
-    ;
-
-    public static void load() {
+    public static void load(){
         trident = new UnitType("trident"){{
             constructor = UnitEntity::create;
 
@@ -99,19 +97,19 @@ public class TUnitTypes {
                 y = 0;
                 shootSound = Sounds.none;
                 shoot = new ShootPattern(){{
-                   shots = 5;
-                   shotDelay = 0f;
+                    shots = 5;
+                    shotDelay = 0f;
                 }};
                 bullet = new BombBulletType(){{
-                   speed = 0.5f;
-                   width = 9f;
-                   height = 11f;
-                   shrinkY = 0.4f;
-                   splashDamage = 17.5f;
-                   splashDamageRadius = 24f;
-                   ammoMultiplier = 1f;
-                   shootEffect = smokeEffect = Fx.none;
-                   rangeOverride = 48f;
+                    speed = 0.5f;
+                    width = 9f;
+                    height = 11f;
+                    shrinkY = 0.4f;
+                    splashDamage = 17.5f;
+                    splashDamageRadius = 24f;
+                    ammoMultiplier = 1f;
+                    shootEffect = smokeEffect = Fx.none;
+                    rangeOverride = 48f;
                 }};
             }});
             abilities.addAll(new ScaledMoveEffectAbility(){{
@@ -157,64 +155,64 @@ public class TUnitTypes {
             fogRadius = 8f;
             engineSize = 0;
             parts.addAll(
-                    new RegionPart("-glow"){{
-                        color = Color.valueOf("d4816b66");
-                        layer = -1f;
-                        outline = false;
-                        blending = Blending.additive;
-                    }},
-                    new HaloPart(){{
-                        y = 3.5f;
-                        tri = true;
-                        color = Color.valueOf("ffd37f");
-                        haloRadius = 2.5f;
-                        haloRotateSpeed = 1f;
-                        rotateSpeed = 0f;
-                        layerOffset = -1f;
-                        shapes = 2;
-                        radius = 4f;
-                        triLength = 4f;
-                    }},
-                    new ShapePart(){{
-                        y = 3.5f;
-                        circle = true;
-                        hollow = true;
-                        color = Color.valueOf("ffd37f");
-                        radius = 3f;
-                        stroke = 1.5f;
-                        layerOffset = -1f;
-                    }}
+                new RegionPart("-glow"){{
+                    color = Color.valueOf("d4816b66");
+                    layer = -1f;
+                    outline = false;
+                    blending = Blending.additive;
+                }},
+                new HaloPart(){{
+                    y = 3.5f;
+                    tri = true;
+                    color = Color.valueOf("ffd37f");
+                    haloRadius = 2.5f;
+                    haloRotateSpeed = 1f;
+                    rotateSpeed = 0f;
+                    layerOffset = -1f;
+                    shapes = 2;
+                    radius = 4f;
+                    triLength = 4f;
+                }},
+                new ShapePart(){{
+                    y = 3.5f;
+                    circle = true;
+                    hollow = true;
+                    color = Color.valueOf("ffd37f");
+                    radius = 3f;
+                    stroke = 1.5f;
+                    layerOffset = -1f;
+                }}
             );
             abilities.addAll(
-                    new MoveEffectAbility(){{
-                        x = 0f;
-                        y = -3.5f;
-                        rotateEffect = true;
-                        interval = 5f;
-                        teamColor = true;
-                        effect = Fx.disperseTrail;
-                        parentizeEffects = false;
-                    }},
-                    new MoveEffectAbility(){{
-                        x = 3f;
-                        y = 1.5f;
-                        rotation = 45f;
-                        rotateEffect = true;
-                        interval = 5f;
-                        teamColor = true;
-                        effect = Fx.disperseTrail;
-                        parentizeEffects = true;
-                    }},
-                    new MoveEffectAbility(){{
-                        x = -3f;
-                        y = 1.5f;
-                        rotation = -45f;
-                        rotateEffect = true;
-                        interval = 5f;
-                        teamColor = true;
-                        effect = Fx.disperseTrail;
-                        parentizeEffects = true;
-                    }}
+                new MoveEffectAbility(){{
+                    x = 0f;
+                    y = -3.5f;
+                    rotateEffect = true;
+                    interval = 5f;
+                    teamColor = true;
+                    effect = Fx.disperseTrail;
+                    parentizeEffects = false;
+                }},
+                new MoveEffectAbility(){{
+                    x = 3f;
+                    y = 1.5f;
+                    rotation = 45f;
+                    rotateEffect = true;
+                    interval = 5f;
+                    teamColor = true;
+                    effect = Fx.disperseTrail;
+                    parentizeEffects = true;
+                }},
+                new MoveEffectAbility(){{
+                    x = -3f;
+                    y = 1.5f;
+                    rotation = -45f;
+                    rotateEffect = true;
+                    interval = 5f;
+                    teamColor = true;
+                    effect = Fx.disperseTrail;
+                    parentizeEffects = true;
+                }}
             );
         }};
 
@@ -257,68 +255,71 @@ public class TUnitTypes {
                     progress = PartProgress.warmup;
                 }});
                 shoot = new ShootAlternate(){{
-                   shots = 2;
-                   barrels = 2;
-                   spread = 3.5f;
+                    shots = 2;
+                    barrels = 2;
+                    spread = 3.5f;
                 }};
                 bullet = new BasicBulletType(){{
-                   damage = 8.5f;
-                   splashDamage = 15f;
-                   splashDamageRadius = 24f;
-                   speed = 2f;
-                   drag = -0.03f;
-                   width = 11f;
-                   height = 16f;
-                   lifetime = 40f;
-                   frontColor = Color.valueOf("ffffff");
-                   hitColor = Color.valueOf("8ca9e8");
-                   backColor = Color.valueOf("8ca9e8");
-                   trailColor = Color.valueOf("8ca9e8");
-                   trailWidth = 2f;
-                   trailLength = 6;
-                   homingPower = 0.2f;
-                   homingRange = 80f;
-                   homingDelay = 10f;
-                   despawnEffect = new ParticleEffect(){{
-                       colorFrom = Color.valueOf("8ca9e8");
-                       colorTo = Color.valueOf("8ca9e800");
-                       interp = Interp.pow4Out;
-                       particles = 6;
-                       length = 24f;
-                       sizeFrom = 6f;
-                       sizeTo = 0f;
-                       lifetime = 70f;
-                   }};
-                   hitEffect = new ParticleEffect(){{
-                       colorFrom = Color.valueOf("8ca9e8");
-                       colorTo = Color.valueOf("8ca9e800");
-                       interp = Interp.pow4Out;
-                       particles = 6;
-                       length = 24f;
-                       sizeFrom = 6f;
-                       sizeTo = 0f;
-                       lifetime = 70f;
-                   }};
-                   rangeOverride = 68f;
+                    damage = 8.5f;
+                    splashDamage = 15f;
+                    splashDamageRadius = 24f;
+                    speed = 2f;
+                    drag = -0.03f;
+                    width = 11f;
+                    height = 16f;
+                    lifetime = 40f;
+                    frontColor = Color.valueOf("ffffff");
+                    hitColor = Color.valueOf("8ca9e8");
+                    backColor = Color.valueOf("8ca9e8");
+                    trailColor = Color.valueOf("8ca9e8");
+                    trailWidth = 2f;
+                    trailLength = 6;
+                    homingPower = 0.2f;
+                    homingRange = 80f;
+                    homingDelay = 10f;
+                    despawnEffect = new ParticleEffect(){{
+                        colorFrom = Color.valueOf("8ca9e8");
+                        colorTo = Color.valueOf("8ca9e800");
+                        interp = Interp.pow4Out;
+                        particles = 6;
+                        length = 24f;
+                        sizeFrom = 6f;
+                        sizeTo = 0f;
+                        lifetime = 70f;
+                    }};
+                    hitEffect = new ParticleEffect(){{
+                        colorFrom = Color.valueOf("8ca9e8");
+                        colorTo = Color.valueOf("8ca9e800");
+                        interp = Interp.pow4Out;
+                        particles = 6;
+                        length = 24f;
+                        sizeFrom = 6f;
+                        sizeTo = 0f;
+                        lifetime = 70f;
+                    }};
+                    rangeOverride = 68f;
                 }};
             }});
-            abilities.addAll(new MoveEffectAbility(){{
-                x = 6;
-                y = -9;
-                rotateEffect = true;
-                interval = 4;
-                teamColor = true;
-                effect = Fx.disperseTrail;
-                parentizeEffects = false;
-            }}, new MoveEffectAbility(){{
-                x = -6;
-                y = -9;
-                rotateEffect = true;
-                interval = 4;
-                teamColor = true;
-                effect = Fx.disperseTrail;
-                parentizeEffects = false;
-            }});
+            abilities.addAll(
+                new MoveEffectAbility(){{
+                    x = 6;
+                    y = -9;
+                    rotateEffect = true;
+                    interval = 4;
+                    teamColor = true;
+                    effect = Fx.disperseTrail;
+                    parentizeEffects = false;
+                }},
+                new MoveEffectAbility(){{
+                    x = -6;
+                    y = -9;
+                    rotateEffect = true;
+                    interval = 4;
+                    teamColor = true;
+                    effect = Fx.disperseTrail;
+                    parentizeEffects = false;
+                }}
+            );
         }};
 
         chasm = new TankUnitType("chasm"){{
@@ -339,33 +340,33 @@ public class TUnitTypes {
             outlineColor = Color.valueOf("4a4b53");
             healColor = Color.valueOf("feb380");
             weapons.addAll(
-                    new Weapon("poly-tantros-chasm-weapon"){{
-                        reload = 12f;
-                        rotate = true;
-                        rotationLimit = 135f;
-                        rotateSpeed = 2f;
-                        mirror = true;
-                        predictTarget = false;
-                        recoil = 2f;
-                        x = 4.5f;
-                        y = 0;
-                        parts.addAll(
-                                new RegionPart("-top"){{
-                                    under = true;
-                                    layerOffset = 0.001f;
-                                    moveY = -1.25f;
-                                    progress = PartProgress.recoil;
-                                    heatProgress = PartProgress.warmup;
-                                }}
-                        );
-                        bullet = new SapBulletType(){{
-                            length = 64f;
-                            width = 0.5f;
-                            damage = 12.5f;
-                            sapStrength = 0.5f;
-                            color = Color.valueOf("feb380");
-                        }};
+                new Weapon("poly-tantros-chasm-weapon"){{
+                    reload = 12f;
+                    rotate = true;
+                    rotationLimit = 135f;
+                    rotateSpeed = 2f;
+                    mirror = true;
+                    predictTarget = false;
+                    recoil = 2f;
+                    x = 4.5f;
+                    y = 0;
+                    parts.addAll(
+                    new RegionPart("-top"){{
+                        under = true;
+                        layerOffset = 0.001f;
+                        moveY = -1.25f;
+                        progress = PartProgress.recoil;
+                        heatProgress = PartProgress.warmup;
                     }}
+                    );
+                    bullet = new SapBulletType(){{
+                        length = 64f;
+                        width = 0.5f;
+                        damage = 12.5f;
+                        sapStrength = 0.5f;
+                        color = Color.valueOf("feb380");
+                    }};
+                }}
             );
         }};
 
@@ -431,48 +432,48 @@ public class TUnitTypes {
             outlineColor = Color.valueOf("4a4b53");
             healColor = Color.valueOf("ffd37f");
             weapons.addAll(
-                    new Weapon("poly-tantros-chain-claw"){{
-                        reload = 25f;
-                        rotate = true;
-                        rotationLimit = 45f;
-                        rotateSpeed = 2f;
-                        mirror = true;
-                        predictTarget = false;
-                        recoil = -3.5f;
-                        top = false;
-                        x = 6.5f;
-                        y = 2f;
-                        parts.addAll(
-                                new RegionPart("-mandible-l"){{
-                                    under = true;
-                                    moveX = 1.25f;
-                                    progress = PartProgress.recoil;
-                                    heatProgress = PartProgress.warmup;
-                                }},
-                                new RegionPart("-mandible-r"){{
-                                    under = true;
-                                    moveX = -1.25f;
-                                    progress = PartProgress.recoil;
-                                    heatProgress = PartProgress.warmup;
-                                }}
-                        );
-                        bullet = new LaserBulletType(){{
-                            lifetime = 20f;
-                            length = 48f;
-                            damage = 72.5f;
-                            colors = new Color[]{Color.valueOf("ffd37f66"), Color.valueOf("ffd37f")};
-                        }};
-                    }}
+                new Weapon("poly-tantros-chain-claw"){{
+                    reload = 25f;
+                    rotate = true;
+                    rotationLimit = 45f;
+                    rotateSpeed = 2f;
+                    mirror = true;
+                    predictTarget = false;
+                    recoil = -3.5f;
+                    top = false;
+                    x = 6.5f;
+                    y = 2f;
+                    parts.addAll(
+                        new RegionPart("-mandible-l"){{
+                            under = true;
+                            moveX = 1.25f;
+                            progress = PartProgress.recoil;
+                            heatProgress = PartProgress.warmup;
+                        }},
+                        new RegionPart("-mandible-r"){{
+                            under = true;
+                            moveX = -1.25f;
+                            progress = PartProgress.recoil;
+                            heatProgress = PartProgress.warmup;
+                        }}
+                    );
+                    bullet = new LaserBulletType(){{
+                        lifetime = 20f;
+                        length = 48f;
+                        damage = 72.5f;
+                        colors = new Color[]{Color.valueOf("ffd37f66"), Color.valueOf("ffd37f")};
+                    }};
+                }}
             );
             abilities.addAll(
-                    new UnitSpawnAbility(){{
-                        spawnX = 0f;
-                        spawnY = -3.5f;
-                        unit = chainDrone;
-                        spawnTime = 1800f;
-                        spawnEffect = Fx.shootSmokeTitan;
-                        parentizeEffects = true;
-                    }}
+                new UnitSpawnAbility(){{
+                    spawnX = 0f;
+                    spawnY = -3.5f;
+                    unit = chainDrone;
+                    spawnTime = 1800f;
+                    spawnEffect = Fx.shootSmokeTitan;
+                    parentizeEffects = true;
+                }}
             );
         }};
         chainDrone = new UnitType("chain-drone"){{
@@ -535,48 +536,48 @@ public class TUnitTypes {
             engineColor = Color.valueOf("ea8878");
             trailColor = Color.valueOf("ea8878");
             parts.addAll(
-                    new RegionPart("-jaw"){{
-                        mirror = true;
-                        under = true;
-                        x = -1f;
-                        y = 2f;
-                        rotation = 30f;
-                        moveRot = -20f;
-                        progress = PartProgress.recoil;
-                        layerOffset = -1f;
-                    }}
+                new RegionPart("-jaw"){{
+                    mirror = true;
+                    under = true;
+                    x = -1f;
+                    y = 2f;
+                    rotation = 30f;
+                    moveRot = -20f;
+                    progress = PartProgress.recoil;
+                    layerOffset = -1f;
+                }}
             );
             weapons.addAll(
-                    new Weapon(){{
-                        x = 0f;
-                        y = 0f;
-                        shootY = 2f;
-                        reload = 15f;
-                        mirror = false;
-                        rotate = true;
-                        rotationLimit = 80;
-                        rotateSpeed = 360f;
-                        autoTarget = true;
-                        predictTarget = false;
-                        controllable = false;
-                        shootCone = 20f;
-                        targetInterval = 0f;
-                        targetSwitchInterval = 0f;
-                        recoilTime = 40f;
-                        bullet = new LaserBulletType(){{
-                            damage = 5f;
-                            length = 16f;
-                            width = 24f;
-                            lengthFalloff = 0.35f;
-                            sideLength = 16f;
-                            sideWidth = 1.5f;
-                            sideAngle = 35f;
-                            colors = new Color[]{Color.valueOf("ea8878"), Color.valueOf("ea8878")};
-                            shootEffect = Fx.none;
-                            smokeEffect = Fx.none;
-                            hitColor = Color.valueOf("ea8878");
-                        }};
-                    }}
+                new Weapon(){{
+                    x = 0f;
+                    y = 0f;
+                    shootY = 2f;
+                    reload = 15f;
+                    mirror = false;
+                    rotate = true;
+                    rotationLimit = 80;
+                    rotateSpeed = 360f;
+                    autoTarget = true;
+                    predictTarget = false;
+                    controllable = false;
+                    shootCone = 20f;
+                    targetInterval = 0f;
+                    targetSwitchInterval = 0f;
+                    recoilTime = 40f;
+                    bullet = new LaserBulletType(){{
+                        damage = 5f;
+                        length = 16f;
+                        width = 24f;
+                        lengthFalloff = 0.35f;
+                        sideLength = 16f;
+                        sideWidth = 1.5f;
+                        sideAngle = 35f;
+                        colors = new Color[]{Color.valueOf("ea8878"), Color.valueOf("ea8878")};
+                        shootEffect = Fx.none;
+                        smokeEffect = Fx.none;
+                        hitColor = Color.valueOf("ea8878");
+                    }};
+                }}
             );
         }};
     }

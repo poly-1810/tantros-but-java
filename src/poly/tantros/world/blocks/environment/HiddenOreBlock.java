@@ -8,7 +8,7 @@ import mindustry.world.*;
 import mindustry.world.blocks.environment.*;
 import poly.tantros.content.*;
 
-public class HiddenOreBlock extends OverlayFloor {
+public class HiddenOreBlock extends OverlayFloor{
     /** Whether this should draw even when not in the editor. */
     public boolean drawGame = false;
     public OverlayFloor revealReplacement;
@@ -17,13 +17,13 @@ public class HiddenOreBlock extends OverlayFloor {
     public Effect revealEffect = TFx.oreReveal;
     public Item deepItemDrop = null;
 
-    public HiddenOreBlock(String name, OverlayFloor revealReplacement) {
+    public HiddenOreBlock(String name, OverlayFloor revealReplacement){
         super(name);
         this.revealReplacement = revealReplacement;
         variants = 0;
     }
 
-    public HiddenOreBlock(String name, OverlayFloor revealReplacement, Item ore) {
+    public HiddenOreBlock(String name, OverlayFloor revealReplacement, Item ore){
         this(name, revealReplacement);
         localizedName = ore.localizedName + " " + Core.bundle.get("poly-tantros-deep");
         deepItemDrop = ore;
@@ -35,29 +35,29 @@ public class HiddenOreBlock extends OverlayFloor {
     }
 
     @Override
-    public void init() {
+    public void init(){
         super.init();
 
-        if (revealReplacement == null) throw new RuntimeException("Hidden ore '" + name + "' doesn't have a revealed replacement ore!");
+        if(revealReplacement == null) throw new RuntimeException("Hidden ore '" + name + "' doesn't have a revealed replacement ore!");
     }
 
-    public void displayRevealEffect(Tile t) {
+    public void displayRevealEffect(Tile t){
         Item drop = revealReplacement instanceof HiddenOreBlock h && h.deepItemDrop != null ? h.deepItemDrop : revealReplacement.itemDrop;
         revealEffect.at(t.worldx(), t.worldy(), 0f, drop);
     }
 
     @Override
-    public void drawBase(Tile tile) {
-        if (!Vars.state.isEditor() && !drawGame) return; //Only make visible in the editor.
+    public void drawBase(Tile tile){
+        if(!Vars.state.isEditor() && !drawGame) return; //Only make visible in the editor.
         super.drawBase(tile);
     }
 
     @Override
-    public String getDisplayName(Tile tile) {
+    public String getDisplayName(Tile tile){
         return localizedName;
     }
 
-    public enum OreRevealType {
+    public enum OreRevealType{
         scanner,
         fracker
     }

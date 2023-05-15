@@ -8,10 +8,10 @@ import poly.tantros.content.*;
 
 import static mindustry.type.ItemStack.*;
 
-public class Units {
+public class Units{
     public static Block quadAssembler, submarineAssembler;
 
-    public static void load() {
+    public static void load(){
         quadAssembler = new UnitAssembler("quad-assembler"){{
             requirements(Category.units, with(TItems.cobalt, 50, TItems.nickel, 70, TItems.tCopper, 60));
 
@@ -24,7 +24,7 @@ public class Units {
             fogRadius = 4;
             droneType = TUnitTypes.assemblySub;
             plans.add(
-                    new AssemblerUnitPlan(TUnitTypes.chasm, 8f * 60f, PayloadStack.list(Resources.tCopperBlock, 2, Effect.partNozzle, 3, Effect.partProcessor, 2))
+                new AssemblerUnitPlan(TUnitTypes.chasm, 8f * 60f, PayloadStack.list(Resources.tCopperBlock, 2, Effect.partNozzle, 3, Effect.partProcessor, 2))
             );
 
             consumePower(2.5f);
@@ -41,7 +41,7 @@ public class Units {
             fogRadius = 4;
             droneType = TUnitTypes.assemblySub;
             plans.add(
-                    new AssemblerUnitPlan(TUnitTypes.requiem, 10f * 60f, PayloadStack.list(Resources.nickelBlock, 3, Effect.partNozzle, 4, Effect.partProcessor, 2))
+                new AssemblerUnitPlan(TUnitTypes.requiem, 10f * 60f, PayloadStack.list(Resources.nickelBlock, 3, Effect.partNozzle, 4, Effect.partProcessor, 2))
             );
 
             consumePower(2.5f);

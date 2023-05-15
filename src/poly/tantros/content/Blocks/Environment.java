@@ -5,24 +5,22 @@ import mindustry.world.blocks.environment.*;
 import poly.tantros.content.*;
 import poly.tantros.world.blocks.environment.*;
 
-public class Environment {
+public class Environment{
     public static Block
 
-    // floor & walls
+    //floor & walls
     calciteFloor, calciteGrains, calciteHill, copperMat,
 
-    // ores
+    //ores
     oreCobalt, oreNickel, oreCopper, oreZinc,
     oreRubedo, oreRubedoHidden,
     oreCarbon, oreCarbonDeep, oreCarbonHidden,
 
-    // underwater
-    purbushBig, yellowCoralBig
+    //underwater
+    purbushBig, yellowCoralBig;
 
-    ;
-
-    public static void load() {
-        // floor & walls
+    public static void load(){
+        //floor & walls
         calciteFloor = new Floor("calcite-floor"){{
             itemDrop = TItems.calcite;
             playerUnmineable = true;
@@ -42,7 +40,7 @@ public class Environment {
             variants = 4;
         }};
 
-        // ores
+        //ores
         oreCobalt = new OreBlock("ore-cobalt", TItems.cobalt){{
             wallOre = true;
         }};
@@ -58,16 +56,16 @@ public class Environment {
         }};
 
         oreRubedo = new RevealedOre("ore-rubedo", TItems.rubedo);
-        oreRubedoHidden = new HiddenOreBlock("ore-rubedo-hidden", (OverlayFloor) oreRubedo);
+        oreRubedoHidden = new HiddenOreBlock("ore-rubedo-hidden", (OverlayFloor)oreRubedo);
 
         oreCarbon = new OreBlock("ore-carbon", TItems.carbon);
-        oreCarbonDeep = new HiddenOreBlock("ore-carbon-deep", (OverlayFloor) oreCarbon, TItems.carbon);
-        oreCarbonHidden = new HiddenOreBlock("ore-carbon-hidden", (OverlayFloor) oreCarbonDeep){{
+        oreCarbonDeep = new HiddenOreBlock("ore-carbon-deep", (OverlayFloor)oreCarbon, TItems.carbon);
+        oreCarbonHidden = new HiddenOreBlock("ore-carbon-hidden", (OverlayFloor)oreCarbonDeep){{
             drawGame = true;
             variants = 2;
         }};
 
-        // underwater
+        //underwater
         purbushBig = new SeaBush("pur-bush-big"){{
             lobesMin = 8;
             lobesMax = 10;

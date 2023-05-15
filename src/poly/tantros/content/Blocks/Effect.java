@@ -11,7 +11,7 @@ import poly.tantros.world.blocks.core.expansions.*;
 
 import static mindustry.type.ItemStack.*;
 
-public class Effect {
+public class Effect{
     public static Block
     //Core
     corePod, coreBranch, coreInput, coreStorage, coreCommand,
@@ -19,7 +19,7 @@ public class Effect {
     //Parts
     partNozzle, partProcessor;
 
-    public static void load() {
+    public static void load(){
         corePod = new RootCore("core-pod"){{
             requirements(Category.effect, with(TItems.tCopper, 400, TItems.calcite, 100, TItems.nickel, 250, TItems.zinc, 250));
 

@@ -11,17 +11,16 @@ import mindustry.mod.Mods.*;
 import poly.tantros.content.Blocks.*;
 import poly.tantros.content.*;
 import poly.tantros.maps.planet.*;
-import poly.tantros.tools.*;
 import poly.tantros.ui.dialogs.*;
 import poly.tantros.util.*;
 
 import static arc.Core.*;
 import static mindustry.Vars.*;
 
-public class PolyTantros extends Mod {
+public class PolyTantros extends Mod{
     public TUnderwaterFilter tUnderwaterFilter;
 
-    public PolyTantros() {
+    public PolyTantros(){
         Events.on(EventType.ClientLoadEvent.class, ignored -> {
             app.post(() -> {
                 new TDisclaimer().show();
@@ -30,7 +29,7 @@ public class PolyTantros extends Mod {
     }
 
     @Override
-    public void init() {
+    public void init(){
         Planets.tantros.generator = new PolyTantrosPlanetGenerator();
         Planets.tantros.visible = true;
         Planets.tantros.accessible = true;
@@ -42,31 +41,31 @@ public class PolyTantros extends Mod {
             r.fog = true;
         };
 
-        // hide all not-tantros items
-        Planets.tantros.hiddenItems = CheckSeq.check(TItems.tantrosItems);
+        //hide all not-tantros items
+        Planets.tantros.hiddenItems.addAll(Vars.content.items()).removeAll(TItems.tantrosItems);
 
-        // hide all tantros items on another planets
+        //hide all tantros items on another planets
         Planets.serpulo.hiddenItems.addAll(TItems.onlyTantrosItems);
         Planets.erekir.hiddenItems.addAll(TItems.onlyTantrosItems);
 
         Planets.tantros.unlockedOnLand.add(Effect.corePod);
 
-        if (!headless) {
+        if(!headless){
             LoadedMod mod = Vars.mods.locateMod("poly-tantros");
 
             mod.meta.displayName = "[#86f195]Poly's[] [#597be3]Tantros[] (beta)";
             mod.meta.author =
-                    """
-                    [#86f195]Poly#1810 (this mod)[]
-                    [#c7baad]MeiNanziiii#5309 (translator & mod dev)[]
-                    [#f9c11c]MEEPofFaith#7277 (cool mod dev)[]
-                    [#7d7d7d]ABreaker#5940 (original mod)[]
-                    """
+            """
+            [#86f195]Poly#1810 (this mod)[]
+            [#c7baad]MeiNanziiii#5309 (translator & mod dev)[]
+            [#f9c11c]MEEPofFaith#7277 (cool mod dev)[]
+            [#7d7d7d]ABreaker#5940 (original mod)[]
+            """
             ;
             mod.meta.description =
-                    """
-                    Explore the depths of planet Tantros with new mind-blowing additions!
-                    """
+            """
+            Explore the depths of planet Tantros with new mind-blowing additions!
+            """
             ;
 
             loadSettings();
@@ -77,16 +76,16 @@ public class PolyTantros extends Mod {
     }
 
     @Override
-    public void loadContent() {
+    public void loadContent(){
         TItems.load();
         TStatuses.load();
         TUnitTypes.load();
         TWeathers.load();
 
-        // special category
+        //special category
         Resources.load();
 
-        // loading blocks
+        //loading blocks
         Crafting.load();
         Defense.load();
         Distribution.load();

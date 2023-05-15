@@ -12,10 +12,10 @@ import poly.tantros.world.blocks.resources.*;
 
 import static mindustry.type.ItemStack.*;
 
-public class Resources {
+public class Resources{
     public static ResourceBlock brassBlock, calciteBlock, cobaltBlock, nickelBlock, rubedoBlock, tCopperBlock, zincBlock;
 
-    public static void load() {
+    public static void load(){
         tCopperBlock = new ResourceBlock("tcopper-block"){{
             requirements(Category.distribution, with(TItems.tCopper, 24));
 

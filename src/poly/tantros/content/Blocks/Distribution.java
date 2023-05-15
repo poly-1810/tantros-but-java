@@ -13,10 +13,10 @@ import poly.tantros.world.blocks.distribution.*;
 
 import static mindustry.type.ItemStack.*;
 
-public class Distribution {
+public class Distribution{
     public static Block defabricator, fabricator, payloadBelt, payloadDistributor, payloadLauncher;
 
-    public static void load() {
+    public static void load(){
         defabricator = new PayloadDeconstructor("defabricator"){{
             requirements(Category.units, with(TItems.nickel, 12));
 

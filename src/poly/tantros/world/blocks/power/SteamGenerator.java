@@ -2,8 +2,8 @@ package poly.tantros.world.blocks.power;
 
 import mindustry.world.blocks.power.VariableReactor;
 
-public class SteamGenerator extends VariableReactor {
-    public SteamGenerator(String name) {
+public class SteamGenerator extends VariableReactor{
+    public SteamGenerator(String name){
         super(name);
         unstableSpeed = -0f;
         explosionRadius = 4;
@@ -14,7 +14,7 @@ public class SteamGenerator extends VariableReactor {
     }
 
     @Override
-    public void setBars() {
+    public void setBars(){
         super.setBars();
         removeBar("instability");
     }
