@@ -115,6 +115,7 @@ public class CoreExpansion extends Block{
 
                             int killed = 0;
                             for(int i = cull.size - 1; i >= cap; i--){
+                                if(i < 0) break;
                                 Call.unitCapDeath(cull.get(i));
                                 units.remove(cull.get(i));
                                 killed++;
