@@ -10,6 +10,7 @@ import mindustry.mod.*;
 import mindustry.mod.Mods.*;
 import poly.tantros.content.Blocks.*;
 import poly.tantros.content.*;
+import poly.tantros.content.Blocks.Liquid;
 import poly.tantros.maps.planet.*;
 import poly.tantros.ui.dialogs.*;
 import poly.tantros.util.*;
@@ -42,7 +43,7 @@ public class PolyTantros extends Mod{
         };
 
         //hide all not-tantros items
-        Planets.tantros.hiddenItems.addAll(Vars.content.items()).removeAll(TItems.tantrosItems);
+        Planets.tantros.hiddenItems.addAll(TItems.notTantrosItems.filter(item -> !TItems.tantrosItems.contains(item)));
 
         //hide all tantros items on another planets
         Planets.serpulo.hiddenItems.addAll(TItems.onlyTantrosItems);
