@@ -10,6 +10,7 @@ public class TItems{
 
     public static final Seq<Item> tantrosItems = new Seq<>();
     public static final Seq<Item> onlyTantrosItems = new Seq<>();
+    public static final Seq<Item> notTantrosItems = new Seq<>();
 
     public static void load(){
         cobalt = new Item("cobalt", Color.valueOf("8ca9e8")){{
@@ -62,5 +63,6 @@ public class TItems{
 
         tantrosItems.addAll(brass, calcite, carbon, cobalt, Items.graphite, rubedo, Items.sand, sheetMetal, tCopper, zinc);
         onlyTantrosItems.addAll(brass, calcite, carbon, cobalt, rubedo, sheetMetal, tCopper, zinc);
+        notTantrosItems.addAll(Items.serpuloItems).addAll(Items.erekirItems);
     }
 }
