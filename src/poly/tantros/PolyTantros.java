@@ -18,15 +18,19 @@ import static arc.Core.*;
 import static mindustry.Vars.*;
 
 public class PolyTantros extends Mod{
-    public TUnderwaterFilter tUnderwaterFilter;
+
 
     public PolyTantros(){
-        Events.on(EventType.ClientLoadEvent.class, ignored -> {
-            app.post(() -> {
-                new TDisclaimer().show();
+        if(Core.settings.getBool("pt-show-disclaimer", true)){
+            Events.on(EventType.ClientLoadEvent.class, ignored -> {
+                app.post(() -> {
+                    new TDisclaimer().show();
+                });
             });
-        });
+            Core.settings.put("pt-show-disclaimer", false);
+        }
     }
+
 
     @Override
     public void init(){
