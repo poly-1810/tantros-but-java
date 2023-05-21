@@ -61,8 +61,8 @@ public class TItems{
             healthScaling = 0.7f;
         }};
 
-        tantrosItems.addAll(brass, calcite, carbon, cobalt, Items.graphite, rubedo, Items.sand, sheetMetal, tCopper, zinc);
+        tantrosItems.addAll(brass, calcite, carbon, cobalt, rubedo, Items.sand, Items.silicon, Items.plastanium, sheetMetal, tCopper, zinc);
         onlyTantrosItems.addAll(brass, calcite, carbon, cobalt, rubedo, sheetMetal, tCopper, zinc);
-        notTantrosItems.addAll(Items.serpuloItems).addAll(Items.erekirItems);
+        notTantrosItems.addAll(Items.serpuloItems).addAll(Items.erekirItems).distinct();
     }
 }
