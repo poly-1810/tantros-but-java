@@ -44,7 +44,7 @@ public class PolyTantros extends Mod{
         };
 
         //hide all not-tantros items
-        Planets.tantros.hiddenItems.addAll(TItems.notTantrosItems).removeAll(TItems.tantrosItems);
+        Planets.tantros.itemWhitelist.addAll(TItems.tantrosItems);
 
         //hide all tantros items on another planets
         Planets.serpulo.hiddenItems.addAll(TItems.onlyTantrosItems);
