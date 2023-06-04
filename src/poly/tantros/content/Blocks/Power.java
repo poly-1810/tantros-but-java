@@ -13,18 +13,16 @@ import poly.tantros.world.blocks.power.*;
 
 import static mindustry.type.ItemStack.*;
 
-public class Power {
+public class Power{
     public static Block
 
-    // transfer
+    //transfer
     powerConduit, powerPipe, powerCable,
 
-    // generation
-    surfaceSolarGenerator, hydraulicGenerator, steamGenerator
+    //generation
+    surfaceSolarGenerator, hydraulicGenerator, steamGenerator;
 
-    ;
-
-    public static void load() {
+    public static void load(){
         powerConduit = new PowerConduit("power-conduit"){{
             requirements(Category.power, with(TItems.nickel, 5, TItems.tCopper, 10));
 
@@ -32,7 +30,7 @@ public class Power {
             scaledHealth = 25f;
             size = 1;
         }};
-        
+
         powerPipe = new DirectionalBeamNode("power-pipe"){{
             requirements(Category.power, with(TItems.nickel, 2, TItems.tCopper, 2, TItems.zinc, 2));
 
@@ -62,7 +60,7 @@ public class Power {
             requirements(Category.power, with(TItems.nickel, 10));
 
             envEnabled |= Env.underwater;
-            scaledHealth = 5f; // very fragile
+            scaledHealth = 5f; //very fragile
             powerProduction = 90f / 60f;
             riseSpeed = 1f / (200f * 60f);
 
@@ -78,21 +76,22 @@ public class Power {
             powerProduction = 0.48f;
             itemDuration = 450f;
             drawer = new DrawMulti(
-                    new DrawRegion("-bottom"),
-                    new DrawPistons(){{
-                        sinMag = 1.5f;
-                        sides = 4;
-                        lenOffset = 0f;
-                    }},
-                    new DrawRegion("-mid"),
-                    new DrawPistons(){{
-                        sinMag = 1.5f;
-                        sides = 2;
-                        sinScl = 12f;
-                        sinOffset = 75f;
-                        lenOffset = 0f;
-                    }},
-                    new DrawDefault()
+                new DrawRegion("-bottom"),
+                new DrawPistons(){{
+                    sinMag = 1.5f;
+                    sides = 2;
+                    sinOffset = 0f;
+                    angleOffset = 90f;
+                    lenOffset = 0f;
+                }},
+                new DrawPistons(){{
+                    sinMag = 1.5f;
+                    sides = 2;
+                    sinScl = 12f;
+                    sinOffset = 0f;
+                    lenOffset = 0f;
+                }},
+                new DrawDefault()
             );
         }};
 
@@ -118,19 +117,19 @@ public class Power {
             }};
             effectChance = 0.025f;
             drawer = new DrawMulti(
-                    new DrawRegion("-bottom"),
-                    new DrawParticles(){{
-                        color = Color.valueOf("d4f0ff");
-                        alpha = 0.35f;
-                        particleSize = 4f;
-                        particles = 12;
-                        particleLife = 90f;
-                        particleRad = 12f;
-                        reverse = false;
-                        particleSizeInterp = Interp.pow3Out;
-                    }},
-                    new DrawBlurSpin("-rotator", 8f),
-                    new DrawDefault()
+                new DrawRegion("-bottom"),
+                new DrawParticles(){{
+                    color = Color.valueOf("d4f0ff");
+                    alpha = 0.35f;
+                    particleSize = 4f;
+                    particles = 12;
+                    particleLife = 90f;
+                    particleRad = 12f;
+                    reverse = false;
+                    particleSizeInterp = Interp.pow3Out;
+                }},
+                new DrawBlurSpin("-rotator", 8f),
+                new DrawDefault()
             );
         }};
     }

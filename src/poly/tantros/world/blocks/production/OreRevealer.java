@@ -17,7 +17,7 @@ import poly.tantros.world.blocks.environment.HiddenOreBlock.*;
 import static mindustry.Vars.*;
 
 /** Base block for any {@link HiddenOreBlock} revealer. Its building does nothing on its own, subclasses need to call {@link OreRevealerBuild#revealOres()}. */
-public abstract class OreRevealer extends Block {
+public abstract class OreRevealer extends Block{
     protected static final TileChangeEvent tileChange = new TileChangeEvent();
     protected static final TilePreChangeEvent preChange = new TilePreChangeEvent();
 
@@ -27,7 +27,7 @@ public abstract class OreRevealer extends Block {
     public int tier = 1;
     public DrawBlock drawer = new DrawDefault();
 
-    public OreRevealer(String name) {
+    public OreRevealer(String name){
         super(name);
         update = true;
         solid = true;
@@ -38,64 +38,64 @@ public abstract class OreRevealer extends Block {
     }
 
     @Override
-    public void setStats() {
+    public void setStats(){
         super.setStats();
 
         stats.add(Stat.range, revealRange, StatUnit.blocks);
     }
 
     @Override
-    public void load() {
+    public void load(){
         super.load();
         drawer.load(this);
     }
 
     @Override
-    public void drawPlanRegion(BuildPlan plan, Eachable<BuildPlan> list) {
+    public void drawPlanRegion(BuildPlan plan, Eachable<BuildPlan> list){
         drawer.drawPlan(this, plan, list);
     }
 
     @Override
-    public void drawOverlay(float x, float y, int rotation) {
+    public void drawOverlay(float x, float y, int rotation){
         boolean even = size % 2 == 0;
-        if (squareArea) {
+        if(squareArea){
             Drawf.dashSquare(Pal.placing, x, y, revealRange * tilesize * 2f - (even ? 0f : 8f));
-        } else {
+        }else{
             Drawf.dashCircle(x, y, revealRange * tilesize - (even ? 0f : 4f), Pal.placing);
         }
     }
 
     @Override
-    public TextureRegion[] icons() {
+    public TextureRegion[] icons(){
         return drawer.finalIcons(this);
     }
 
     @Override
-    public void getRegionsToOutline(Seq<TextureRegion> out) {
+    public void getRegionsToOutline(Seq<TextureRegion> out){
         drawer.getRegionsToOutline(this, out);
     }
 
-    public class OreRevealerBuild extends Building {
+    public class OreRevealerBuild extends Building{
         @Override
-        public void draw() {
+        public void draw(){
             drawer.draw(this);
         }
 
         @Override
-        public void drawLight() {
+        public void drawLight(){
             super.drawLight();
             drawer.drawLight(this);
         }
 
         /** Reveal ores within range. Called by subclasses. */
-        public void revealOres() {
+        public void revealOres(){
             boolean oreRevealed = false;
             boolean even = size % 2 == 0;
             int evenOffset = even ? 1 : 0; //On an even-sized block, the center tile is the bottom-left of the 4 center tiles.
-            for (int x = tile.x - revealRange + 1; x <= tile.x + revealRange - 1 + evenOffset; x++) {
-                for (int y = tile.y + revealRange - 1 + evenOffset; y >= tile.y - revealRange + 1; y--) {
+            for(int x = tile.x - revealRange + 1; x <= tile.x + revealRange - 1 + evenOffset; x++){
+                for(int y = tile.y + revealRange - 1 + evenOffset; y >= tile.y - revealRange + 1; y--){
                     Tile t = world.tile(x, y);
-                    if (t != null && (squareArea || within(t.worldx(), t.worldy(), revealRange * tilesize - (even ? 0f : 4f))) && t.overlay() instanceof HiddenOreBlock h && h.oreRevealType == revealType && tier >= h.tier) {
+                    if(t != null && (squareArea || within(t.worldx(), t.worldy(), revealRange * tilesize - (even ? 0f : 4f))) && t.overlay() instanceof HiddenOreBlock h && h.oreRevealType == revealType && tier >= h.tier){
                         revealed(t, h);
                         oreRevealed = true;
                     }
@@ -103,18 +103,18 @@ public abstract class OreRevealer extends Block {
             }
 
             //If an ore was revealed, fire a world load event to index the newly revealed ore.
-            if (oreRevealed) renderer.blocks.floor.clearTiles();
+            if(oreRevealed) renderer.blocks.floor.clearTiles();
         }
 
-        public void revealed(Tile t, HiddenOreBlock ore) {
+        public void revealed(Tile t, HiddenOreBlock ore){
             Events.fire(preChange.set(t));
             t.setOverlayQuiet(ore.revealReplacement);
             Events.fire(tileChange.set(t));
             ore.displayRevealEffect(t);
         }
 
-        public void scheduleBreak() {
-            if (!headless) control.input.tryBreakBlock(tile.x, tile.y);
+        public void scheduleBreak(){
+            if(!headless) control.input.tryBreakBlock(tile.x, tile.y);
         }
     }
 }

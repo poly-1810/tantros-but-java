@@ -19,15 +19,16 @@ import static mindustry.Vars.*;
 public class FloatingSolarGenerator extends SolarGenerator{
     public int spacing = 4;
     public float riseSpeed = 0.01f;
-    public Interp riseInterp = Interp.smooth;
+    public Interp riseInterp = Interp.sineIn;
 
     public FloatingSolarGenerator(String name){
         super(name);
 
+        replaceable = false;
         drawer = new DrawMulti(
-            new DrawDefault(),
-            new DrawFloatingCable("-cable"),
-            new DrawFloatingRegion("-panel")
+        new DrawDefault(),
+        new DrawFloatingCable("-cable"),
+        new DrawFloatingRegion("-panel")
         );
     }
 
@@ -41,7 +42,7 @@ public class FloatingSolarGenerator extends SolarGenerator{
     public boolean canPlaceOn(Tile tile, Team team, int rotation){
         if(spacing < 1) return true;
         int off = 1 - size % 2;
-        for(int x = tile.x - spacing + off; x <= tile.x + spacing ; x++){
+        for(int x = tile.x - spacing + off; x <= tile.x + spacing; x++){
             for(int y = tile.y - spacing + off; y <= tile.y + spacing; y++){
                 Tile t = world.tile(x, y);
                 if(t != null && t.block() instanceof FloatingSolarGenerator s && (s == this || s.intersectsSpacing(t.build.tile, tile))) return false;
@@ -54,7 +55,7 @@ public class FloatingSolarGenerator extends SolarGenerator{
         if(spacing < 1) return true;
         int off = 1 - size % 2;
         return ox >= sx - spacing + off - ext && ox <= sx + spacing + ext &&
-            oy >= sy - spacing + off - ext && oy <= sy + spacing + ext;
+        oy >= sy - spacing + off - ext && oy <= sy + spacing + ext;
     }
 
     public boolean intersectsSpacing(Tile self, Tile other){
