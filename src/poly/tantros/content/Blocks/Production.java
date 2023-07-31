@@ -65,7 +65,7 @@ public class Production{
             );
             size = 4;
 
-            consumePower(20f);
+            consumePower(15f);
         }};
     }
 }
