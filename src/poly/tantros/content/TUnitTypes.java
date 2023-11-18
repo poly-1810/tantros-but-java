@@ -3,6 +3,7 @@ package poly.tantros.content;
 import arc.graphics.*;
 import arc.math.*;
 import arc.math.geom.*;
+import mindustry.*;
 import mindustry.ai.*;
 import mindustry.ai.types.*;
 import mindustry.content.*;
@@ -11,6 +12,7 @@ import mindustry.entities.bullet.*;
 import mindustry.entities.effect.*;
 import mindustry.entities.part.*;
 import mindustry.entities.pattern.*;
+import mindustry.game.*;
 import mindustry.gen.*;
 import mindustry.type.*;
 import mindustry.type.ammo.*;
@@ -393,6 +395,34 @@ public class TUnitTypes{
             healColor = Color.valueOf("feb380");
         }};
 
+        chainDrone = new UnitType("chain-drone"){{
+            constructor = UnitEntity::create;
+
+            envEnabled |= Env.underwater;
+            aiController = DefenderAI::new;
+            defaultCommand = UnitCommand.rebuildCommand;
+            isEnemy = false;
+            flying = true;
+            hidden = true;
+            outlineColor = Color.valueOf("4a4b53");
+            targetPriority = -1f;
+            speed = 2f;
+            accel = 0.1f;
+            drag = 0.05f;
+            lifetime = 450f;
+            health = 75f;
+            armor = 3f;
+            maxRange = 0f;
+            drawCell = false;
+            lowAltitude = true;
+            hitSize = 4f;
+            targetable = true;
+            trailLength = 12;
+            engineSize = 2.5f;
+            rotateSpeed = 5f;
+            buildSpeed = 0.1f;
+        }};
+
         chain = new UnitType("chain"){{
             constructor = LegsUnit::create;
 
@@ -475,33 +505,6 @@ public class TUnitTypes{
                     parentizeEffects = true;
                 }}
             );
-        }};
-        chainDrone = new UnitType("chain-drone"){{
-            constructor = UnitEntity::create;
-
-            envEnabled |= Env.underwater;
-            aiController = DefenderAI::new;
-            defaultCommand = UnitCommand.rebuildCommand;
-            isEnemy = false;
-            flying = true;
-            hidden = true;
-            outlineColor = Color.valueOf("4a4b53");
-            targetPriority = -1f;
-            speed = 2f;
-            accel = 0.1f;
-            drag = 0.05f;
-            lifetime = 450f;
-            health = 75f;
-            armor = 3f;
-            maxRange = 0f;
-            drawCell = false;
-            lowAltitude = true;
-            hitSize = 4f;
-            targetable = true;
-            trailLength = 12;
-            engineSize = 2.5f;
-            rotateSpeed = 5f;
-            buildSpeed = 0.1f;
         }};
 
         snapPiranha = new MissileUnitType("snap-piranha"){{
