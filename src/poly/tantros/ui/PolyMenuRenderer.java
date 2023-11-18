@@ -13,6 +13,7 @@ import static mindustry.Vars.*;
 
 public class PolyMenuRenderer extends MenuRenderer{
     public static FrameBuffer buffer;
+
     public PlanetParams params = new PlanetParams(){{
         alwaysDrawAtmosphere = true;
         planet = Planets.tantros;
@@ -32,6 +33,6 @@ public class PolyMenuRenderer extends MenuRenderer{
 
         buffer.end();
 
-        Draw.rect(Draw.wrap(buffer.getTexture()), (float) graphics.getWidth() / 2, (float) graphics.getHeight() / 2, graphics.getWidth(), graphics.getHeight());
+        Draw.rect(Draw.wrap(buffer.getTexture()), graphics.getWidth() / 2f, graphics.getHeight() / 2f, graphics.getWidth(), graphics.getHeight());
     }
 }

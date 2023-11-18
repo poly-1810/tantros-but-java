@@ -7,7 +7,6 @@ import mindustry.*;
 import mindustry.content.*;
 import mindustry.game.*;
 import mindustry.game.EventType.*;
-import mindustry.graphics.*;
 import mindustry.mod.*;
 import mindustry.mod.Mods.*;
 import mindustry.ui.fragments.*;
@@ -21,6 +20,7 @@ import poly.tantros.util.*;
 import static arc.Core.*;
 import static mindustry.Vars.*;
 
+@SuppressWarnings("unused")
 public class PolyTantros extends Mod{
     public TUnderwaterFilter tUnderwaterFilter;
 
@@ -48,10 +48,8 @@ public class PolyTantros extends Mod{
             r.fog = true;
         };
 
-        //hide all not-tantros items
         Planets.tantros.itemWhitelist.addAll(TItems.tantrosItems);
 
-        //hide all tantros items on another planets
         Planets.serpulo.hiddenItems.addAll(TItems.onlyTantrosItems);
         Planets.erekir.hiddenItems.addAll(TItems.onlyTantrosItems);
 
@@ -89,10 +87,8 @@ public class PolyTantros extends Mod{
         TUnitTypes.load();
         TWeathers.load();
 
-        //special category
         Resources.load();
 
-        //loading blocks
         Crafting.load();
         Defense.load();
         Distribution.load();
