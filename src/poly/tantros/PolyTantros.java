@@ -2,15 +2,19 @@ package poly.tantros;
 
 import arc.*;
 import arc.graphics.*;
+import arc.util.*;
 import mindustry.*;
 import mindustry.content.*;
 import mindustry.game.*;
 import mindustry.game.EventType.*;
+import mindustry.graphics.*;
 import mindustry.mod.*;
 import mindustry.mod.Mods.*;
+import mindustry.ui.fragments.*;
 import poly.tantros.content.Blocks.*;
 import poly.tantros.content.*;
 import poly.tantros.maps.planet.*;
+import poly.tantros.ui.*;
 import poly.tantros.ui.dialogs.*;
 import poly.tantros.util.*;
 
@@ -32,6 +36,7 @@ public class PolyTantros extends Mod{
 
     @Override
     public void init(){
+        Reflect.set(MenuFragment.class, ui.menufrag, "renderer", new PolyMenuRenderer());
         Planets.tantros.generator = new PolyTantrosPlanetGenerator();
         Planets.tantros.visible = true;
         Planets.tantros.accessible = true;
