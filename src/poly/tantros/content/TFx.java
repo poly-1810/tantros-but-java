@@ -4,6 +4,7 @@ import arc.*;
 import arc.graphics.*;
 import arc.graphics.g2d.*;
 import arc.math.*;
+import arc.math.geom.*;
 import mindustry.*;
 import mindustry.entities.*;
 import mindustry.graphics.*;
@@ -79,6 +80,28 @@ public class TFx{
         crack.draw(e.x, e.y, e.color, e.rotation * e.fout());
     }).layer(Layer.scorch - 1f),
 
+    frackFlame = new Effect(75f, 250f, e -> {
+        //dist from center to slammer tops
+        float len = 137/4f;
+
+        for(int i = 0; i < 4; i++){
+            float ex = e.x + Geometry.d4x(i) * len,
+                ey = e.y + Geometry.d4y(i) * len,
+                rot = i * 90f;
+            e.scaled(28f, s -> {
+                color(TPal.rubedoLight, TPal.rubedoDark, s.fin());
+                float w = 1.2f + 9 * s.fout();
+                Drawf.tri(ex, ey, w, 32f * s.fout(), rot);
+                Drawf.tri(ex, ey, w, 3f * s.fout(), rot + 180f);
+            });
+
+            color(TPal.rubedoLight, TPal.rubedoDark, e.fin());
+            randLenVectors(e.id, 13, e.finpow() * 36f, rot, 15f, (x, y) -> {
+                Fill.circle(ex + x, ey + y, e.fout() * 3f);
+            });
+        }
+    }),
+
     tridentTrail = new Effect(13, e -> {
         color(Color.white, e.color, e.fin());
         stroke(0.6f + e.fout() * 1.7f);
@@ -99,7 +122,7 @@ public class TFx{
         int amount = Mathf.ceil(Mathf.sqrt(e.rotation));
 
         randLenVectors(e.id, amount, length, (x, y) -> {
-            rect(item.fullIcon, e.x + x, e.y + y, size, size);
+            Draw.rect(item.fullIcon, e.x + x, e.y + y, size, size);
         });
     }).layer(Layer.blockOver);
 }

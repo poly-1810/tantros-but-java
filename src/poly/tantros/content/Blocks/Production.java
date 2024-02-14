@@ -1,10 +1,16 @@
 package poly.tantros.content.Blocks;
 
+import mindustry.content.*;
+import mindustry.entities.effect.*;
+import mindustry.graphics.*;
 import mindustry.type.*;
 import mindustry.world.*;
+import mindustry.world.draw.*;
 import mindustry.world.meta.*;
 import poly.tantros.content.*;
+import poly.tantros.graphics.*;
 import poly.tantros.world.blocks.production.*;
+import poly.tantros.world.draw.*;
 
 import static mindustry.type.ItemStack.*;
 
@@ -25,11 +31,31 @@ public class Production{
             requirements(Category.production, BuildVisibility.sandboxOnly, with()); //TODO Placeholder, no cost yet
 
             envEnabled |= Env.underwater;
-            int useAmount = 5;
-            itemCapacity = useAmount; //Don't hold extras when destroying yourself.
+            int useAmount = 10;
+            itemCapacity = useAmount;
             size = 12;
+            revealRange = 5;
             fillsTile = false;
-            //customShadow = true; //Commented for visiblity. Uncomment when an actual sprite is added.
+            customShadow = true;
+            drawCracks = false;
+
+            blastEffect = new MultiEffect(
+                Fx.dynamicSpikes.wrap(TPal.rubedoLight, 30f),
+                Fx.mineImpactWave.wrap(TPal.rubedoLight, 45f),
+                TFx.frackFlame
+            );
+
+            drawer = new DrawMulti(
+                new DrawDefault(),
+                new DrawSlammers(53f / 4f){{
+                    shadowOffset = 3f;
+                    baseOffset = 80f / 4f;
+                    layer = Layer.blockOver;
+                }},
+                new DrawRegion("-top"){{
+                    layer = Layer.blockOver + 0.1f;
+                }}
+            );
 
             consumeItem(TItems.rubedo, useAmount); //Placeholder
         }};

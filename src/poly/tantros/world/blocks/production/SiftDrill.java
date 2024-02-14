@@ -30,7 +30,7 @@ public class SiftDrill extends Drill{
     public void init(){
         super.init();
         if(siftMag == Float.MIN_VALUE) siftMag = size * tilesize / 2f;
-        if(siftEffectTime == Float.MIN_VALUE) siftEffectTime = siftMag * 1.1f;
+        if(siftEffectTime == Float.MIN_VALUE) siftEffectTime = siftMag * Mathf.sqrt3 / 2f;
         if(siftEffectMaxDist < 0f) siftEffectMaxDist = size * tilesize / 2f;
     }
 
@@ -42,7 +42,7 @@ public class SiftDrill extends Drill{
     public class SiftDrillBuild extends DrillBuild{
         @Override
         public void updateTile(){
-            //copy over Drill code just so I can mess with the update effect.
+            // copy over Drill code just so I can mess with the update effect.
             if(timer(timerDump, dumpTime)){
                 dump(dominantItem != null && items.has(dominantItem) ? dominantItem : null);
             }
@@ -63,20 +63,22 @@ public class SiftDrill extends Drill{
                 progress += delta() * dominantItems * speed * warmup;
 
                 float pos = Mathf.sin(timeDrilled, siftScl, siftMag);
-                float posChance = 1f - Math.abs(pos) / siftEffectTime;
-                for(int i = 0; i < updateEffects; i++){
-                    if(Mathf.chanceDelta(updateEffectChance * warmup * posChance)){
-                        float ex = x + pos, ey = y + Mathf.range(siftEffectMinDist, siftEffectMaxDist);
-                        Tile t = world.tileWorld(ex, ey);
-                        float rad = posChance * warmup;
-                        if(t.drop() == dominantItem && Mathf.chance(oreColorChance)){
-                            Tmp.c1.set(dominantItem.color);
-                            rad *= oreColorScl;
-                        }else{
-                            Tmp.c1.set(world.tileWorld(ex, ey).floor().mapColor);
-                        }
+                float posRad = 1f - Math.abs(pos) / siftEffectTime;
+                if(posRad > 0){
+                    for(int i = 0; i < updateEffects; i++){
+                        if(Mathf.chanceDelta(updateEffectChance * warmup)){
+                            float ex = x + pos, ey = y + Mathf.range(siftEffectMinDist, siftEffectMaxDist);
+                            Tile t = world.tileWorld(ex, ey);
+                            float rad = posRad * warmup;
+                            if(t.drop() == dominantItem && Mathf.chance(oreColorChance)){
+                                Tmp.c1.set(dominantItem.color);
+                                rad *= oreColorScl;
+                            }else{
+                                Tmp.c1.set(world.tileWorld(ex, ey).floor().mapColor);
+                            }
 
-                        updateEffect.at(ex, ey, rad, Tmp.c1.mul(1.5f + Mathf.range(0.15f)));
+                            updateEffect.at(ex, ey, rad, Tmp.c1.mul(1.5f + Mathf.range(0.15f)));
+                        }
                     }
                 }
             }else{

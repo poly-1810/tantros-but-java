@@ -1,11 +1,16 @@
 package poly.tantros.graphics;
 
-import arc.graphics.Color;
+import arc.graphics.*;
 
-public class TPal{
+import static arc.graphics.Color.*;
+
+public class TPal {
     public static final Color
 
-    darkBrown = Color.valueOf("4d2c0c"),
+    darkBrown = valueOf("4d2c0c"),
 
-    commandSelect = Color.valueOf("3a8f64");
+    commandSelect = valueOf("3a8f64"),
+
+    rubedoLight = valueOf("CE735E"),
+    rubedoDark = valueOf("7E2642");
 }

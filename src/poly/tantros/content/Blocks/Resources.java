@@ -8,6 +8,7 @@ import mindustry.entities.effect.*;
 import mindustry.type.*;
 import mindustry.world.meta.*;
 import poly.tantros.content.*;
+import poly.tantros.graphics.*;
 import poly.tantros.world.blocks.resources.*;
 
 import static mindustry.type.ItemStack.*;
@@ -93,8 +94,8 @@ public class Resources{
                     lifetime = 240;
                     sizeFrom = 16.5f;
                     sizeTo = 0f;
-                    colorFrom = Color.valueOf("CE735EFF");
-                    colorTo = Color.valueOf("7E2642FF");
+                    colorFrom = TPal.rubedoLight;
+                    colorTo = TPal.rubedoDark;
                     length = 64f;
                     interp = Interp.pow3Out;
                     sizeInterp = Interp.pow2In;

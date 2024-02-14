@@ -34,11 +34,9 @@ public class OreFracker extends OreRevealer{
 
     public float shake = 4f;
     public Sound blastSound = Sounds.drillImpact;
-    public Effect blastEffect = new MultiEffect( //TODO placeholder-this is just a copy of eruption drill's mine effect
-    Fx.mineImpact,
-    Fx.drillSteam,
-    Fx.dynamicSpikes.wrap(Pal.bulletYellowBack, 30f),
-    Fx.mineImpactWave.wrap(Pal.bulletYellowBack, 45f)
+    public Effect blastEffect = new MultiEffect(
+        Fx.dynamicSpikes.wrap(Pal.bulletYellowBack, 30f),
+        Fx.mineImpactWave.wrap(Pal.bulletYellowBack, 45f)
     );
     public float blastSoundVolume = 1f, blastSoundPitchRand = 0.1f;
 
@@ -125,12 +123,28 @@ public class OreFracker extends OreRevealer{
                     revealOres();
                     scheduleBreak();
                     fadeCracks();
+                    reloadCounter = 0f;
                 }
             }
         }
 
         @Override
-        public boolean shouldConsume(){
+        public float warmup(){
+            return warmup;
+        }
+
+        @Override
+        public float progress(){
+            return reloadCounter;
+        }
+
+        @Override
+        public float totalProgress(){
+            return totalProgress;
+        }
+
+        @Override
+        public boolean shouldConsume() {
             return blastCounter < blasts;
         }
 
